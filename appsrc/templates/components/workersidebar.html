@@ -1,0 +1,35 @@
+{% load static %}
+<div class="main_sidebar">
+<div class="sidebar">
+    <div>
+      <a href="{% url 'homepage' %}">  
+        <img src="{% static 'media/logo.png' %}" alt="logo" class="logo_img"></a>
+    </div>
+    <ul>
+        <li>
+            <a href="{% url 'workerdashboard' %}" class="dashboard">
+                <i class="fa-solid fa-house"></i>
+                <p>Dashboard</p>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'workersample' %}" class="WorkerSample">
+                <i class="fa-solid fa-clipboard-user"></i>
+                <p>Work Sample</p>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'recentworkers' %}" class="RecentWorkers">
+                <i class="fa-solid fa-users-gear"></i>
+                <p>Recent Workers</p>
+            </a>
+        </li>
+        <li>
+            <a href="/logout" class="dashboard">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <p>Log Out</p>
+            </a>
+        </li>
+    </ul>
+</div>
+</div>

@@ -1,0 +1,361 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+    <link href="fontawesomefree/css/all.min.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+</head>
+
+<body>
+
+    {% include 'components/header.html'%}
+    <main>
+        <div class="horizontal justify-between align-center fullwidth maxwidth hero_section padding-10 gap-20 maxwidth">
+            <div class="vertical gap-10 justify-start align-start halfwidth">
+                <div class="vertical gap-10">
+                    <img src="{% static 'media/logo.png' %}" alt="" class="logo_img">
+                    <p class="sub_head_2">Your one stop shop
+                        for home improvement.</p>
+                </div>
+                <div class="vertical gap-20 bx-shadow padding-10">
+                    <p class="bold_text">Get multiple free quotes all in one place</p>
+                    <div class="horizontal_2">
+                        <div class="hr_border"></div>
+                        <div class="hr_border2"></div>
+                    </div>
+                    <div class="vertical gap-10 web_inputs">
+                        <input type="text" placeholder="What do you need help with? ">
+                        <p class="bold_text">
+                            Popular: Landscaping, Painting, Hire a Plumber
+                        </p>
+                    </div>
+                    <a href="{% url 'searchpros' %}"><button class="main_btn fullwidth">Search</button></a>
+                </div>
+            </div>
+            <div class="vertical align-center halfwidth">
+                <img src="{% static 'media/heroimg.webp' %}" alt="" class="hero_img">
+            </div>
+        </div>
+        <!-- categories section -->
+        <div class="vertical gap-20 justify-start align-start padding-10 fullwidth maxwidth">
+            <div class="horizontal justify-between align-center fullwidth">
+                <p class="sub_head_2">Browse Pros By Popular <span class="imp_text ">Categories</span> </p>
+                <button class="main_btn">View All</button>
+            </div>
+            <div class="cards_grid paddingX fullwidth">
+                <div class="bx-shadow vertical gap-10 align-center justify-center">
+                    <img src="{% static 'media/handyman.png' %}" alt="" class="card_img">
+                    <div class="padding-10">
+                        <p class="card_text">HandyMan</p>
+                    </div>
+                </div>
+                <div class="bx-shadow vertical gap-10 align-center justify-center">
+                    <img src="{% static 'media/painters.png' %}" alt="" class="card_img">
+                    <div class="padding-10">
+                        <p class="card_text">Painters</p>
+                    </div>
+                </div>
+                <div class="bx-shadow vertical gap-10 align-center justify-center">
+                    <img src="{% static 'media/landscapers.png' %}" alt="" class="card_img">
+                    <div class="padding-10">
+                        <p class="card_text">Landscapers</p>
+                    </div>
+                </div>
+                <div class="bx-shadow vertical gap-10 align-center justify-center">
+                    <img src="{% static 'media/plumbers.png' %}" alt="" class="card_img">
+                    <div class="padding-10">
+                        <p class="card_text">Plumbers</p>
+                    </div>
+                </div>
+                <div class="bx-shadow vertical gap-10 align-center justify-center">
+                    <img src="{% static 'media/electricians.png' %}" alt="" class="card_img">
+                    <div class="padding-10">
+                        <p class="card_text">Electrians</p>
+                    </div>
+                </div>
+                <div class="bx-shadow vertical gap-10 align-center justify-center">
+                    <img src="{% static 'media/cleaners.png' %}" alt="" class="card_img">
+                    <div class="padding-10">
+                        <p class="card_text">Cleaners</p>
+                    </div>
+                </div>
+                <div class="bx-shadow vertical gap-10 align-center justify-center">
+                    <img src="{% static 'media/roofers.png' %}" alt="" class="card_img">
+                    <div class="padding-10">
+                        <p class="card_text">Roofers</p>
+                    </div>
+                </div>
+                <div class="bx-shadow vertical gap-10 align-center justify-center">
+                    <img src="{% static 'media/appliance-installers.png' %}" alt="" class="card_img">
+                    <div class="padding-10">
+                        <p class="card_text">Appliance Installers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+        <div class="vertical gap-20 justify-start align-start padding-10 fullwidth maxwidth">
+            <div class="horizontal justify-between align-center fullwidth">
+                <p class="sub_head_2">Why choose <span class="imp_text ">HomeRenovation</span> </p>
+            </div>
+            <div class="horizontal gap-20 fullwidth justify-between align-center">
+                <div class="sep_div halfwidth">
+                    <div class="vertical gap-10  fullheight padding-10">
+                        <p class="bold_text">How HomeRenovation Works</p>
+                        <p class="simple_text">Hire top quality professionals at the best price and get your
+                            job done today!</p>
+                        <div class="horizontal_2 gap-10 padding-10 main_border align-center justify-start">
+                            <p class="small_text">STEP 1</p>
+                            <p class="hero_text_2">Tell us about your project.</p>
+                        </div>
+                        <div class="horizontal_2 gap-10 padding-10 main_border align-center justify-start">
+                            <p class="small_text">STEP 2</p>
+                            <p class="hero_text_2">Hire multiple Pros</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="vertical gap-20 halfwidth">
+                    <div class="vertical gap-10 padding-10 sep_div_2">
+                        <p class="bold_text"> Get your job done quickly!</p>
+                        <p class="small_text">Hire top quality professionals at the best price and get your job done
+                            today!</p>
+                        <a href="{% url 'register' %}" class="imp_text hero_text_2">Join as a Customer</a>
+                    </div>
+                    <div class="vertical gap-10 padding-10 sep_div_2">
+                        <p class="bold_text"> Find a local job!</p>
+                        <p class="small_text">
+                            Gas is expensive! Bid on more jobs for free online and get more work today.
+                        </p>
+                        <a href="{% url 'register' %}" class="imp_text hero_text_2">Join as a Pro
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Data Safe -->
+        <div class="vertical gap-20 justify-start align-start padding-10 fullwidth maxwidth">
+            <div class="horizontal justify-between align-center fullwidth">
+                <p class="sub_head_2">HomeRenovation keeps your <span class="imp_text ">data in your hands</span> </p>
+            </div>
+            <div class="horizontal justify-between align-center fullwidth gap-20">
+                <div class="vertical gap-5 align-start justify-start">
+                    <img src="{% static 'media/project-privacy.png'%}" alt="">
+                    <p class="bold_text_2">Your Project
+                    </p>
+                    <p class="hero_text_2"> HomeRenovation respects your privacy. That's why you control who sees your
+                        project post. You can set it to be visible to all pros on the platform or just those you invite.
+                    </p>
+                </div>
+                <div class="vertical gap-5 align-start justify-start">
+                    <img src="{% static 'media/data-privacy.png'%}" alt="">
+                    <p class="bold_text_2">Your Data
+                    </p>
+                    <p class="hero_text_2">
+                        HomeRenovation does not sell your data. Your home, project and pictures are under your control.
+                        You
+                        control who has access to your projects and data.</p>
+                </div>
+                <div class="vertical gap-5 align-start justify-start">
+                    <img src="{% static 'media/payment-privacy.png'%}" alt="">
+                    <p class="bold_text_2">Secure payments
+                    </p>
+                    <p class="hero_text_2">
+                        HomeRenovation keeps your payments secure by using a well-known and trusted 3rd party payment
+                        processor, Stripe. HomeRenovation does not store or process payment information.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Pros -->
+        <div class="vertical gap-20 justify-start align-start padding-10 fullwidth maxwidth">
+            <div class="horizontal justify-between align-center fullwidth">
+                <p class="sub_head_2">Find local professionals on <span class="imp_text ">HomeRenovation</span> </p>
+                <button class="main_btn">View All</button>
+            </div>
+            <div class="cards_grid paddingX fullwidth">
+                <div class="bx-shadow vertical gap-10 align-center justify-center">
+                    <img src="{% static 'media/pros.png' %}" alt="" class="card_img">
+                    <div class="padding-10">
+                        <div class="vertical justify-start align-start">
+                            <p class="bold_text_2">
+                                Brighto Painting Service
+                            </p>
+                            <p class="hero_text_2">Painting</p>
+                            <div class="horizontal_2 gap-5 Rating hero_text_2">
+                                <i class="fa-solid fa-star"></i> 5/5 (2 Jobs)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bx-shadow vertical gap-10 align-center justify-center">
+                    <img src="{% static 'media/pros.png' %}" alt="" class="card_img">
+                    <div class="padding-10">
+                        <div class="vertical justify-start align-start">
+                            <p class="bold_text_2">
+                                Brighto Painting Service
+                            </p>
+                            <p class="hero_text_2">Painting</p>
+                            <div class="horizontal_2 gap-5 Rating hero_text_2">
+                                <i class="fa-solid fa-star"></i> 5/5 (2 Jobs)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bx-shadow vertical gap-10 align-center justify-center">
+                    <img src="{% static 'media/pros.png' %}" alt="" class="card_img">
+                    <div class="padding-10">
+                        <div class="vertical justify-start align-start">
+                            <p class="bold_text_2">
+                                Brighto Painting Service
+                            </p>
+                            <p class="hero_text_2">Painting</p>
+                            <div class="horizontal_2 gap-5 Rating hero_text_2">
+                                <i class="fa-solid fa-star"></i> 5/5 (2 Jobs)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bx-shadow vertical gap-10 align-center justify-center">
+                    <img src="{% static 'media/pros.png' %}" alt="" class="card_img">
+                    <div class="padding-10">
+                        <div class="vertical justify-start align-start">
+                            <p class="bold_text_2">
+                                Brighto Painting Service
+                            </p>
+                            <p class="hero_text_2">Painting</p>
+                            <div class="horizontal_2 gap-5 Rating hero_text_2">
+                                <i class="fa-solid fa-star"></i> 5/5 (2 Jobs)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bx-shadow vertical gap-10 align-center justify-center">
+                    <img src="{% static 'media/pros.png' %}" alt="" class="card_img">
+                    <div class="padding-10">
+                        <div class="vertical justify-start align-start">
+                            <p class="bold_text_2">
+                                Brighto Painting Service
+                            </p>
+                            <p class="hero_text_2">Painting</p>
+                            <div class="horizontal_2 gap-5 Rating hero_text_2">
+                                <i class="fa-solid fa-star"></i> 5/5 (2 Jobs)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bx-shadow vertical gap-10 align-center justify-center">
+                    <img src="{% static 'media/pros.png' %}" alt="" class="card_img">
+                    <div class="padding-10">
+                        <div class="vertical justify-start align-start">
+                            <p class="bold_text_2">
+                                Brighto Painting Service
+                            </p>
+                            <p class="hero_text_2">Painting</p>
+                            <div class="horizontal_2 gap-5 Rating hero_text_2">
+                                <i class="fa-solid fa-star"></i> 5/5 (2 Jobs)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bx-shadow vertical gap-10 align-center justify-center">
+                    <img src="{% static 'media/pros.png' %}" alt="" class="card_img">
+                    <div class="padding-10">
+                        <div class="vertical justify-start align-start">
+                            <p class="bold_text_2">
+                                Brighto Painting Service
+                            </p>
+                            <p class="hero_text_2">Painting</p>
+                            <div class="horizontal_2 gap-5 Rating hero_text_2">
+                                <i class="fa-solid fa-star"></i> 5/5 (2 Jobs)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bx-shadow vertical gap-10 align-center justify-center">
+                    <img src="{% static 'media/pros.png' %}" alt="" class="card_img">
+                    <div class="padding-10">
+                        <div class="vertical justify-start align-start">
+                            <p class="bold_text_2">
+                                Brighto Painting Service
+                            </p>
+                            <p class="hero_text_2">Painting</p>
+                            <div class="horizontal_2 gap-5 Rating hero_text_2">
+                                <i class="fa-solid fa-star"></i> 5/5 (2 Jobs)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Signup section -->
+        <div class="sep_div3 paddingY">
+            <div class="vertical gap-20 justify-start align-start padding-10 fullwidth maxwidth ">
+                <div class="horizontal justify-between align-center fullwidth">
+                    <p class="bold_text_2">Happiness Guarantee By <span class="imp_text ">HomeRenovation's
+                            Professionals</span> </p>
+                    <a href="{% url 'register' %}"> <button class="main_btn">Signup</button></a>
+                </div>
+                <div class="horizontal justify-between align-center fullwidth gap-20">
+                    <div class="horizontal_2 gap-5 align-start justify-start">
+                        <img src="{% static 'media/worker.png'%}" alt="">
+                        <div class="vertical gap-5">
+                            <p class="bold_text_2">Your Verified professionals
+
+                            </p>
+                            <p class="hero_text_2"> All of our professionals pass a rigorous background check, so you
+                                can hire with confidence! </p>
+                        </div>
+                    </div>
+                    <div class="horizontal_2 gap-5 align-start justify-start">
+                        <img src="{% static 'media/money-icon.png'%}" alt="">
+                        <div class="vertical gap-5">
+                            <p class="bold_text_2">
+                                Guaranteed pricing!
+
+                            </p>
+                            <p class="hero_text_2"> Inflation is soaring, but getting multiple quotes always means you
+                                get the best quality for the best price. </p>
+                        </div>
+                    </div>
+                    <div class="horizontal_2 gap-5 align-start justify-start">
+                        <img src="{% static 'media/support.png'%}" alt="">
+                        <div class="vertical gap-5">
+                            <p class="bold_text_2">
+                                Quick HomeRenovation support
+                            </p>
+                            <p class="hero_text_2">
+                                HomeRenovation has you covered. Contact us over chat, email or phone! </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% include 'components/footer.html' %}
+    <script src="{% static 'js/script.js' %}"></script>
+
+
+</body>
+
+</html>

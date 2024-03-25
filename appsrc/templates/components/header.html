@@ -1,0 +1,235 @@
+{% load static %}
+<header class="padding-10">
+    <nav class="horizontal_2 justify-between align-center fullwidth maxwidth2">
+        <a href="{% url 'homepage' %}">
+            <img src="{% static 'media/logo.png' %}" alt="Logo" class="logo_img">
+        </a>
+      <div class="horizontal_2 gap-5"> 
+         <ul class="navlinks">
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li>
+                <div class="menu-wrap">
+                    <ul class="menu">
+                        <li class="menu-item">
+                            <a href="#">How it Work</a>
+                            <ul class="drop-menu">
+                                <li class="drop-menu-item">
+                                    <a href="#">For HomeOwners</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="#">For Pros</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="menu-wrap">
+                    <ul class="menu">
+                        <li class="menu-item">
+                            <a href="#">Find Pros</a>
+                            <ul class="drop-menu">
+                                <li class="drop-menu-item">
+                                    <a href="{% url 'searchpros' %}">Find Contarctors</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="{% url 'searchpros' %}">Find Painters</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="{% url 'searchpros' %}">Find Landscapers</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="{% url 'searchpros' %}">Find By Service Area</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="menu-wrap">
+                    <ul class="menu">
+                        <li class="menu-item">
+                            <a href="#">Find Projects</a>
+                            <ul class="drop-menu">
+                                <li class="drop-menu-item">
+                                    <a href="{% url 'searchproject' %}">Find Contarctoring Jobs</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="{% url 'searchproject' %}">Find Painting Jobs</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="{% url 'searchproject' %}">Find Landscaping Jobs</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="{% url 'searchproject' %}">Find By Service Area</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>      
+                <div class="menu-wrap">
+                    <ul class="menu">
+                        <li class="menu-item">
+                            <a href="#">Blog</a>
+                            <ul class="drop-menu">
+                                <li class="drop-menu-item">
+                                  <div class="vertical gap-5 justify-between align-center blog_text">
+                                    <p>Blog Title</p>
+                                    <p>Blog Detail</p>
+                                  </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>     
+                <div class="menu-wrap">
+                    <ul class="menu">
+                        <li class="menu-item">
+                            <a href="#">About Us</a>
+                            <ul class="drop-menu">
+                                <li class="drop-menu-item">
+                                    <a href="#">Meet Our Team</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="#">FAQS</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="#">Contact Us</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            <li><a href="{% url 'register' %}">Sign Up</a></li>
+        </ul>
+        <button class="main_btn lg_btn">Get Quote</button>
+        <button class="menu_icon sm_btn" onclick="toggleOffCanvas()">
+            <i class="fas fa-bars"></i>
+        </button></div>
+        <div id="offcanvas" class="offcanvas">
+            <div class="horizontal_2 justify-between align-center fullwidth">
+                <img src="{% static 'media/logo.png' %}" alt="Logo" class="logo_img">
+                <button class="close_icon sm_btn" onclick="toggleOffCanvas()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="offcanvas_navlinks">
+                
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li>
+                <div class="accordion">
+                    <button class="accordion-btn">How it Works</button>
+                    <div class="accordion-content">
+                        <a href="#">For HomeOwners</a>
+                        <a href="#">For Pros</a>
+                    </div>
+                  </div>
+            
+            </li>
+            <li>
+                <div class="menu-wrap">
+                    <ul class="menu">
+                        <li class="menu-item">
+                            <a href="#">Find Pros</a>
+                            <ul class="drop-menu">
+                                <li class="drop-menu-item">
+                                    <a href="#">Find Contarctors</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="#">Find Painters</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="#">Find Landscapers</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="#">Find By Service Area</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="menu-wrap">
+                    <ul class="menu">
+                        <li class="menu-item">
+                            <a href="#">Find Projects</a>
+                            <ul class="drop-menu">
+                                <li class="drop-menu-item">
+                                    <a href="#">Find Contarctoring Jobs</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="#">Find Painting Jobs</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="#">Find Landscaping Jobs</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="#">Find By Service Area</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>      
+                <div class="menu-wrap">
+                    <ul class="menu">
+                        <li class="menu-item">
+                            <a href="#">Blog</a>
+                            <ul class="drop-menu">
+                                <li class="drop-menu-item">
+                                  <div class="vertical gap-5 justify-between align-center blog_text">
+                                    <p>Blog Title</p>
+                                    <p>Blog Detail</p>
+                                  </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>     
+                <div class="menu-wrap">
+                    <ul class="menu">
+                        <li class="menu-item">
+                            <a href="#">About Us</a>
+                            <ul class="drop-menu">
+                                <li class="drop-menu-item">
+                                    <a href="#">Meet Our Team</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="#">FAQS</a>
+                                </li>
+                                <li class="drop-menu-item">
+                                    <a href="#">Contact Us</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            <li><a href="{% url 'register' %}">Sign Up</a></li>
+            </ul>
+            <button class="main_btn">Get Quote</button>
+        </div>
+    </nav>
+</header>
+
+
+<hr class="hrline">

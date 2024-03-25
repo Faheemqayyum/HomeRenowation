@@ -1,0 +1,444 @@
+:root {
+  --primarycl: #048995;
+  --secondarycl: #f1f1f1;
+  --thirdcl: #f6f6f6;
+  --textcl: #313131;
+  --main-br-cl: #f4f4f4;
+  --border-cl: #979797;
+  --primary-gradient: linear-gradient(90deg, #def7fb 0%, #a3e7ee 100%);
+  --mainfont-family: "Poppins", sans-serif;
+  --input-font: "Mulish",  sans-serif;
+}
+/* Dropdown Menu */
+.menu,
+.drop-menu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  display: inline-block;
+  background-color: transparent;
+  position: relative;
+}
+
+.menu-item .drop-menu li a {
+  text-decoration: none;
+  padding: 6px 10px;
+  color: var(--primarycl);
+  display: block;
+}
+
+.drop-menu {
+  display: none;
+  position: absolute;
+  top: 95%;
+  left: -10%;
+  background-color: #fff;
+  border-radius: 5px;
+  min-width: 200px;
+  z-index: 40;
+  box-shadow: 0px 0px 3px rgba(24, 23, 23, 0.3);
+}
+
+.drop-menu-item {
+  width: 100%;
+  height: 100%;
+}
+.drop-menu-item .blog_text {
+  height: 75px;
+}
+
+.drop-menu-item:hover {
+  background-color: #eee;
+}
+
+.drop-menu-item a {
+  color: #555;
+}
+
+.menu-item:hover .drop-menu {
+  display: block;
+}
+/* Navbar */
+.navlinks {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0px;
+}
+.menu-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 5px 0px; */
+}
+
+.navlinks li div,
+.navlinks li a {
+  height: 40px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 12px 5px;
+}
+.navlinks li div:hover,
+.navlinks li a:hover {
+  background-color: #f5f5f5;
+}
+.navlinks li a,
+.offcanvas_navlinks li a {
+  text-decoration: none;
+  color: var(--primarycl);
+  font-size: 14px;
+  font-weight: 600;
+}
+.hrline {
+  height: 10px;
+  background-color: var(--primarycl);
+}
+.main_btn {
+  height: 40px;
+  background-color: var(--primarycl);
+  color: white;
+  border: 1px solid var(--primarycl);
+  padding: 10px 30px;
+  /* border: none; */
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  box-sizing: border-box;
+  transition: all 0.5ms ease-in;
+}
+.small_btn {
+  height: 40px;
+  background-color: transparent;
+  color: var(--primarycl);
+  border: 1px solid transparent;
+  padding: 10px;
+  /* border: none; */
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  box-sizing: border-box;
+  transition: all 0.5ms ease-in;
+}
+.small_btn:hover {
+  background-color: #f5fafb;
+  color: var(--primarycl);
+}
+.main_btn:hover {
+  background: none;
+  background-color: white;
+  color: var(--primarycl);
+  border: 1px solid var(--primarycl);
+}
+
+/* small screen menu */
+.offcanvas {
+  position: fixed;
+  top: 0;
+  right: -280px;
+  width: 280px;
+  height: 100%;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
+  padding: 10px;
+  box-sizing: border-box;
+  border-left: 4px solid var(--primarycl);
+  transition: right 0.3s ease;
+}
+.offcanvas.active {
+  right: 0;
+  background-color: #ffffff;
+}
+.close_icon,
+.close_icon i {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.5ms ease-in;
+}
+.close_icon:hover i {
+  transform: rotate(360deg);
+}
+.menu_icon {
+  display: none;
+}
+.lg_btn {
+  display: block;
+}
+.sm_btn {
+  border: none;
+  background-color: white;
+  color: black;
+}
+.sm_btn i {
+  color: var(--primarycl);
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Style the accordion button */
+.accordion-btn {
+  background-color: transparent;
+  color: var(--primarycl);
+  cursor: pointer;
+  padding: 5px;
+  width: 100%;
+  border-radius: 5px;
+  text-decoration: none;
+  color: var(--primarycl);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+  outline: none;
+  transition: background-color 0.3s ease;
+}
+.accordion-btn:hover {
+  background-color: #eee;
+  color: var(--primarycl);
+}
+
+/* Style the accordion content */
+.accordion-content {
+  padding: 0 18px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-top: 1px solid var(--primarycl);
+  background-color: #eee;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+/* Style the active state */
+.active {
+  background-color: #eee;
+}
+/* Hero Section */
+.hero_section {
+  max-height: 650px;
+}
+.logo_img {
+  width: 200px;
+  height: 50px;
+  object-fit: contain;
+}
+.hero_img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.bx-shadow {
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(24, 23, 23, 0.2);
+}
+.hr_border {
+  background: #048995;
+  width: 110px;
+  height: 2px;
+}
+.hr_border2 {
+  background: #f4f4f4;
+  width: calc(100% - 110px);
+  height: 2px;
+}
+.cards_grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.card_img {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+}
+.sep_div {
+  background-color: #dbfaff;
+  border-radius: 10px;
+  /* background-color: white; */
+  box-shadow: 0px 0px 10px rgba(24, 23, 23, 0.2);
+  padding: 40px 10px;
+}
+.main_border {
+  border: 1px solid var(--primarycl);
+  border-radius: 5px;
+}
+.sep_div_2 {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  /* background-color: white; */
+  box-shadow: 0px 0px 10px rgba(24, 23, 23, 0.2);
+}
+.Rating i {
+  font-size: 18px;
+  color: #f2bc1b;
+}
+.sep_div3 {
+  background: var(--primary-gradient);
+  color: black;
+}
+/* footer */
+.footer_bg {
+  background-color: #043249;
+  color: white !important;
+}
+.footer_head {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -0.015em;
+  text-align: left;
+  color: white;
+}
+
+.footer_text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.015em;
+  text-align: left;
+  color: white;
+}
+.footer_no {
+  font-family: var(--input-font);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: white;
+}
+.footer_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.footer_hr {
+  height: 3px;
+  border: 2px solid var(--primarycl);
+  width: 100%;
+}
+.footer_link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: var(--primarycl);
+  color: white;
+}
+.footer_link i {
+  color: white;
+  font-size: 12px;
+}
+/* Login Page */
+.card_border{
+  border:1px solid #e0e0e0;
+  border-radius: 5px;
+  margin:0px 10px;
+}
+.hr_line{
+    border: 1px solid #e0e0e0;
+}
+.card_title{
+    max-width: 200px;
+    background-color: #E0E0E0;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+}
+.container {
+  width: 100%;
+  max-width: 350px;
+  margin: 20px auto;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(24, 23, 23, 0.2);
+}
+.loccard_img{
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+.scroll_div{
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+/* Customize the scrollbar */
+.scroll_div::-webkit-scrollbar {
+    width: 5px; /* Set the width of the scrollbar */
+    
+}
+
+/* Customize the scrollbar track */
+.scroll_div::-webkit-scrollbar-track {
+    background: transparent; /* Set the background color of the track */
+}
+
+/* Customize the scrollbar thumb */
+.scroll_div::-webkit-scrollbar-thumb {
+    background: #888; /* Set the color of the thumb */
+    border-radius: 10px; /* Round the corners of the thumb */
+}
+.fixed_para{
+    position: sticky;
+    top: -10px;
+    z-index: 3;
+    min-height: 30px;
+    min-height: 30px;
+    background-color: white;
+    padding: 10px;
+}
+@media screen and (max-width: 768px) {
+  /* Navbar */
+  .navlinks {
+    display: none;
+  }
+  .menu_icon {
+    display: block;
+  }
+  .offcanvas_navlinks {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .lg_btn {
+    display: none;
+  }
+  .drop-menu {
+    position: absolute;
+    top: 90%;
+    left: -75%;
+    min-width: 200px;
+  }
+  /* Login */
+  .container {
+    padding: 10px;
+  }
+}
+@media screen and (min-width: 769px) {
+  .category_grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .footer_grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

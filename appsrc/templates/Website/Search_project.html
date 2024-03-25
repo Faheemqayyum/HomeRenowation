@@ -1,0 +1,249 @@
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For Pros</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+
+    <link href="fontawesomefree/css/all.min.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    {% include 'components/header.html'%}
+    <main>
+        <div class="horizontal justify-center align-center gap-10 padding-10">
+            <div class="web_inputs">
+                <input type="text" id="service" name="service" placeholder="Search Service" />
+            </div>
+            <div class="web_inputs">
+                <input type="text" id="city" name="city" placeholder="Search City" />
+            </div>
+            <div class="web_inputs">
+                <input type="text" id="distance" name="distance" placeholder="Search Distance" />
+            </div>
+            <div class="web_inputs">
+                <input type="text" id="budget" name="budget" placeholder="Search Budget" />
+            </div>
+            <div><button class="small_btn">Clear</button></div>
+            <div class="">
+                <button class="main_btn">Search</button>
+            </div>
+        </div>
+        <div class="main_border"></div>
+        <div class="horizontal justify-between align-center fullwidth padding">
+            <div class="vertical gap-20 scroll_div halfwidth">
+                <div class="fixed_para"><p class="card_text">20 Project Found</p></div>
+                <div class="card_border padding-10">
+                    <div class="vertical gap-5 align-start justify-start">
+                       <p class="card_text">I need an architect or engineer to help with my roof.</p>
+                       <div class="horizontal_2 align-center gap-5">
+                        <div class="horizontal_2 gap-5 align-center Rating">
+                            <i class="fa-solid fa-location-dot"></i> Wah Cantt Pakistan</div>
+                        <div class="horizontal_2 gap-5 align-center Rating">
+                            <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                             Budget</div>
+                       </div>
+                       <div class="hr_line"></div>
+                       <p class="small_text">I need my roof raised three feet. 44x28ft roof. Minimum 9ft high at the center. I would like either an architect or engineer to create the code-compliant plans that I could take to a builder for construction.</p>
+                       <div class="padding-10">
+                        <div class="card_title ">
+                            Exterior Cleaning
+                        </div>
+                    </div>
+                    <div class="horizontal justify-between align-center gap-10 fullwidth">
+                        <div class="vertical gap-5">
+                            <p class="small_text">
+                                Posted
+                            </p>
+                            <p class="bold_text">04-06-2024</p>
+                        </div>
+                        <div class="vertical gap-5">
+                            <p class="small_text">
+                                Est Time
+                            </p>
+                            <p class="bold_text">2 Days</p>
+                        </div>
+                        <div class="vertical gap-5">
+                            <p class="small_text">
+                                Bidders
+                            </p>
+                            <p class="bold_text">05</p>
+                        </div>
+                        <div class="horizontal gap-5">
+                            <div class="Rating">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="vertical gap-5">
+                                <p class="card_text">Name</p>
+                                <p class="Rating">  <i class="fa-solid fa-star"></i> (0)</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="card_border padding-10">
+                    <div class="vertical gap-5 align-start justify-start">
+                       <p class="card_text">I need an architect or engineer to help with my roof.</p>
+                       <div class="horizontal_2 align-center gap-5">
+                        <div class="horizontal_2 gap-5 align-center Rating">
+                            <i class="fa-solid fa-location-dot"></i> Wah Cantt Pakistan</div>
+                        <div class="horizontal_2 gap-5 align-center Rating">
+                            <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                             Budget</div>
+                       </div>
+                       <div class="hr_line"></div>
+                       <p class="small_text">I need my roof raised three feet. 44x28ft roof. Minimum 9ft high at the center. I would like either an architect or engineer to create the code-compliant plans that I could take to a builder for construction.</p>
+                       <div class="padding-10">
+                        <div class="card_title ">
+                            Exterior Cleaning
+                        </div>
+                    </div>
+                    <div class="horizontal justify-between align-center gap-10 fullwidth">
+                        <div class="vertical gap-5">
+                            <p class="small_text">
+                                Posted
+                            </p>
+                            <p class="bold_text">04-06-2024</p>
+                        </div>
+                        <div class="vertical gap-5">
+                            <p class="small_text">
+                                Est Time
+                            </p>
+                            <p class="bold_text">2 Days</p>
+                        </div>
+                        <div class="vertical gap-5">
+                            <p class="small_text">
+                                Bidders
+                            </p>
+                            <p class="bold_text">05</p>
+                        </div>
+                        <div class="horizontal gap-5">
+                            <div class="Rating">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="vertical gap-5">
+                                <p class="card_text">Name</p>
+                                <p class="Rating">  <i class="fa-solid fa-star"></i> (0)</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="card_border padding-10">
+                    <div class="vertical gap-5 align-start justify-start">
+                       <p class="card_text">I need an architect or engineer to help with my roof.</p>
+                       <div class="horizontal_2 align-center gap-5">
+                        <div class="horizontal_2 gap-5 align-center Rating">
+                            <i class="fa-solid fa-location-dot"></i> Wah Cantt Pakistan</div>
+                        <div class="horizontal_2 gap-5 align-center Rating">
+                            <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                             Budget</div>
+                       </div>
+                       <div class="hr_line"></div>
+                       <p class="small_text">I need my roof raised three feet. 44x28ft roof. Minimum 9ft high at the center. I would like either an architect or engineer to create the code-compliant plans that I could take to a builder for construction.</p>
+                       <div class="padding-10">
+                        <div class="card_title ">
+                            Exterior Cleaning
+                        </div>
+                    </div>
+                    <div class="horizontal justify-between align-center gap-10 fullwidth">
+                        <div class="vertical gap-5">
+                            <p class="small_text">
+                                Posted
+                            </p>
+                            <p class="bold_text">04-06-2024</p>
+                        </div>
+                        <div class="vertical gap-5">
+                            <p class="small_text">
+                                Est Time
+                            </p>
+                            <p class="bold_text">2 Days</p>
+                        </div>
+                        <div class="vertical gap-5">
+                            <p class="small_text">
+                                Bidders
+                            </p>
+                            <p class="bold_text">05</p>
+                        </div>
+                        <div class="horizontal gap-5">
+                            <div class="Rating">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="vertical gap-5">
+                                <p class="card_text">Name</p>
+                                <p class="Rating">  <i class="fa-solid fa-star"></i> (0)</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="card_border padding-10">
+                    <div class="vertical gap-5 align-start justify-start">
+                       <p class="card_text">I need an architect or engineer to help with my roof.</p>
+                       <div class="horizontal_2 align-center gap-5">
+                        <div class="horizontal_2 gap-5 align-center Rating">
+                            <i class="fa-solid fa-location-dot"></i> Wah Cantt Pakistan</div>
+                        <div class="horizontal_2 gap-5 align-center Rating">
+                            <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                             Budget</div>
+                       </div>
+                       <div class="hr_line"></div>
+                       <p class="small_text">I need my roof raised three feet. 44x28ft roof. Minimum 9ft high at the center. I would like either an architect or engineer to create the code-compliant plans that I could take to a builder for construction.</p>
+                       <div class="padding-10">
+                        <div class="card_title ">
+                            Exterior Cleaning
+                        </div>
+                    </div>
+                    <div class="horizontal justify-between align-center gap-10 fullwidth">
+                        <div class="vertical gap-5">
+                            <p class="small_text">
+                                Posted
+                            </p>
+                            <p class="bold_text">04-06-2024</p>
+                        </div>
+                        <div class="vertical gap-5">
+                            <p class="small_text">
+                                Est Time
+                            </p>
+                            <p class="bold_text">2 Days</p>
+                        </div>
+                        <div class="vertical gap-5">
+                            <p class="small_text">
+                                Bidders
+                            </p>
+                            <p class="bold_text">05</p>
+                        </div>
+                        <div class="horizontal gap-5">
+                            <div class="Rating">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="vertical gap-5">
+                                <p class="card_text">Name</p>
+                                <p class="Rating">  <i class="fa-solid fa-star"></i> (0)</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+               
+              
+            </div>
+            <div class="halfwidth">
+                <!--Map Div  -->
+            </div>
+        </div>
+    </main>
+
+    {% include 'components/footer.html'%}
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

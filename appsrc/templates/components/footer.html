@@ -1,0 +1,73 @@
+{% load static %}
+
+<footer class="footer_bg vertical gap-20">
+    <div class="horizontal maxwidth paddingY fullwidth gap-20">
+        <div class="vertical gap-10">
+            <img src="{% static 'media/logo.png' %}" alt="" class="logo_img">
+            <p class="simple_text_2" style="max-width: 300px;">Find the best pros for budget and timely Home Renovation
+            service. Headquartered in WahCantt, our services are available in select cities across the globe.</p>
+        </div>
+        <div class="vertical gap-20 fullwidth">
+            <div class="horizontal gap-10 fullwidth justify-center align-start">
+                <div class="vertical gap-5 fullwidth justify-center align-center">
+                    <p class="footer_head">Company</p>
+                    <p class="footer_text">How it Works
+                    </p>
+                    <p class="footer_text">About us</p>
+                    <p class="footer_text">FAQS</p>
+                    <p class="footer_text">Privacy Policy</p>
+                    <p class="footer_text">Terms and Service</p>
+
+                </div>
+                <div class="vertical gap-5 fullwidth justify-center align-center">
+                    <p class="footer_head">HomeRenovation Member</p>
+                    <p class="footer_text">Post a Job
+                    </p>
+                    <p class="footer_text">
+                        Browse Jobs</p>
+                    <p class="footer_text">
+                        Login</p>
+                    <p class="footer_text">Blogs</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="vertical gap-10 align-start justify-center">
+            <p class="footer_no">Call us 18070 8192</p>
+            <p class="footer_text">For Any Problem
+                Email Us at:</p>
+            <div class="vertical gap-20" style="max-width: 300px;">
+             
+                <a href="{% url 'register' %}">   <button class="main_btn">
+                    Register
+                </button></a>
+               <a href="{% url 'login' %}"> <button class="main_btn">Login</button></a>
+            </div>
+        </div>
+    </div>
+    <div class="vertical gap-10 paddingX">
+        <hr class="footer_hr">
+        <div class="horizontal justify-between align-center maxwidth fullwidth padding">
+            <p class="footer_text">© Copyright 2023 | All Rights Reserved by HomeRenovation</p>
+            <div class="horizontal_2 gap-20">
+                <p class="footer_text">Follow Us:</p>
+                <div class="horizontal_2 gap-5">
+                    <div class="footer_link">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </div>
+                    <div class="footer_link">
+                        <i class="fa-brands fa-twitter"></i>
+                    </div>
+                    <div class="footer_link">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </div>
+                    <div class="footer_link">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</footer>
