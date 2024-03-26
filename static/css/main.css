@@ -268,7 +268,7 @@ a {
   text-align: left;
   color: var(--textcl);
 }
-.web_inputs input,.web_inputs textarea {
+.web_inputs input,.web_inputs textarea,.web_inputs select {
   width: 100%;
   background-color: #fbfbfb;
   padding: 5px 10px;

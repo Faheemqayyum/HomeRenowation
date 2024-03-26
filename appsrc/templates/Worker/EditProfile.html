@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/index.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+    <link href="fontawesomefree/css/all.min.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <div class="main_wrapper">
+        {% include 'components/workersidebar.html'%}
+        <div class="right_container">
+            <div class="horizontal justify-between align-center fullwidth">
+                <p class="sub_head_2 imptext margin-bottom">EditProfile</p>
+                <button class="main_btn">Save</button>
+            </div>
+            <div class="vertical gap-20">
+                <form action="" class="vertical fullwidth gap-20">
+                    <div class="horizontal gap-10 justify-between align-center fullwidth">
+                        <div class="vertical web_inputs gap-10 fullwidth">
+                            <label for="project-title">Full Name</label>
+                            <input type="text" name="project-title">
+                        </div>
+                        <div class="vertical web_inputs gap-10 fullwidth">
+                            <label for="product-budget">CNIC</label>
+                            <input type="text" name="product-budget">
+                        </div>
+                    </div>
+                    <div class="horizontal gap-10 justify-between align-center fullwidth">
+                        <div class="vertical web_inputs gap-10 fullwidth">
+                            <label for="project-title">Phone Number</label>
+                            <input type="text" name="project-title">
+                        </div>
+                        <div class="vertical web_inputs gap-10 fullwidth">
+                            <label for="product-budget">Email Address</label>
+                            <input type="text" name="product-budget">
+                        </div>
+                    </div>
+                    <div class="horizontal gap-10 fullwidth">
+                        <div class="vertical web_inputs gap-10 fullwidth">
+                            <label for="product-desc">Address</label>
+                            <textarea rows="5" name="product-desc"></textarea>
+                        </div>
+                    </div>
+                    <div class="horizontal gap-10 justify-between align-center fullwidth">
+                        <div class="vertical web_inputs gap-10 fullwidth">
+                            <label for="product-budget">Profession</label>
+                            <select name="" id="">
+                                <option value="">Painters</option>
+                                <option value="">Electrician</option>
+                                <option value="">Roofers</option>
+                                
+                                <option value="">HandyMan</option>
+                                
+                                <option value="">Landscapers</option>
+                                <option value="">Plumber</option>
+                                <option value="">Cleaners</option>
+                                <option value="">Appliances Installers</option>
+                                
+                            </select>
+                        </div>
+                        <div class="vertical web_inputs gap-10 fullwidth">
+                            <label for="product-budget">Experience</label>
+                            <input type="text" name="product-budget">
+                        </div>
+                    </div>
+                    
+                </form>
+                <div class="fullwidth horizontal align-start gap-20">
+                    <div class="vertical product_input gap-10 fullwidth fullheight main_border padding-10">
+                        <label for="product-title">Choose Profile Image</label>
+                        <div class="image_upload vertical">
+                            <div class="horizontal_flex align-center gap-20">
+                                <label for="upload" class="file-input-label">Choose File</label>
+                                <input type="file" id="upload" class="file-input" accept="image/*">
+                            </div>
+                            <div class="vertical fullwidth align-center">
+                                <div class="below_image_upload" id="preview"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fullwidth horizontal align-start gap-20">
+                    <div class="vertical product_input gap-10 fullwidth fullheight main_border padding-10">
+                        <label for="product-title">Choose CNIC Front Image</label>
+                        <div class="image_upload vertical">
+                            <div class="horizontal_flex align-center gap-20">
+                                <label for="upload" class="file-input-label">Choose File</label>
+                                <input type="file" id="cnicupload" class="file-input" accept="image/*">
+                            </div>
+                            <div class="vertical fullwidth align-center">
+                                <div class="below_image_upload" id="cnicpreview"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical product_input gap-10 fullwidth fullheight main_border padding-10">
+                        <label for="product-title">Choose CNIC Back Image</label>
+                        <div class="image_upload vertical">
+                            <div class="horizontal_flex align-center gap-20">
+                                <label for="upload" class="file-input-label">Choose File</label>
+                                <input type="file" id="cnicupload" class="file-input" accept="image/*">
+                            </div>
+                            <div class="vertical fullwidth align-center">
+                                <div class="below_image_upload" id="cnicpreview"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script>  const uploadInput = document.getElementById('upload');
+                    const preview = document.getElementById('preview');
+                
+                    uploadInput.addEventListener('change', function () {
+                        const file = this.files[0];
+                        const reader = new FileReader();
+                
+                        reader.onload = function (e) {
+                            const imgContainer = document.createElement('div');
+                            const img = document.createElement('img');
+                            const closeIcon = document.createElement('span');
+                
+                            img.src = e.target.result;
+                            imgContainer.classList.add('uploaded-image-container');
+                            img.classList.add('uploaded-image');
+                            closeIcon.classList.add('close-icon');
+                
+                            closeIcon.innerHTML = '&times;';
+                            imgContainer.appendChild(img);
+                            imgContainer.appendChild(closeIcon);
+                            preview.appendChild(imgContainer);
+                
+                            closeIcon.addEventListener('click', function () {
+                                imgContainer.remove();
+                            });
+                        };
+                
+                        reader.readAsDataURL(file);
+                    });
+               </script>
+                <script>  const cnicfrontupload = document.getElementById('cnicupload');
+                    const cnicpreview = document.getElementById('cnicpreview');
+                
+                    cnicfrontupload.addEventListener('change', function () {
+                        const file = this.files[0];
+                        const reader = new FileReader();
+                
+                        reader.onload = function (e) {
+                            const imgContainer = document.createElement('div');
+                            const img = document.createElement('img');
+                            const closeIcon = document.createElement('span');
+                
+                            img.src = e.target.result;
+                            imgContainer.classList.add('uploaded-image-container');
+                            img.classList.add('uploaded-image');
+                            closeIcon.classList.add('close-icon');
+                
+                            closeIcon.innerHTML = '&times;';
+                            imgContainer.appendChild(img);
+                            imgContainer.appendChild(closeIcon);
+                            cnicpreview.appendChild(imgContainer);
+                
+                            closeIcon.addEventListener('click', function () {
+                                imgContainer.remove();
+                            });
+                        };
+                
+                        reader.readAsDataURL(file);
+                    });
+               </script>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

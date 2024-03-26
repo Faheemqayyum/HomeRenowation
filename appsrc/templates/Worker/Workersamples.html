@@ -21,133 +21,50 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-
 </head>
 
 <body>
-
-
-
     <div class="main_wrapper">
         {% include 'components/workersidebar.html'%}
         <div class="right_container">
             <div class="horizontal justify-between align-center fullwidth">
                 <p class="sub_head_2 imptext margin-bottom">Add Work Samples</p>
-                <button class="main_btn">Save & Publish</button>
+               <a href="{% url 'addwork' %}"><button class="main_btn">AddSamples</button></a>
             </div>
-            <div class="vertical gap-20">
-                <form action="" class="vertical fullwidth gap-20">
-                    <div class="horizontal gap-10 justify-between align-center fullwidth">
-                        <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="project-title">Project Title</label>
-                            <input type="text" name="project-title">
-                        </div>
-                        <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="product-budget">Project Budget</label>
-                            <input type="text" name="product-budget">
-                        </div>
+            <div class="vertical gap-20 padding">
+                <div class=" project_card card_shadow padding-10 horizontal justify-between fullwidth gap-10">
+                    <div class="project_buttons">
+                       <button><i class="fa-solid fa-pen-square"></i></button>
+                       <button><i class="fa-solid fa-trash"></i></button>
                     </div>
-                    <div class="horizontal gap-10 fullwidth">
-                        <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="product-desc">Project Description</label>
-                            <textarea rows="5" name="product-desc"></textarea>
-                        </div>
-                    </div>
-                    <div class="horizontal gap-10 justify-between align-center fullwidth">
-                        <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="product-budget">Completd Days</label>
-                            <input type="text" name="product-budget">
-                        </div>
-                    </div>
-                    
-                </form>
-                <div class="fullwidth horizontal align-start gap-20">
-                    <div class="vertical product_input gap-10 fullwidth fullheight main_border padding-10">
-                        <label for="product-title">Choose Cover Image</label>
-                        <div class="image_upload vertical">
-                            <div class="horizontal_flex align-center gap-20">
-                                <p>Thumbnail</p>
-                                <label for="upload" class="file-input-label">Choose File</label>
-                                <input type="file" id="upload" class="file-input" accept="image/*">
+                    <div class="vertical gap-20 fullwidth">
+                        <div class="horizontal justify-between align-center">
+                            <div class="vertical gap-10">
+                                <p class="card_heading">Profile Title</p>
+                                <p class="card_text">Project Name</p>
                             </div>
-                            <div class="vertical fullwidth align-center">
-                                <div class="below_image_upload" id="preview"></div>
+                            <div class="vertical gap-10">
+                                <p class="card_heading">Profile Budget</p>
+                                <p class="card_text">Project Budget</p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="vertical product_input gap-10 fullwidth fullheight main_border padding-10">
-                        <div class="image_upload vertical">
                             
-                        <label for="product-title">Choose Sample Images</label>
-                            <div class="horizontal_flex align-center gap-20">
-                                <p>Thumbnail</p>
-                                <label for="upload_multiple" class="file-input-label2">Choose File</label>
-                                <input type="file" id="upload_multiple" class="file-input2" accept="image/*" multiple>
+                            <div class="vertical gap-10">
+                                <p class="card_heading">Project Completed Days</p>
+                                <p class="card_text">Project Budget</p>
                             </div>
-                            <div id="grid-layout" class="grid-layout">
-                                <!-- Thumbnails will be dynamically added here -->
+
+                        </div>
+                        <div class="vertical">
+                            <div class="vertical gap-10">
+                                <p class="card_heading">Project Description</p>
+                                <p class="card_text">Project Description</p>
                             </div>
                         </div>
+                    </div>
+                    <div class="vertical">
+                        <img src="{% static 'media/homeconstruct.jpg' %}" alt="" class="samplecardimg">
                     </div>
                 </div>
-                <script>  const uploadInput = document.getElementById('upload');
-                    const preview = document.getElementById('preview');
-                
-                    uploadInput.addEventListener('change', function () {
-                        const file = this.files[0];
-                        const reader = new FileReader();
-                
-                        reader.onload = function (e) {
-                            const imgContainer = document.createElement('div');
-                            const img = document.createElement('img');
-                            const closeIcon = document.createElement('span');
-                
-                            img.src = e.target.result;
-                            imgContainer.classList.add('uploaded-image-container');
-                            img.classList.add('uploaded-image');
-                            closeIcon.classList.add('close-icon');
-                
-                            closeIcon.innerHTML = '&times;';
-                            imgContainer.appendChild(img);
-                            imgContainer.appendChild(closeIcon);
-                            preview.appendChild(imgContainer);
-                
-                            closeIcon.addEventListener('click', function () {
-                                imgContainer.remove();
-                            });
-                        };
-                
-                        reader.readAsDataURL(file);
-                    });
-                
-                    document.getElementById('upload_multiple').addEventListener('change', function () {
-                        const gridLayout = document.getElementById('grid-layout');
-                
-                        const files = Array.from(this.files);
-                        files.forEach(file => {
-                            const reader = new FileReader();
-                            reader.onload = function (event) {
-                                const thumbnail = document.createElement('div');
-                                const img = document.createElement('img');
-                                const closeIcon = document.createElement('span');
-                
-                                img.src = event.target.result;
-                                thumbnail.classList.add('thumbnail');
-                                closeIcon.classList.add('close-icon');
-                
-                                closeIcon.innerHTML = '&times;';
-                                thumbnail.appendChild(img);
-                                thumbnail.appendChild(closeIcon);
-                                gridLayout.appendChild(thumbnail);
-                
-                                closeIcon.addEventListener('click', function () {
-                                    thumbnail.remove();
-                                });
-                            };
-                            reader.readAsDataURL(file);
-                        });
-                    });</script>
             </div>
         </div>
 

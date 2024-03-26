@@ -63,6 +63,8 @@ def AddWorkerSample(request):
   return  render(request, 'Worker/AddWorkSamples.html')
 def WorkerProfile(request):
   return  render(request, 'Worker/Profile.html')
+def EditWorkerProfile(request):
+  return  render(request, 'Worker/EditProfile.html')
 
 # Client
 def ClientDashboard(request):
