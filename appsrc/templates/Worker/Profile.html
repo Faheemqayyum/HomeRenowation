@@ -35,32 +35,32 @@
             </div>
             <div class="horizontal gap-10 justify-start align-start card_shadow padding-10">
                 <div class="vertical">
-                    <img src="{% static 'media/worker.png' %}" alt="" class="profile_img">
+                    <img src="{{user.get_profile_pic}}" alt="" class="profile_img">
                 </div>
                 <div class="vertical gap-20 justify-start fullwidth">
                         <div class="vertical gap-10">
                             <p class="card_heading">Full Name</p>
-                            <p class="card_text">Project Name</p>
+                            <p class="card_text">{{user.first_name}} {{user.last_name}}</p>
                         </div>
                         <div class="vertical gap-10">
                             <p class="card_heading">Email</p>
-                            <p class="card_text">Project Budget</p>
+                            <p class="card_text">{{user.email}}</p>
                         </div>
                        <div class="vertical gap-10">
                             <p class="card_heading">Phone Number</p>
-                            <p class="card_text">Project Description</p>
+                            <p class="card_text">{{user.phone}}</p>
                         </div>
                        <div class="vertical gap-10">
                             <p class="card_heading">Complete Address</p>
-                            <p class="card_text">Project Description</p>
+                            <p class="card_text">{{user.address}}</p>
                         </div>
                        <div class="vertical gap-10">
                             <p class="card_heading">Profession</p>
-                            <p class="card_text"></p>
+                            <p class="card_text">{{user.worker_profile.all.0.profession}}</p>
                         </div>
                        <div class="vertical gap-10">
                             <p class="card_heading">Experience</p>
-                            <p class="card_text">Project Description</p>
+                            <p class="card_text">{{user.worker_profile.all.0.experience}}</p>
                         </div>
                 </div>
             </div>

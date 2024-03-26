@@ -1,6 +1,10 @@
 from django.contrib import admin
 from django.urls import path,include
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static 
+
+
 urlpatterns = [
     path('',views.Homepage,name='homepage'),
     path('homepage/',views.Homepage,name='homepage'),
@@ -8,11 +12,14 @@ urlpatterns = [
     path('searchproject/',views.SearchProject,name='searchproject'),
     
     path('login/',views.LoginPage,name='login'),
+    path('logout/',views.logout,name='logout'),
     path('register/',views.SignUpPage,name='register'),
     path('resetpassword/',views.ResetPassword,name='resetpassword'),
     
     # Admin
     path('admindashboard/',views.AdminDashboard,name='admindashboard'),
+    path('accept_reject_user/',views.acceptRejectUser,name='accept_reject_user'),
+    
     path('recentmembers/',views.RecentMembers,name='recentmembers'),
     # path('recentmemberdetail/',views.RecentMembersDetail,name='recentmemberdetail'),
     path('recentworkers/',views.RecentWorkers,name='recentworkers'),
@@ -30,3 +37,7 @@ urlpatterns = [
     path('clientprofile/',views.ClientProfile,name='clientprofile'),
     path('editclientprofile/',views.EditClientProfile,name='editclientprofile'),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)
+

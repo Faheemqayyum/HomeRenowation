@@ -35,24 +35,34 @@
                     <div style="overflow-x: auto; width: 100%;">
                     <table class="dash_table ">
                         <tr>
+                            <th></th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Category</th>
-                            <th>Projects In Queue</th>
-                            <th>Total Projects</th>
-                            <th>Action</th>
+                            <th>CNIC</th>
+                            <th>Phone</th>
+                            <th>Status</th>
                         </tr>
+                        {% for worker in workers %}
                         <tr>
-                            <td>Jawad</td>
-                            <td>jawad32@gmail.com</td>
-                            <td>Painters</td>
-                            <td>2</td>
-                            <td>10</td>
+                            <td><img src ="{{worker.get_profile_pic}}" class="profile_pic"></td>
+                            <td>{{worker.first_name}} {{worker.last_name}}</td>
+                            <td>{{worker.email}}</td>
+                            <td>{{worker.worker_profile.all.0.profession}}</td>
+                            <td>{{worker.cnic}}</td>
+                            <td>{{worker.phone}}</td>
                             <td class="horizontal gap-10">
-                                <button class="small_btn">Accept</button>
-                                <button class="small_btn">Decline</button>
+                                {% if worker.is_declined %}
+                                <button class="small_btn">Delined</button>
+                            {% elif worker.is_approved %}
+                                <button class="small_btn">Approved</button>
+                            {% else %}
+                                <button class="small_btn">Pending</button>
+                            {% endif %}
+
                             </td>
                         </tr>
+                        {% endfor %}
                     </table>
                 </div>
                 </div>
