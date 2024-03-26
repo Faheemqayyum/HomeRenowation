@@ -31,55 +31,43 @@
         {% include 'components/clientsidebar.html'%}
         <div class="right_container">
             <div class="horizontal justify-between align-center fullwidth">
-                <p class="sub_head_2 imptext margin-bottom">Add Task</p>
-                <button class="main_btn">Save & Publish</button>
+                <p class="sub_head_2 imptext margin-bottom">EditProfile</p>
+                <button class="main_btn">Save</button>
             </div>
             <div class="vertical gap-20">
                 <form action="" class="vertical fullwidth gap-20">
                     <div class="horizontal gap-10 justify-between align-center fullwidth">
                         <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="project-title">Task Title</label>
+                            <label for="project-title">Full Name</label>
                             <input type="text" name="project-title">
                         </div>
                         <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="product-budget">Task Budget</label>
+                            <label for="product-budget">CNIC</label>
+                            <input type="text" name="product-budget">
+                        </div>
+                    </div>
+                    <div class="horizontal gap-10 justify-between align-center fullwidth">
+                        <div class="vertical web_inputs gap-10 fullwidth">
+                            <label for="project-title">Phone Number</label>
+                            <input type="text" name="project-title">
+                        </div>
+                        <div class="vertical web_inputs gap-10 fullwidth">
+                            <label for="product-budget">Email Address</label>
                             <input type="text" name="product-budget">
                         </div>
                     </div>
                     <div class="horizontal gap-10 fullwidth">
                         <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="product-desc">Task Description</label>
+                            <label for="product-desc">Address</label>
                             <textarea rows="5" name="product-desc"></textarea>
                         </div>
-                    </div>
-                    <div class="horizontal gap-10 justify-between align-center fullwidth">
-                        <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="product-budget">Task Category</label>
-                            <select name="" id="">
-                                <option value="">Painters</option>
-                                <option value="">Electrician</option>
-                                <option value="">Roofers</option>
-                                <option value="">HandyMan</option>
-                                <option value="">Landscapers</option>
-                                <option value="">Plumber</option>
-                                <option value="">Cleaners</option>
-                                <option value="">Appliances Installers</option>
-                                
-                            </select>
-                        </div>
-                        <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="product-budget">Task Due Date</label>
-                            <input type="text" name="product-budget">
-                        </div>
-                    </div>
-                    
+                    </div>    
                 </form>
                 <div class="fullwidth horizontal align-start gap-20">
                     <div class="vertical product_input gap-10 fullwidth fullheight main_border padding-10">
-                        <label for="product-title">Choose Cover Image</label>
+                        <label for="product-title">Choose Profile Image</label>
                         <div class="image_upload vertical">
                             <div class="horizontal_flex align-center gap-20">
-                                <p>Thumbnail</p>
                                 <label for="upload" class="file-input-label">Choose File</label>
                                 <input type="file" id="upload" class="file-input" accept="image/*">
                             </div>
@@ -88,17 +76,29 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="fullwidth horizontal align-start gap-20">
                     <div class="vertical product_input gap-10 fullwidth fullheight main_border padding-10">
+                        <label for="product-title">Choose CNIC Front Image</label>
                         <div class="image_upload vertical">
-                            
-                        <label for="product-title">Choose Sample Images</label>
                             <div class="horizontal_flex align-center gap-20">
-                                <p>Thumbnail</p>
-                                <label for="upload_multiple" class="file-input-label2">Choose File</label>
-                                <input type="file" id="upload_multiple" class="file-input2" accept="image/*" multiple>
+                                <label for="upload" class="file-input-label">Choose File</label>
+                                <input type="file" id="cnicupload" class="file-input" accept="image/*">
                             </div>
-                            <div id="grid-layout" class="grid-layout">
-                                <!-- Thumbnails will be dynamically added here -->
+                            <div class="vertical fullwidth align-center">
+                                <div class="below_image_upload" id="cnicpreview"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical product_input gap-10 fullwidth fullheight main_border padding-10">
+                        <label for="product-title">Choose CNIC Back Image</label>
+                        <div class="image_upload vertical">
+                            <div class="horizontal_flex align-center gap-20">
+                                <label for="upload" class="file-input-label">Choose File</label>
+                                <input type="file" id="cnicupload" class="file-input" accept="image/*">
+                            </div>
+                            <div class="vertical fullwidth align-center">
+                                <div class="below_image_upload" id="cnicpreview"></div>
                             </div>
                         </div>
                     </div>
@@ -132,34 +132,37 @@
                 
                         reader.readAsDataURL(file);
                     });
+               </script>
+                <script>  const cnicfrontupload = document.getElementById('cnicupload');
+                    const cnicpreview = document.getElementById('cnicpreview');
                 
-                    document.getElementById('upload_multiple').addEventListener('change', function () {
-                        const gridLayout = document.getElementById('grid-layout');
+                    cnicfrontupload.addEventListener('change', function () {
+                        const file = this.files[0];
+                        const reader = new FileReader();
                 
-                        const files = Array.from(this.files);
-                        files.forEach(file => {
-                            const reader = new FileReader();
-                            reader.onload = function (event) {
-                                const thumbnail = document.createElement('div');
-                                const img = document.createElement('img');
-                                const closeIcon = document.createElement('span');
+                        reader.onload = function (e) {
+                            const imgContainer = document.createElement('div');
+                            const img = document.createElement('img');
+                            const closeIcon = document.createElement('span');
                 
-                                img.src = event.target.result;
-                                thumbnail.classList.add('thumbnail');
-                                closeIcon.classList.add('close-icon');
+                            img.src = e.target.result;
+                            imgContainer.classList.add('uploaded-image-container');
+                            img.classList.add('uploaded-image');
+                            closeIcon.classList.add('close-icon');
                 
-                                closeIcon.innerHTML = '&times;';
-                                thumbnail.appendChild(img);
-                                thumbnail.appendChild(closeIcon);
-                                gridLayout.appendChild(thumbnail);
+                            closeIcon.innerHTML = '&times;';
+                            imgContainer.appendChild(img);
+                            imgContainer.appendChild(closeIcon);
+                            cnicpreview.appendChild(imgContainer);
                 
-                                closeIcon.addEventListener('click', function () {
-                                    thumbnail.remove();
-                                });
-                            };
-                            reader.readAsDataURL(file);
-                        });
-                    });</script>
+                            closeIcon.addEventListener('click', function () {
+                                imgContainer.remove();
+                            });
+                        };
+                
+                        reader.readAsDataURL(file);
+                    });
+               </script>
             </div>
         </div>
 

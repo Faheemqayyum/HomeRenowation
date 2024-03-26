@@ -88,6 +88,10 @@ def RecentMembers(request):
   return  render(request, 'Admin/RecentMembers.html')
 def RecentWorkers(request):
   return  render(request, 'Admin/RecentWorkers.html')
+def RecentWorkersDetail(request):
+  return  render(request, 'Admin/RecentWorkerDetail.html')
+# def RecentMembersDetail(request):
+#   return  render(request, 'Admin/RecentMemberDetail.html')
 
 # Worker
 
@@ -108,10 +112,12 @@ def EditWorkerProfile(request):
 
 # Client
 def ClientDashboard(request):
-  return  render(request, 'Worker/Dashboard.html')
+  return  render(request, 'Client/Dashboard.html')
 def ShowJobs(request):
-  return  render(request, 'Worker/PostJobs.html')
+  return  render(request, 'Client/PostJob.html')
 def AddJob(request):
-  return  render(request, 'Worker/AddJob.html')
+  return  render(request, 'Client/AddJob.html')
 def ClientProfile(request):
-  return  render(request, 'Worker/Profile.html')
+  return  render(request, 'Client/Profile.html')
+def EditClientProfile(request):
+  return  render(request, 'Client/EditProfile.html')
