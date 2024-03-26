@@ -20,6 +20,7 @@ urlpatterns = [
     path('workersample/',views.WorkerSample,name='workersample'),
     path('addwork/',views.AddWorkerSample,name='addwork'),
     path('profile/',views.WorkerProfile,name='profile'),
+    path('editprofile/',views.EditWorkerProfile,name='editprofile'),
      # Client
     path('clientdashboard/',views.ClientDashboard,name='clientdashboard'),
     path('showjob/',views.ShowJobs,name='showjob'),

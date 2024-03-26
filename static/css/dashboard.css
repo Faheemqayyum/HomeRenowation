@@ -1,5 +1,5 @@
 :root {
-  --primarycl: #048995;
+  --primarycl: #0cd2e4da;
   --secondarycl: #f1f1f1;
   --thirdcl: #f6f6f6;
   --textcl: #313131;
@@ -110,7 +110,7 @@
 
 .right_container {
   width: 100%;
-  padding:40px 20px;
+  padding: 40px 20px;
   overflow: auto;
 }
 .cards_grid {
@@ -172,44 +172,44 @@
   color: var(--primarycl);
 }
 .dash_table {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid var(--bordercl);
-    padding: 10px 20px;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--bordercl);
+  padding: 10px 20px;
 }
 
 .dash_table th {
-    padding: 10px;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 19px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #4d4d4d;
-    border-right: 1px solid var(--border-cl);
-    border-bottom: 1px solid var(--border-cl);
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #4d4d4d;
+  border-right: 1px solid var(--border-cl);
+  border-bottom: 1px solid var(--border-cl);
+}
+.dash_table td {
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #4d4d4d;
+  border-right: 1px solid var(--bordercl);
+}
+.dash_table th {
+  background-color: var(--primarycl);
+  color: white;
+}
 
-  }
-  .dash_table td {
-    padding: 10px;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 19px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #4d4d4d;
-    border-right: 1px solid var(--bordercl);
-  }
-  .dash_table th {
-    background-color: var(--primarycl);
-    color: white;
-  }
-  
 .image_upload {
   width: 400px; /* Adjust width as needed */
   margin: auto;
 }
-.file-input-label,.file-input-label2 {
+.file-input-label,
+.file-input-label2 {
   background-color: var(--primarycl);
   color: white !important;
   padding: 10px 5px;
@@ -218,7 +218,8 @@
   border: none;
   font-size: 12px;
 }
-.file-input,.file-input2 {
+.file-input,
+.file-input2 {
   display: none;
 }
 .below_image_upload {
@@ -238,7 +239,7 @@
   margin-top: 10px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  grid-gap: 20px;;
+  grid-gap: 20px;
 }
 
 .close-icon {
@@ -247,7 +248,7 @@
   right: 5px;
   cursor: pointer;
   color: #fff;
-  background-color:var(--primarycl);
+  background-color: var(--primarycl);
   padding: 3px 6px;
   border-radius: 5px;
 }
@@ -266,12 +267,65 @@
   display: inline-block;
   max-width: 220px;
   max-height: 220px;
-  border:1px solid var(--cardbcl);
-  border-radius: 5px
+  border: 1px solid var(--cardbcl);
+  border-radius: 5px;
 }
 
 .thumbnail img {
   width: 220px;
   height: 220px;
-  border-radius: 5px
+  border-radius: 5px;
+}
+
+/*  */
+.samplecardimg {
+  width: 100%;
+  max-width: 300px;
+  max-height: 300px;
+  object-fit: containsamp;
+}
+.project_card {
+  position: relative;
+}
+.project_buttons {
+  display: flex;
+  position: absolute;
+  right: 0;
+  top: 0;
+  max-width: 100px;
+  max-height: 50px;
+  background-color: var(--primarycl);
+  border-radius: 5px;
+  z-index: 10;
+}
+.project_buttons button {
+  border: none;
+  background-color: transparent;
+  color: white;
+  padding: 10px;
+}
+.card_shadow {
+  box-shadow: 0px 0px 10px rgba(24, 23, 23, 0.2);
+  border-radius: 10px;
+}
+.card_heading {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--textcl);
+}
+.card_text {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: var(--border-cl);
+}
+.profile_img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
 }
