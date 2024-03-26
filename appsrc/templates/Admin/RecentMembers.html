@@ -43,17 +43,24 @@
                             <th>CNIC </th>
                             <th>Action</th>
                         </tr>
+                        {% for member in members %}
                         <tr>
-                            <td>Jawad</td>
-                            <td>jawad32@gmail.com</td>
-                            <td>Painters</td>
-                            <td>10</td>
+                            <td>{{member.first_name}} {{member.last_name}}</td>
+                            <td>{{member.email}}</td>
+                            <td>{{member.phone}}</td>
+                            <td>{{member.cnic}}</td>
                             <td class="horizontal gap-10">
-                                <button class="small_btn">Accept</button>
-                                <button class="small_btn">Decline</button>
+                                {% if member.is_declined %}
+                                    <button class="small_btn">Delined</button>
+                                {% elif member.is_approved %}
+                                    <button class="small_btn">Approved</button>
+                                {% else %}
+                                    <button class="small_btn">Pending</button>
+                                {% endif %}
+
                             </td>
-                            </a>
                         </tr>
+                        {% endfor %}
                     </table>
                 </div>
                 

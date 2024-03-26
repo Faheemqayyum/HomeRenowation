@@ -110,8 +110,13 @@
                     </ul>
                 </div>
             </li>
+            {% if request.user.is_authenticated %}
+            <li><a href="{% url 'admindashboard' %}">Dashboard</a></li>
+
+            {% else %}
             <li><a href="{% url 'login' %}">Log In</a></li>
             <li><a href="{% url 'register' %}">Sign Up</a></li>
+            {% endif %}
         </ul>
         <button class="main_btn lg_btn">Get Quote</button>
         <button class="menu_icon sm_btn" onclick="toggleOffCanvas()">
