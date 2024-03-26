@@ -1,11 +1,11 @@
 :root {
-  --primarycl: #048995;
+  --primarycl: #0cd2e4da;
   --secondarycl: #f1f1f1;
   --thirdcl: #f6f6f6;
   --textcl: #313131;
   --main-br-cl: #f4f4f4;
   --border-cl: #979797;
-  --primary-gradient: linear-gradient(90deg, #def7fb 0%, #a3e7ee 100%);
+  --primary-gradient: linear-gradient(90deg, #def7fb 0%,#6cecf8 100%); 
   --mainfont-family: "Poppins", sans-serif;
   --input-font: "Mulish",  sans-serif;
 }
@@ -227,8 +227,8 @@
   max-height: 650px;
 }
 .logo_img {
-  width: 200px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   object-fit: contain;
 }
 .hero_img {

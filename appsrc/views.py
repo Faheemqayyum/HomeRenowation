@@ -29,3 +29,17 @@ def WorkerDashboard(request):
   return  render(request, 'Worker/WorkerDashboard.html')
 def WorkerSample(request):
   return  render(request, 'Worker/Workersamples.html')
+def AddWorkerSample(request):
+  return  render(request, 'Worker/AddWorkSamples.html')
+def WorkerProfile(request):
+  return  render(request, 'Worker/Profile.html')
+
+# Client
+def ClientDashboard(request):
+  return  render(request, 'Worker/Dashboard.html')
+def ShowJobs(request):
+  return  render(request, 'Worker/PostJobs.html')
+def AddJob(request):
+  return  render(request, 'Worker/AddJob.html')
+def ClientProfile(request):
+  return  render(request, 'Worker/Profile.html')
