@@ -42,7 +42,7 @@
                             <input type="text" name="project-title">
                         </div>
                         <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="product-budget">Email Address</label>
+                            <label for="product-budget">CNIC</label>
                             <input type="text" name="product-budget">
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                             <input type="text" name="project-title">
                         </div>
                         <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="product-budget">Profession</label>
+                            <label for="product-budget">Email Address</label>
                             <input type="text" name="product-budget">
                         </div>
                     </div>
@@ -63,6 +63,22 @@
                         </div>
                     </div>
                     <div class="horizontal gap-10 justify-between align-center fullwidth">
+                        <div class="vertical web_inputs gap-10 fullwidth">
+                            <label for="product-budget">Profession</label>
+                            <select name="" id="">
+                                <option value="">Painters</option>
+                                <option value="">Electrician</option>
+                                <option value="">Roofers</option>
+                                
+                                <option value="">HandyMan</option>
+                                
+                                <option value="">Landscapers</option>
+                                <option value="">Plumber</option>
+                                <option value="">Cleaners</option>
+                                <option value="">Appliances Installers</option>
+                                
+                            </select>
+                        </div>
                         <div class="vertical web_inputs gap-10 fullwidth">
                             <label for="product-budget">Experience</label>
                             <input type="text" name="product-budget">
@@ -80,6 +96,32 @@
                             </div>
                             <div class="vertical fullwidth align-center">
                                 <div class="below_image_upload" id="preview"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fullwidth horizontal align-start gap-20">
+                    <div class="vertical product_input gap-10 fullwidth fullheight main_border padding-10">
+                        <label for="product-title">Choose CNIC Front Image</label>
+                        <div class="image_upload vertical">
+                            <div class="horizontal_flex align-center gap-20">
+                                <label for="upload" class="file-input-label">Choose File</label>
+                                <input type="file" id="cnicupload" class="file-input" accept="image/*">
+                            </div>
+                            <div class="vertical fullwidth align-center">
+                                <div class="below_image_upload" id="cnicpreview"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vertical product_input gap-10 fullwidth fullheight main_border padding-10">
+                        <label for="product-title">Choose CNIC Back Image</label>
+                        <div class="image_upload vertical">
+                            <div class="horizontal_flex align-center gap-20">
+                                <label for="upload" class="file-input-label">Choose File</label>
+                                <input type="file" id="cnicupload" class="file-input" accept="image/*">
+                            </div>
+                            <div class="vertical fullwidth align-center">
+                                <div class="below_image_upload" id="cnicpreview"></div>
                             </div>
                         </div>
                     </div>
@@ -105,6 +147,36 @@
                             imgContainer.appendChild(img);
                             imgContainer.appendChild(closeIcon);
                             preview.appendChild(imgContainer);
+                
+                            closeIcon.addEventListener('click', function () {
+                                imgContainer.remove();
+                            });
+                        };
+                
+                        reader.readAsDataURL(file);
+                    });
+               </script>
+                <script>  const cnicfrontupload = document.getElementById('cnicupload');
+                    const cnicpreview = document.getElementById('cnicpreview');
+                
+                    cnicfrontupload.addEventListener('change', function () {
+                        const file = this.files[0];
+                        const reader = new FileReader();
+                
+                        reader.onload = function (e) {
+                            const imgContainer = document.createElement('div');
+                            const img = document.createElement('img');
+                            const closeIcon = document.createElement('span');
+                
+                            img.src = e.target.result;
+                            imgContainer.classList.add('uploaded-image-container');
+                            img.classList.add('uploaded-image');
+                            closeIcon.classList.add('close-icon');
+                
+                            closeIcon.innerHTML = '&times;';
+                            imgContainer.appendChild(img);
+                            imgContainer.appendChild(closeIcon);
+                            cnicpreview.appendChild(imgContainer);
                 
                             closeIcon.addEventListener('click', function () {
                                 imgContainer.remove();

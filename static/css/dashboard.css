@@ -205,7 +205,7 @@
 }
 
 .image_upload {
-  width: 400px; /* Adjust width as needed */
+  width: 250px; /* Adjust width as needed */
   margin: auto;
 }
 .file-input-label,
@@ -225,9 +225,9 @@
 .below_image_upload {
   margin-top: 10px;
   /* width: 350px; */
-  min-width: 220px;
+  max-width: 220px;
   /* height: 350px; */
-  min-height: 220px;
+  max-height: 220px;
   border: 1px solid var(--bordercl);
   overflow: hidden;
 }
