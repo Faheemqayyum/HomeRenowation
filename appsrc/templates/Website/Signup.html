@@ -21,21 +21,37 @@
     <main>
         <div class="container">
             <h1 class="sub_head_2" style="text-align: center;">Get your free account</h1>
-            <form class="vertical gap-20">
+            <form class="vertical gap-20" method="POST">
+                 {% csrf_token %} 
                 <div class="vertical web_inputs gap-5 justify-start align-start">
-                    <p class="small_text_2" style="text-align: center;">Please enter your email address and we'll send you a link to reset your password.</p>
+                    <label for="email">First Name *</label>
+                    <input type="text" id="first_name" name="first_name" value="{{form.first_name|default_if_none:''}}" required>
+                </div>
+                <div class="vertical web_inputs gap-5 justify-start align-start">
+                    <label for="email">Last Name *</label>
+                    <input type="text" id="last_name" name="last_name"value="{{form.last_name|default_if_none:''}}" required>
+                </div>
+                <div class="vertical web_inputs gap-5 justify-start align-start">
                     <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" value="{{form.email|default_if_none:''}}" required>
+                    <span style="color:red">{{error.email}}</span>
                 </div>
                 <div class="vertical web_inputs gap-5 justify-start align-start">
                     <label for="password">Password *</label>
-                    <input type="password" id="password" name="password" required>
-                    <p class="small_text_2">Password must be 8 characters or longer and include at least one digit, one special character, one upper case and one lower case letter.</p>
+                    <input type="password" id="password" name="password" value="{{form.password|default_if_none:''}}" required>
+                    <p class="small_text_2">Password must be 8 characters or longer</p>
+                    <span style="color:red">{{error.password}}</span>
+                </div>
+                <div class="vertical web_inputs gap-5 justify-start align-start">
+                    <label for="password">Confirm Password *</label>
+                    <input type="password" id="password" name="password2" required>
+                    <span style="color:red">{{error.password2}}</span>
                 </div>
                 <div class="horizontal justify-between align-center">
                     <div class="horizontal_2 align-start justify-center gap-5">
-                        <input type="checkbox" id="remember" name="remember" style="margin-top: 5px;">
-                        <label for="remember" class="simple_text">I agree to the HomeRenovation <span class="link_text">terms and conditions</span> for using this platform.</label>
+                        <input type="radio" id="type" name="account_type" value="client" for='client' style="margin-top: 5px;" required>client
+                        <input type="radio" id="type" name="account_type" value="worker" for='worker' style="margin-top: 5px;" required>worker
+                        
                     </div>
                 </div>
                 <button class="main_btn">SignUp</button>
