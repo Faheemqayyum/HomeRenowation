@@ -145,8 +145,33 @@ def WorkerDashboard(request):
   
   return  render(request, 'Worker/WorkerDashboard.html')
 def WorkerSample(request):
-  return  render(request, 'Worker/Workersamples.html')
+  samples = WorkerSampleProject.objects.filter(user = request.user)
+
+  return  render(request, 'Worker/Workersamples.html', {'samples':samples})
 def AddWorkerSample(request):
+  if request.method == "POST":
+    title = request.POST.get('project-title')
+    budget = request.POST.get('project-budget')
+    desc = request.POST.get('project-desc')
+    days = request.POST.get('project-days')
+    thumbnail = request.FILES.get('thumbnail')
+    images = request.FILES.getlist('sample_images')
+
+    work_sample = WorkerSampleProject.objects.create(
+                      budget = budget,
+                      title = title,
+                      description = desc,
+                      completed_days = days,
+                      thumbnail = thumbnail,
+                      user = User.objects.get(id = request.user.id)
+                    )
+    work_sample.save()
+    for img in images:
+      SampleProjectImages.objects.create(image = img, project = work_sample)
+
+
+
+
   return  render(request, 'Worker/AddWorkSamples.html')
 def WorkerProfile(request):
   
