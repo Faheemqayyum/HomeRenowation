@@ -5,7 +5,7 @@
   --textcl: #313131;
   --main-br-cl: #f4f4f4;
   --border-cl: #979797;
-  --primary-gradient: linear-gradient(90deg, #def7fb 0%,#6cecf8 100%); 
+  --primary-gradient: linear-gradient(90deg, #def7fb 0%, #6cecf8 100%);
   --mainfont-family: "Poppins", sans-serif;
   --input-font: "Mulish",  sans-serif;
 }
@@ -69,11 +69,11 @@
   align-items: center;
   gap: 0px;
 }
-.menu-wrap{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* padding: 5px 0px; */
+.menu-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 5px 0px; */
 }
 
 .navlinks li div,
@@ -224,7 +224,21 @@
 }
 /* Hero Section */
 .hero_section {
-  max-height: 650px;
+  position: relative;
+  background-image: url(../media/heroimg2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 100%;
+  height: 550px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero_text_sect {
+  position: absolute;
+  z-index: 100;
+  top: 100px;
+  right: 40px;
 }
 .logo_img {
   width: 70px;
@@ -344,20 +358,20 @@
   font-size: 12px;
 }
 /* Login Page */
-.card_border{
-  border:1px solid #e0e0e0;
+.card_border {
+  border: 1px solid #e0e0e0;
   border-radius: 5px;
-  margin:0px 10px;
+  margin: 0px 10px;
 }
-.hr_line{
-    border: 1px solid #e0e0e0;
+.hr_line {
+  border: 1px solid #e0e0e0;
 }
-.card_title{
-    max-width: 200px;
-    background-color: #E0E0E0;
-    border-radius: 20px;
-    padding: 10px;
-    text-align: center;
+.card_title {
+  max-width: 200px;
+  background-color: #e0e0e0;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
 }
 .container {
   width: 100%;
@@ -369,40 +383,39 @@
   background-color: white;
   box-shadow: 0px 0px 10px rgba(24, 23, 23, 0.2);
 }
-.loccard_img{
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
+.loccard_img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
 }
-.scroll_div{
-    position: relative;
-    max-height: 80vh;
-    overflow-y: auto;
+.scroll_div {
+  position: relative;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 /* Customize the scrollbar */
 .scroll_div::-webkit-scrollbar {
-    width: 5px; /* Set the width of the scrollbar */
-    
+  width: 5px; /* Set the width of the scrollbar */
 }
 
 /* Customize the scrollbar track */
 .scroll_div::-webkit-scrollbar-track {
-    background: transparent; /* Set the background color of the track */
+  background: transparent; /* Set the background color of the track */
 }
 
 /* Customize the scrollbar thumb */
 .scroll_div::-webkit-scrollbar-thumb {
-    background: #888; /* Set the color of the thumb */
-    border-radius: 10px; /* Round the corners of the thumb */
+  background: #888; /* Set the color of the thumb */
+  border-radius: 10px; /* Round the corners of the thumb */
 }
-.fixed_para{
-    position: sticky;
-    top: -10px;
-    z-index: 3;
-    min-height: 30px;
-    min-height: 30px;
-    background-color: white;
-    padding: 10px;
+.fixed_para {
+  position: sticky;
+  top: -10px;
+  z-index: 3;
+  min-height: 30px;
+  min-height: 30px;
+  background-color: white;
+  padding: 10px;
 }
 @media screen and (max-width: 768px) {
   /* Navbar */

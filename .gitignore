@@ -2,3 +2,5 @@
 *.pyc
 *.pyc
 *.sqlite3
+*.pyc
+db.sqlite3

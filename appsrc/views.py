@@ -4,6 +4,7 @@ from .models import *
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -89,7 +90,7 @@ def SignUpPage(request):
 def ResetPassword(request):
   return  render(request, 'Website/ResetPassword.html')
 # Admin
-
+@login_required(login_url='login')
 def AdminDashboard(request):
   if not request.user.is_authenticated:
     return redirect('login')
@@ -104,7 +105,7 @@ def AdminDashboard(request):
   else:
     return redirect("clientdashboard")
   
-
+@login_required(login_url='login')
 def acceptRejectUser(request):
   if request.method == "POST":
     
@@ -124,30 +125,47 @@ def acceptRejectUser(request):
 
   return redirect('admindashboard')
 
+@login_required(login_url='login')
 def RecentMembers(request):
   members = User.objects.filter(is_worker = False, is_superuser = False).order_by('-id')
   return  render(request, 'Admin/RecentMembers.html', {"members":members})
+
+
+@login_required(login_url='login')
 def RecentWorkers(request):
-  
   members = User.objects.filter(is_worker = True).order_by('-id')
   return  render(request, 'Admin/RecentWorkers.html',{"workers":members})
+
+@login_required(login_url='login')
 def RecentWorkersDetail(request):
   return  render(request, 'Admin/RecentWorkerDetail.html')
 # def RecentMembersDetail(request):
 #   return  render(request, 'Admin/RecentMemberDetail.html')
 
 # Worker
-
+@login_required(login_url='login')
 def WorkerDashboard(request):
   if not request.user.is_profile_set:
     return redirect("editworkerprofile")
-  
-  
   return  render(request, 'Worker/WorkerDashboard.html')
+
+
+@login_required(login_url='login')
 def WorkerSample(request):
+  if request.method == "POST":
+    id = request.POST.get("sample_id")
+    if WorkerSampleProject.objects.filter(id = id).exists():
+       WorkerSampleProject.objects.get(id = id).delete()
+    print(id)
+
+  
   samples = WorkerSampleProject.objects.filter(user = request.user)
 
   return  render(request, 'Worker/Workersamples.html', {'samples':samples})
+
+
+
+@login_required(login_url='login')
 def AddWorkerSample(request):
   if request.method == "POST":
     title = request.POST.get('project-title')
@@ -169,16 +187,17 @@ def AddWorkerSample(request):
     for img in images:
       SampleProjectImages.objects.create(image = img, project = work_sample)
 
-
-
-
   return  render(request, 'Worker/AddWorkSamples.html')
+
+
 def WorkerProfile(request):
   
   user = User.objects.get(id = request.user.id)
   return  render(request, 'Worker/Profile.html', {'user':user})
 
 
+
+@login_required(login_url='login')
 def EditWorkerProfile(request):
   if request.method == "POST":
     first_name = request.POST.get("first_name")
@@ -228,13 +247,22 @@ def EditWorkerProfile(request):
   return  render(request, 'Worker/EditProfile.html', {"user":user})
 
 # Client
+@login_required(login_url='login')
 def ClientDashboard(request):
   return  render(request, 'Client/Dashboard.html')
+
+
+@login_required(login_url='login')
 def ShowJobs(request):
   return  render(request, 'Client/PostJob.html')
+
+
+@login_required(login_url='login')
 def AddJob(request):
   return  render(request, 'Client/AddJob.html')
 def ClientProfile(request):
   return  render(request, 'Client/Profile.html')
+
+@login_required(login_url='login')
 def EditClientProfile(request):
   return  render(request, 'Client/EditProfile.html')

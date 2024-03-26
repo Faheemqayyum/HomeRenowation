@@ -34,11 +34,15 @@
             </div>
             <div class="vertical gap-20 padding">
                 <div class=" project_card card_shadow padding-10 horizontal justify-between fullwidth gap-10">
-                    <div class="project_buttons">
-                       <button><i class="fa-solid fa-pen-square"></i></button>
-                       <button><i class="fa-solid fa-trash"></i></button>
-                    </div>
                     {% for sample in samples %}
+                    <div class="project_buttons">
+                       {% comment %} <button><i class="fa-solid fa-pen-square"></i></button> {% endcomment %}
+                       <form method="POST">
+                            {% csrf_token %}
+                            <input name="sample_id"  value="{{sample.id}}" hidden>
+                            <button type="submit"><i class="fa-solid fa-trash"></i></button>
+                       </form>
+                    </div>
                     <div class="vertical gap-20 fullwidth">
                         <div class="horizontal justify-between align-center">
                             <div class="vertical gap-10">
