@@ -3,6 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 
 def Homepage(request):
+  request.session['abc'] = 'ABCD'
   return  render(request, 'Website/homepage.html')
 
 def SearchPros(request):
