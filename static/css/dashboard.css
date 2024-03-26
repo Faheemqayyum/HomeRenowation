@@ -281,8 +281,8 @@
 .samplecardimg {
   width: 100%;
   max-width: 300px;
-  max-height: 300px;
-  object-fit: containsamp;
+  max-height:  300px;
+  object-fit: contain;
 }
 .project_card {
   position: relative;
