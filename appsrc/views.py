@@ -1,5 +1,5 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, redirect
+from .models import *
 # Create your views here.
 
 def Homepage(request):
@@ -14,7 +14,36 @@ def SearchProject(request):
 def LoginPage(request):
   return  render(request, 'Website/Login.html')
 def SignUpPage(request):
-  return  render(request, 'Website/Signup.html')
+  form = request.POST
+  error = {}
+  if request.method == "POST":
+    first_name = request.POST.get("first_name")
+    last_name = request.POST.get("last_name")
+    email = request.POST.get("email")
+    password = request.POST.get("password")
+    confirm_password = request.POST.get("password2")
+    account_type = request.POST.get('account_type')
+    if len(password) < 8:
+      error['password'] = "Password must be 8 or more characters long"
+    elif password != confirm_password:
+      error['password2'] = "Password do not match"
+    elif User.objects.filter(email = email).exists():
+      error["email"] = "Email already exists"
+    
+    else:
+      user_instance = User.objects.create(
+        email = email,
+        username = email,
+        first_name = first_name,
+        last_name = last_name,
+        is_worker = account_type == "worker"
+        )
+      user_instance.set_password(password)
+      user_instance.save()
+      
+      return redirect('login')
+      
+  return  render(request, 'Website/Signup.html', {"form":form, 'error':error})
 def ResetPassword(request):
   return  render(request, 'Website/ResetPassword.html')
 # Admin
