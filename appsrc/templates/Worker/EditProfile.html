@@ -35,53 +35,54 @@
                 <button class="main_btn">Save</button>
             </div>
             <div class="vertical gap-20">
-                <form action="" class="vertical fullwidth gap-20">
+                <form action="" class="vertical fullwidth gap-20" method="POST" enctype="multipart/form-data">
                     <div class="horizontal gap-10 justify-between align-center fullwidth">
                         <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="project-title">Full Name</label>
-                            <input type="text" name="project-title">
+                            <label for="project-title">first Name</label>
+                            <input type="text" value="{{request.user.first_name}}" name="first_name">
+                        </div>
+                        <div class="vertical web_inputs gap-10 fullwidth">
+                            <label for="project-title">Last Name</label>
+                            <input type="text" value="{{request.user.last_name}}" name="last_name">
                         </div>
                         <div class="vertical web_inputs gap-10 fullwidth">
                             <label for="product-budget">CNIC</label>
-                            <input type="text" name="product-budget">
+                            <input type="text" value="{{request.user.cnic}}" name="cnic">
                         </div>
                     </div>
                     <div class="horizontal gap-10 justify-between align-center fullwidth">
                         <div class="vertical web_inputs gap-10 fullwidth">
                             <label for="project-title">Phone Number</label>
-                            <input type="text" name="project-title">
+                            <input type="text" value="{{request.user.phone}}" name="phone">
                         </div>
                         <div class="vertical web_inputs gap-10 fullwidth">
                             <label for="product-budget">Email Address</label>
-                            <input type="text" name="product-budget">
+                            <input type="text" value="{{request.user.email}}" name="email" readOnly>
                         </div>
                     </div>
                     <div class="horizontal gap-10 fullwidth">
                         <div class="vertical web_inputs gap-10 fullwidth">
                             <label for="product-desc">Address</label>
-                            <textarea rows="5" name="product-desc"></textarea>
+                            <textarea rows="5" name="address">{{request.user.address}}</textarea>
                         </div>
                     </div>
                     <div class="horizontal gap-10 justify-between align-center fullwidth">
                         <div class="vertical web_inputs gap-10 fullwidth">
                             <label for="product-budget">Profession</label>
-                            <select name="" id="">
-                                <option value="">Painters</option>
-                                <option value="">Electrician</option>
-                                <option value="">Roofers</option>
-                                
-                                <option value="">HandyMan</option>
-                                
-                                <option value="">Landscapers</option>
-                                <option value="">Plumber</option>
-                                <option value="">Cleaners</option>
-                                <option value="">Appliances Installers</option>
-                                
+                            <select name="profession" id="">
+                                <option value="Painters">Painters</option>
+                                <option value="Electrician">Electrician</option>
+                                <option value="Roofers">Roofers</option>
+                                <option value="HandyMan">HandyMan</option>
+                                <option value="Landscapers">Landscapers</option>
+                                <option value="Plumber">Plumber</option>
+                                <option value="Cleaners">Cleaners</option>
+                                <option value="AppliancesInstallers">Appliances Installers</option>
                             </select>
                         </div>
                         <div class="vertical web_inputs gap-10 fullwidth">
                             <label for="product-budget">Experience</label>
-                            <input type="text" name="product-budget">
+                            <input type="text" value="{{request.user.worker_profile.experience}}" name="experience">
                         </div>
                     </div>
                     
@@ -92,7 +93,7 @@
                         <div class="image_upload vertical">
                             <div class="horizontal_flex align-center gap-20">
                                 <label for="upload" class="file-input-label">Choose File</label>
-                                <input type="file" id="upload" class="file-input" accept="image/*">
+                                <input type="file" onchange="uploadFile('upload','preview')" id="upload" name="profile_pic" class="file-input" accept="image/*">
                             </div>
                             <div class="vertical fullwidth align-center">
                                 <div class="below_image_upload" id="preview"></div>
@@ -106,7 +107,7 @@
                         <div class="image_upload vertical">
                             <div class="horizontal_flex align-center gap-20">
                                 <label for="upload" class="file-input-label">Choose File</label>
-                                <input type="file" id="cnicupload" class="file-input" accept="image/*">
+                                <input type="file" name="cnic_front" onchange="uploadFile('cnic_front','cnicpreview')" id="cnicupload" class="file-input" accept="image/*">
                             </div>
                             <div class="vertical fullwidth align-center">
                                 <div class="below_image_upload" id="cnicpreview"></div>
@@ -118,15 +119,49 @@
                         <div class="image_upload vertical">
                             <div class="horizontal_flex align-center gap-20">
                                 <label for="upload" class="file-input-label">Choose File</label>
-                                <input type="file" id="cnicupload" class="file-input" accept="image/*">
+                                <input type="file" name="cnic_back"onchange="uploadFile('cnicupload2','cnicpreview')" id="cnicupload2" class="file-input" accept="image/*">
                             </div>
                             <div class="vertical fullwidth align-center">
-                                <div class="below_image_upload" id="cnicpreview"></div>
+                                <div class="below_image_upload" id="cnicpreview2"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <script>  const uploadInput = document.getElementById('upload');
+                <script> 
+                    function uploadFile(upload_id, preview_id){
+                        
+                        var uploadInput = document.getElementById('upload');
+                        var preview = document.getElementById('preview');
+
+                        const file = this.files[0];
+                        const reader = new FileReader();
+                
+                        reader.onload = function (e) {
+                            const imgContainer = document.createElement('div');
+                            const img = document.createElement('img');
+                            const closeIcon = document.createElement('span');
+                
+                            img.src = e.target.result;
+                            imgContainer.classList.add('uploaded-image-container');
+                            img.classList.add('uploaded-image');
+                            closeIcon.classList.add('close-icon');
+                
+                            closeIcon.innerHTML = '&times;';
+                            imgContainer.appendChild(img);
+                            imgContainer.appendChild(closeIcon);
+                            preview.appendChild(imgContainer);
+                
+                            closeIcon.addEventListener('click', function () {
+                                imgContainer.remove();
+                            });
+                        };
+                
+                        reader.readAsDataURL(file);
+                    
+                    }
+
+                    
+                    {% comment %} const uploadInput = document.getElementById('upload');
                     const preview = document.getElementById('preview');
                 
                     uploadInput.addEventListener('change', function () {
@@ -154,9 +189,9 @@
                         };
                 
                         reader.readAsDataURL(file);
-                    });
+                    }); {% endcomment %}
                </script>
-                <script>  const cnicfrontupload = document.getElementById('cnicupload');
+                {% comment %} <script>  const cnicfrontupload = document.getElementById('cnicupload');
                     const cnicpreview = document.getElementById('cnicpreview');
                 
                     cnicfrontupload.addEventListener('change', function () {
@@ -185,7 +220,7 @@
                 
                         reader.readAsDataURL(file);
                     });
-               </script>
+               </script> {% endcomment %}
             </div>
         </div>
 

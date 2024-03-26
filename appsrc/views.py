@@ -1,5 +1,10 @@
 from django.shortcuts import render, redirect
 from .models import *
+
+from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout as auth_logout
+from django.contrib.auth import authenticate
+
 # Create your views here.
 
 def Homepage(request):
@@ -11,8 +16,36 @@ def SearchPros(request):
 def SearchProject(request):
   return  render(request, 'Website/Search_project.html')
 
+
 def LoginPage(request):
-  return  render(request, 'Website/Login.html')
+  error = ""
+  email = None
+  if request.method == "POST":
+    email = request.POST.get("email")
+    password = request.POST.get("password")
+    
+    
+    if User.objects.filter(username = email).exists():
+      user = User.objects.get(username = email)
+      user_data = authenticate(username= email, password = password)
+      if user_data is not None:
+        auth_login(request, user_data)  
+        if user.is_superuser:
+          return redirect("admindashboard")
+        elif user.is_worker:
+          return redirect("workerdashboard")
+        else:
+          return redirect("clientdashboard")
+        
+      else:
+        error = "Invalid password"
+    else:
+        error = "Invalid Username or password"
+      
+      
+  return  render(request, 'Website/Login.html', {'error':error, 'email':email})
+
+
 def SignUpPage(request):
   form = request.POST
   error = {}
@@ -23,6 +56,7 @@ def SignUpPage(request):
     password = request.POST.get("password")
     confirm_password = request.POST.get("password2")
     account_type = request.POST.get('account_type')
+    
     if len(password) < 8:
       error['password'] = "Password must be 8 or more characters long"
     elif password != confirm_password:
@@ -44,6 +78,7 @@ def SignUpPage(request):
       return redirect('login')
       
   return  render(request, 'Website/Signup.html', {"form":form, 'error':error})
+
 def ResetPassword(request):
   return  render(request, 'Website/ResetPassword.html')
 # Admin
@@ -55,7 +90,12 @@ def RecentWorkers(request):
   return  render(request, 'Admin/RecentWorkers.html')
 
 # Worker
+
 def WorkerDashboard(request):
+  if not request.user.is_profile_set:
+    return redirect("editprofile")
+  
+  
   return  render(request, 'Worker/WorkerDashboard.html')
 def WorkerSample(request):
   return  render(request, 'Worker/Workersamples.html')

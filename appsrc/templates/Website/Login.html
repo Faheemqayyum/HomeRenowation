@@ -21,25 +21,27 @@
     <main>
         <div class="container">
             <h1 class="sub_head_2" style="text-align: center;">Log in and get to work</h1>
-            <form class="vertical gap-20">
+            <form class="vertical gap-20" method="POST">
+                {% csrf_token %}
                 <div class="vertical web_inputs gap-5 justify-start align-start">
                     <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="text" id="email" value="{{email|default_if_none:''}}" name="email" required>
                 </div>
                 <div class="vertical web_inputs gap-5 justify-start align-start">
                     <label for="password">Password *</label>
                     <input type="password" id="password" name="password" required>
                 </div>
+                <span style='color:red'> {{error}} </span> 
                 <div class="horizontal justify-between align-center">
-                    <div class="horizontal_2 gap-5">
+                    {% comment %} <div class="horizontal_2 gap-5">
                         <input type="checkbox" id="remember" name="remember">
                         <label for="remember">Remember me</label>
-                    </div>
+                    </div> {% endcomment %}
                     <div>
                         <a href="{% url 'resetpassword' %} " class="link_text">Forgot Password?</a>
                     </div>
                 </div>
-              <a href="{% url 'admindashboard' %}" class="fullwidth main_btn" style="text-align: center;">Login</a>
+              <button type="submit" class="fullwidth main_btn" style="text-align: center;">Login</button>
                 <p>Don't have an account? <a href="{% url 'register' %}" class="link_text">Sign Up</a></p>
             </form>
             
