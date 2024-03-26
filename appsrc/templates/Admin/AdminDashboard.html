@@ -73,8 +73,8 @@
                                 <td>{{client.phone}}</td>
                                 <td>{{client.cnic}}</td>
                                 <td class="horizontal gap-10">
-                                    <button onclick="accept_reject('Accept')" class="small_btn">Accept</button>
-                                    <button onclick="accept_reject('Decline')" class="small_btn">Decline</button>
+                                    <button onclick="accept_reject('{{client.id}}','Accept')" class="small_btn">Accept</button>
+                                    <button onclick="accept_reject('{{client.id}}','Decline')" class="small_btn">Decline</button>
                                 </td>
                                 
                             </tr>
