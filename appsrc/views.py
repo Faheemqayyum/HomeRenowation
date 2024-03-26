@@ -109,7 +109,7 @@ def AdminDashboard(request):
 def acceptRejectUser(request):
   if request.method == "POST":
     
-    id = request.POST.get('worker_id')
+    id = request.POST.get('member_id')
     if User.objects.filter(id = id).exists():
       user = User.objects.get(id = id)
       status = request.POST.get("status")

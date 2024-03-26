@@ -67,17 +67,21 @@
                                 <th>Action</th>
                             </tr>
                             {% for client in clients %}
-                            <tr>
-                                <td>{{client.first_name}} {{client.last_name}}</td>
-                                <td>{{client.email}}</td>
-                                <td>{{client.phone}}</td>
-                                <td>{{client.cnic}}</td>
-                                <td class="horizontal gap-10">
-                                    <button onclick="accept_reject('{{client.id}}','Accept')" class="small_btn">Accept</button>
-                                    <button onclick="accept_reject('{{client.id}}','Decline')" class="small_btn">Decline</button>
-                                </td>
-                                
-                            </tr>
+                            <form id="memberform-{{client.id}}" method="POST" action="{% url 'accept_reject_user' %}">
+                                {% csrf_token %}
+                                <tr>
+                                    <td>{{client.first_name}} {{client.last_name}}</td>
+                                    <td>{{client.email}}</td>
+                                    <td>{{client.phone}}</td>
+                                    <td>{{client.cnic}}</td>
+                                    <td class="horizontal gap-10">
+                                        <button onclick="accept_reject('{{client.id}}','Accept')" class="small_btn">Accept</button>
+                                        <button onclick="accept_reject('{{client.id}}','Decline')" class="small_btn">Decline</button>
+                                    </td>
+                                    <input value="{{client.id}}" name="member_id" id="member_id" hidden>
+                                    <input value="" name="status" id="status-{{client.id}}" hidden>
+                                </tr>
+                            </from>
                             {% endfor %}
                         </table>
                     </div>
@@ -98,7 +102,7 @@
                             </tr>
                             {% for worker in worker_requests %}
                             <tr>
-                                <form id="workerform-{{worker.id}}" method="POST" action="{% url 'accept_reject_user' %}" >
+                                <form id="memberform-{{worker.id}}" method="POST" action="{% url 'accept_reject_user' %}" >
                                     {% csrf_token %}
                                     <td>{{worker.first_name}} {{worker.first_name}}</td>
                                     <td>{{worker.email}}</td>
@@ -131,7 +135,7 @@
         function accept_reject(id, action){
             document.getElementById(`status-${id}`).value=action;
             console.log(action)
-            document.getElementById(`workerform-${id}`).submit();
+            document.getElementById(`memberform-${id}`).submit();
         }
     </script>
 
