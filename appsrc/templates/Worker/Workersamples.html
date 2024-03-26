@@ -27,6 +27,7 @@
     <div class="main_wrapper">
         {% include 'components/workersidebar.html'%}
         <div class="right_container">
+            
             <div class="horizontal justify-between align-center fullwidth">
                 <p class="sub_head_2 imptext margin-bottom">Add Work Samples</p>
                <a href="{% url 'addwork' %}"><button class="main_btn">AddSamples</button></a>
@@ -37,33 +38,35 @@
                        <button><i class="fa-solid fa-pen-square"></i></button>
                        <button><i class="fa-solid fa-trash"></i></button>
                     </div>
+                    {% for sample in samples %}
                     <div class="vertical gap-20 fullwidth">
                         <div class="horizontal justify-between align-center">
                             <div class="vertical gap-10">
                                 <p class="card_heading">Profile Title</p>
-                                <p class="card_text">Project Name</p>
+                                <p class="card_text">{{sample.title}}</p>
                             </div>
                             <div class="vertical gap-10">
                                 <p class="card_heading">Profile Budget</p>
-                                <p class="card_text">Project Budget</p>
+                                <p class="card_text">{{sample.budget}}</p>
                             </div>
                             
                             <div class="vertical gap-10">
                                 <p class="card_heading">Project Completed Days</p>
-                                <p class="card_text">Project Budget</p>
+                                <p class="card_text">{{sample.completed_days}}</p>
                             </div>
 
                         </div>
                         <div class="vertical">
                             <div class="vertical gap-10">
                                 <p class="card_heading">Project Description</p>
-                                <p class="card_text">Project Description</p>
+                                <p class="card_text">{{sample.description}}</p>
                             </div>
                         </div>
                     </div>
                     <div class="vertical">
-                        <img src="{% static 'media/homeconstruct.jpg' %}" alt="" class="samplecardimg">
+                        <img src="{{sample.get_thumbnail}}" alt="" class="samplecardimg">
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

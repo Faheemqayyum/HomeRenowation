@@ -47,6 +47,21 @@ class WorkerProfileModel(models.Model):
             return ""
     
     
-    
-    
+class WorkerSampleProject(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE, related_name="sample_projects")
+    title = models.CharField(max_length = 1000, null = True, blank = True)
+    budget = models.CharField(max_length = 1000, null = True, blank = True)
+    description = models.CharField(max_length = 1000, null = True, blank = True)
+    completed_days = models.CharField(max_length = 1000, null = True, blank = True)
+    thumbnail = models.ImageField(upload_to = "images/", null =True)
+
+    @property
+    def get_thumbnail(self):
+        if self.thumbnail:
+            return self.thumbnail.url
+        else:
+            return ""
+class SampleProjectImages(models.Model):
+    image = models.ImageField(upload_to = "images/", null = False)
+    project = models.ForeignKey(WorkerSampleProject, on_delete = models.CASCADE, related_name="project_images")
     
