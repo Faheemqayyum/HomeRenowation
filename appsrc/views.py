@@ -249,20 +249,80 @@ def EditWorkerProfile(request):
 # Client
 @login_required(login_url='login')
 def ClientDashboard(request):
+  
   return  render(request, 'Client/Dashboard.html')
 
 
 @login_required(login_url='login')
 def ShowJobs(request):
+
+  if request.method == "POST":
+    job_id = request.POST.get('id')
+    if Job.objects.filter(id = job_id).exists():
+      Job.objects.get(id = job_id).delete()
+      
   return  render(request, 'Client/PostJob.html')
 
 
 @login_required(login_url='login')
 def AddJob(request):
+  if request.method == "POST":
+    user = User.objects.get(id = request.user.id)
+    title = request.POST.get("title")
+    budget = request.POST.get("budget")
+    description = request.POST.get("description")
+    category = request.POST.get("category")
+    due_date = request.POST.get("due_date")
+    thumbnail = request.FILES.get("thumbnail")
+
+    job = Job.objects.create(
+      user = user,
+      title = title,
+      budget = budget,
+      description = description,
+      category = category,
+      due_date = due_date,
+      thumbnail  = thumbnail,
+    )
+    job.save()
+    for image in request.FILES.getlist('sample_images'):
+      JobImages.objects.create(job = job, image = image)
+      
   return  render(request, 'Client/AddJob.html')
+
+
 def ClientProfile(request):
-  return  render(request, 'Client/Profile.html')
+  user = User.objects.get(id = request.user.id)
+  return  render(request, 'Client/Profile.html', {"user":user})
 
 @login_required(login_url='login')
 def EditClientProfile(request):
-  return  render(request, 'Client/EditProfile.html')
+  if request.method == "POST":
+    first_name = request.POST.get('first_name')
+    last_name = request.POST.get('last_name')
+    email = request.POST.get('email')
+    address = request.POST.get('address')
+    cnic = request.POST.get('cnic')
+    phone = request.POST.get('phone')
+    profile_pic = request.FILES.get('profile_pic')
+    
+
+    
+    user = User.objects.get(id = request.user.id)
+    
+    user.first_name = first_name
+    user.last_name = last_name
+    user.email = email
+    user.address = address
+    user.cnic = cnic
+    user.phone = phone
+    if profile_pic:
+      user.profile_pic = profile_pic
+    
+    
+    user.save()
+    return redirect("clientprofile")
+
+  user = User.objects.get(id = request.user.id)
+
+  return  render(request, 'Client/EditProfile.html', {"user":user})

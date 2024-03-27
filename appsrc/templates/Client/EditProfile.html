@@ -30,46 +30,51 @@
     <div class="main_wrapper">
         {% include 'components/clientsidebar.html'%}
         <div class="right_container">
+
+            <form action="" class="vertical fullwidth gap-20" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
             <div class="horizontal justify-between align-center fullwidth">
                 <p class="sub_head_2 imptext margin-bottom">EditProfile</p>
                 <button class="main_btn">Save</button>
             </div>
             <div class="vertical gap-20">
-                <form action="" class="vertical fullwidth gap-20">
                     <div class="horizontal gap-10 justify-between align-center fullwidth">
                         <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="project-title">Full Name</label>
-                            <input type="text" name="project-title">
+                            <label for="project-title">First Name</label>
+                            <input type="text" value="{{user.first_name}}" name="first_name">
+                        </div>
+                        <div class="vertical web_inputs gap-10 fullwidth">
+                            <label for="project-title">Last Name</label>
+                            <input type="text" value="{{user.last_name}}" name="last_name">
                         </div>
                         <div class="vertical web_inputs gap-10 fullwidth">
                             <label for="product-budget">CNIC</label>
-                            <input type="text" name="product-budget">
+                            <input type="text" value="{{user.cnic}}" name="cnic">
                         </div>
                     </div>
                     <div class="horizontal gap-10 justify-between align-center fullwidth">
                         <div class="vertical web_inputs gap-10 fullwidth">
                             <label for="project-title">Phone Number</label>
-                            <input type="text" name="project-title">
+                            <input type="text" value="{{user.phone}}" name="phone">
                         </div>
                         <div class="vertical web_inputs gap-10 fullwidth">
                             <label for="product-budget">Email Address</label>
-                            <input type="text" name="product-budget">
+                            <input type="text" value="{{user.email}}" name="email">
                         </div>
                     </div>
                     <div class="horizontal gap-10 fullwidth">
                         <div class="vertical web_inputs gap-10 fullwidth">
                             <label for="product-desc">Address</label>
-                            <textarea rows="5" name="product-desc"></textarea>
+                            <textarea rows="5" value="{{user.address}}" name="address">{{user.address}}</textarea>
                         </div>
                     </div>    
-                </form>
                 <div class="fullwidth horizontal align-start gap-20">
                     <div class="vertical product_input gap-10 fullwidth fullheight main_border padding-10">
                         <label for="product-title">Choose Profile Image</label>
                         <div class="image_upload vertical">
                             <div class="horizontal_flex align-center gap-20">
                                 <label for="upload" class="file-input-label">Choose File</label>
-                                <input type="file" id="upload" class="file-input" accept="image/*">
+                                <input type="file" id="upload" name="profile_pic" value="{{user.get_profile_pic}}" class="file-input" accept="image/*">
                             </div>
                             <div class="vertical fullwidth align-center">
                                 <div class="below_image_upload" id="preview"></div>
@@ -77,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="fullwidth horizontal align-start gap-20">
+                {% comment %} <div class="fullwidth horizontal align-start gap-20">
                     <div class="vertical product_input gap-10 fullwidth fullheight main_border padding-10">
                         <label for="product-title">Choose CNIC Front Image</label>
                         <div class="image_upload vertical">
@@ -102,7 +107,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> {% endcomment %}
                 <script>  const uploadInput = document.getElementById('upload');
                     const preview = document.getElementById('preview');
                 
@@ -133,7 +138,7 @@
                         reader.readAsDataURL(file);
                     });
                </script>
-                <script>  const cnicfrontupload = document.getElementById('cnicupload');
+                {% comment %} <script>  const cnicfrontupload = document.getElementById('cnicupload');
                     const cnicpreview = document.getElementById('cnicpreview');
                 
                     cnicfrontupload.addEventListener('change', function () {
@@ -162,8 +167,10 @@
                 
                         reader.readAsDataURL(file);
                     });
-               </script>
+               </script> {% endcomment %}
             </div>
+            </form>
+
         </div>
 
     </div>

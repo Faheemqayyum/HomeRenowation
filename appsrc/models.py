@@ -65,3 +65,29 @@ class SampleProjectImages(models.Model):
     image = models.ImageField(upload_to = "images/", null = False)
     project = models.ForeignKey(WorkerSampleProject, on_delete = models.CASCADE, related_name="project_images")
     
+
+
+class Job(models.Model):
+    title = models.CharField(max_length = 2000, null = False, blank = False)
+    budget = models.CharField(max_length = 1000, null =False)
+    description = models.CharField(max_length = 5000, null = False, blank = False)
+    category = models.CharField(max_length = 2000, null = False, blank = False)
+    due_date = models.CharField(max_length = 2000, null = False, blank = False)
+    thumbnail = models.ImageField(upload_to = "images/", null = True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_jobs")
+
+    @property
+    def get_thumbnail(self):
+        if self.thumbnail:
+            return self.thumbnail.url
+        return ""
+
+class JobImages(models.Model):
+    job = models.ForeignKey(Job, on_delete=models.CASCADE, related_name="job_images")
+    image = models.ImageField(null = True, upload_to="images/")
+    
+    @property
+    def get_image(self):
+        if self.image:
+            return self.image.url
+        return ""

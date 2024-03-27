@@ -5,4 +5,7 @@ from .models import *
 
 admin.site.register(User)
 admin.site.register(WorkerProfileModel)
-
+admin.site.register(WorkerSampleProject)
+admin.site.register(SampleProjectImages)
+admin.site.register(Job)
+admin.site.register(JobImages)

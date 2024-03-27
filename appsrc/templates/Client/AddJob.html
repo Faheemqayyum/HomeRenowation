@@ -30,6 +30,8 @@
     <div class="main_wrapper">
         {% include 'components/clientsidebar.html'%}
         <div class="right_container">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
             <div class="horizontal justify-between align-center fullwidth">
                 <p class="sub_head_2 imptext margin-bottom">Add Task</p>
                 <button class="main_btn">Save & Publish</button>
@@ -39,37 +41,36 @@
                     <div class="horizontal gap-10 justify-between align-center fullwidth">
                         <div class="vertical web_inputs gap-10 fullwidth">
                             <label for="project-title">Task Title</label>
-                            <input type="text" name="project-title">
+                            <input type="text" name="title">
                         </div>
                         <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="product-budget">Task Budget</label>
-                            <input type="text" name="product-budget">
+                            <label for="project-budget">Task Budget</label>
+                            <input type="text" name="budget">
                         </div>
                     </div>
                     <div class="horizontal gap-10 fullwidth">
                         <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="product-desc">Task Description</label>
-                            <textarea rows="5" name="product-desc"></textarea>
+                            <label for="project-desc">Task Description</label>
+                            <textarea rows="5" name="description"></textarea>
                         </div>
                     </div>
                     <div class="horizontal gap-10 justify-between align-center fullwidth">
                         <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="product-budget">Task Category</label>
-                            <select name="" id="">
-                                <option value="">Painters</option>
-                                <option value="">Electrician</option>
-                                <option value="">Roofers</option>
-                                <option value="">HandyMan</option>
-                                <option value="">Landscapers</option>
-                                <option value="">Plumber</option>
-                                <option value="">Cleaners</option>
-                                <option value="">Appliances Installers</option>
-                                
+                            <label for="project-budget">Task Category</label>
+                            <select name="category" id="">
+                                <option value="Painters">Painters</option>
+                                <option value="Electrician">Electrician</option>
+                                <option value="Roofers">Roofers</option>
+                                <option value="HandyMan">HandyMan</option>
+                                <option value="Landscapers">Landscapers</option>
+                                <option value="Plumber">Plumber</option>
+                                <option value="Cleaners">Cleaners</option>
+                                <option value="Appliances Installers">Appliances Installers</option>
                             </select>
                         </div>
                         <div class="vertical web_inputs gap-10 fullwidth">
-                            <label for="product-budget">Task Due Date</label>
-                            <input type="text" name="product-budget">
+                            <label for="project-budget">Task Due Date</label>
+                            <input type="date" name="due_date">
                         </div>
                     </div>
                     
@@ -81,7 +82,7 @@
                             <div class="horizontal_flex align-center gap-20">
                                 <p>Thumbnail</p>
                                 <label for="upload" class="file-input-label">Choose File</label>
-                                <input type="file" id="upload" class="file-input" accept="image/*">
+                                <input type="file" id="upload" name="thumbnail" class="file-input" accept="image/*">
                             </div>
                             <div class="vertical fullwidth align-center">
                                 <div class="below_image_upload" id="preview"></div>
@@ -93,9 +94,9 @@
                             
                         <label for="product-title">Choose Sample Images</label>
                             <div class="horizontal_flex align-center gap-20">
-                                <p>Thumbnail</p>
+                                <p>Sample Images</p>
                                 <label for="upload_multiple" class="file-input-label2">Choose File</label>
-                                <input type="file" id="upload_multiple" class="file-input2" accept="image/*" multiple>
+                                <input type="file" id="upload_multiple" name="sample_images" class="file-input2" accept="image/*" multiple>
                             </div>
                             <div id="grid-layout" class="grid-layout">
                                 <!-- Thumbnails will be dynamically added here -->
