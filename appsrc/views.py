@@ -7,7 +7,25 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
+# Homepage
+# TODO  get a quote page (description,location,client email,budget) 
+# TODO  worker detail page on the other side  
+# TODO  job detail on the other side of jobs  
 
+# Admin
+# TODO  client and worker detail pages for admin side to accept and reject for admin
+# TODO  Active projects page 
+# TODO  Payment approval page  
+# TODO  New Projects page  
+# Worker 
+# TODO  page to display all new quotes
+# TODO  page to display new orders for worker
+# TODO  page to display order detail and also add a message button 
+
+# Client 
+# TODO view quote requests 
+# TODO accept order and payment page ()
+# TODO  page to display order detail and also add a message button 
 def Homepage(request):
   return  render(request, 'Website/homepage.html')
 
