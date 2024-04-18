@@ -10,6 +10,7 @@ urlpatterns = [
     path('homepage/',views.Homepage,name='homepage'),
     path('searchpros/',views.SearchPros,name='searchpros'),
     path('searchproject/',views.SearchProject,name='searchproject'),
+    path('quoteproject/',views.QuoteProject,name='quoteproject'),
     
     path('login/',views.LoginPage,name='login'),
     path('logout/',views.logout,name='logout'),
@@ -21,7 +22,7 @@ urlpatterns = [
     path('accept_reject_user/',views.acceptRejectUser,name='accept_reject_user'),
     
     path('recentmembers/',views.RecentMembers,name='recentmembers'),
-    # path('recentmemberdetail/',views.RecentMembersDetail,name='recentmemberdetail'),
+    path('memberdetail/',views.MemberDetail,name='memberdetail'),
     path('recentworkers/',views.RecentWorkers,name='recentworkers'),
     path('recentworkersdetail/',views.RecentWorkersDetail,name='recentworkersdetail'),
     # Worker

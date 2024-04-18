@@ -1,5 +1,5 @@
 {% load static %}
-<header class="padding-10">
+<header class="padding-10 header">
     <nav class="horizontal_2 justify-between align-center fullwidth maxwidth2">
         <a href="{% url 'homepage' %}">
             <img src="{% static 'media/logo.png' %}" alt="Logo" class="logo_img">
@@ -118,7 +118,7 @@
             <li><a href="{% url 'register' %}">Sign Up</a></li>
             {% endif %}
         </ul>
-        <button class="main_btn lg_btn">Get Quote</button>
+       <a href="{% url 'quoteproject' %}"> <button class="main_btn lg_btn">Get Quote</button> </a>
         <button class="menu_icon sm_btn" onclick="toggleOffCanvas()">
             <i class="fas fa-bars"></i>
         </button></div>
@@ -231,7 +231,8 @@
             <li><a href="{% url 'login' %}">Log In</a></li>
             <li><a href="{% url 'register' %}">Sign Up</a></li>
             </ul>
-            <button class="main_btn">Get Quote</button>
+            
+       <a href="{% url 'quoteproject' %}"> <button class="main_btn lg_btn">Get Quote</button> </a>
         </div>
     </nav>
 </header>

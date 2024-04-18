@@ -334,3 +334,7 @@
   height: 35px;
   border-radius: 50%;
 }
+.link_td:hover{
+  color:var(--primarycl);
+  pointer-events: all;
+}

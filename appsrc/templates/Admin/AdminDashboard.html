@@ -52,13 +52,12 @@
                 </div>
             </div>
             <div class="content_wrapper">
-
                 <div class="recentmembers box">
                     <div class="horizontal fullwidth space-between">
                         <h4 class="box_title">Recent Members</h4>
                     </div>
                     <div style="overflow-x: auto; width: 100%;">
-                        <table class="dash_table ">
+                        <table class="dash_table">
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
@@ -69,8 +68,9 @@
                             {% for client in clients %}
                             <form id="memberform-{{client.id}}" method="POST" action="{% url 'accept_reject_user' %}">
                                 {% csrf_token %}
+                              
                                 <tr>
-                                    <td>{{client.first_name}} {{client.last_name}}</td>
+                                    <td ><a class="link_td"  href="{% url 'memberdetail' %}"> {{client.first_name}} {{client.last_name}} </a></td>
                                     <td>{{client.email}}</td>
                                     <td>{{client.phone}}</td>
                                     <td>{{client.cnic}}</td>

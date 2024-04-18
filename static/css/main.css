@@ -261,12 +261,14 @@ a {
   border: 1px solid var(--primarycl);
 }
 .web_inputs label {
+  width: 100%;
   font-size: 14px;
   font-weight: 600;
   line-height: 18px;
   letter-spacing: 0em;
   text-align: left;
   color: var(--textcl);
+  max-width: 200px;
 }
 .web_inputs input,.web_inputs textarea,.web_inputs select {
   width: 100%;

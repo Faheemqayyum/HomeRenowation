@@ -7,16 +7,13 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-# Homepage
-# TODO  get a quote page (description,location,client email,budget) 
-# TODO  worker detail page on the other side  
-# TODO  job detail on the other side of jobs  
 
 # Admin
 # TODO  client and worker detail pages for admin side to accept and reject for admin
 # TODO  Active projects page 
 # TODO  Payment approval page  
 # TODO  New Projects page  
+
 # Worker 
 # TODO  page to display all new quotes
 # TODO  page to display new orders for worker
@@ -31,8 +28,12 @@ def Homepage(request):
 
 def SearchPros(request):
   return  render(request, 'Website/Search_pros.html')
+
 def SearchProject(request):
   return  render(request, 'Website/Search_project.html')
+
+def QuoteProject(request):
+  return  render(request, 'Website/Quotepage.html')
 
 
 def LoginPage(request):
@@ -157,8 +158,9 @@ def RecentWorkers(request):
 @login_required(login_url='login')
 def RecentWorkersDetail(request):
   return  render(request, 'Admin/RecentWorkerDetail.html')
-# def RecentMembersDetail(request):
-#   return  render(request, 'Admin/RecentMemberDetail.html')
+
+def MemberDetail(request):
+  return  render(request, 'Admin/RecentMemberDetail.html')
 
 # Worker
 @login_required(login_url='login')
