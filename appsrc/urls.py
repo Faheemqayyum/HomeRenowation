@@ -10,6 +10,7 @@ urlpatterns = [
     path('homepage/',views.Homepage,name='homepage'),
     path('searchpros/',views.SearchPros,name='searchpros'),
     path('searchproject/',views.SearchProject,name='searchproject'),
+    path('quoteproject/',views.QuoteProject,name='quoteproject'),
     
     path('login/',views.LoginPage,name='login'),
     path('logout/',views.logout,name='logout'),
@@ -21,15 +22,25 @@ urlpatterns = [
     path('accept_reject_user/',views.acceptRejectUser,name='accept_reject_user'),
     
     path('recentmembers/',views.RecentMembers,name='recentmembers'),
-    # path('recentmemberdetail/',views.RecentMembersDetail,name='recentmemberdetail'),
+    path('memberdetail/',views.MemberDetail,name='memberdetail'),
     path('recentworkers/',views.RecentWorkers,name='recentworkers'),
     path('recentworkersdetail/',views.RecentWorkersDetail,name='recentworkersdetail'),
+    
+    path('recentprojects/',views.NewProjects,name='recentprojects'),
+    path('activeprojects/',views.ActiveProject,name='activeprojects'),
+    path('paymentapprove/',views.PaymentApprove,name='paymentapprove'),
+    
     # Worker
     path('workerdashboard/',views.WorkerDashboard,name='workerdashboard'),
     path('workersample/',views.WorkerSample,name='workersample'),
     path('addwork/',views.AddWorkerSample,name='addwork'),
     path('workerprofile/',views.WorkerProfile,name='workerprofile'),
     path('editworkerprofile/',views.EditWorkerProfile,name='editworkerprofile'),
+    path('recentquotes/',views.RecentQuotes,name='recentquotes'),
+    path('workerorders/',views.WorkerOrders,name='workerorders'),
+    path('orderdetail/',views.OrderDetail,name='orderdetail'),
+    path('workerchat/',views.WorkerChat,name='workerchat'),
+    
      # Client
     path('clientdashboard/',views.ClientDashboard,name='clientdashboard'),
     path('showjob/',views.ShowJobs,name='showjob'),

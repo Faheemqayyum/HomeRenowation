@@ -8,13 +8,32 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+# Admin
+# TODO recent member detail and worker detail page
+# TODO  Active projects page 
+# TODO  Payment approval page  
+# TODO  New Projects page  
+
+# Worker 
+# TODO  page to display all new quotes
+# TODO  page to display new orders for worker
+# TODO  page to display order detail and also add a message button 
+
+# Client 
+# TODO view quote requests 
+# TODO accept order and payment page ()
+# TODO  page to display order detail and also add a message button 
 def Homepage(request):
   return  render(request, 'Website/homepage.html')
 
 def SearchPros(request):
   return  render(request, 'Website/Search_pros.html')
+
 def SearchProject(request):
   return  render(request, 'Website/Search_project.html')
+
+def QuoteProject(request):
+  return  render(request, 'Website/Quotepage.html')
 
 
 def LoginPage(request):
@@ -139,8 +158,15 @@ def RecentWorkers(request):
 @login_required(login_url='login')
 def RecentWorkersDetail(request):
   return  render(request, 'Admin/RecentWorkerDetail.html')
-# def RecentMembersDetail(request):
-#   return  render(request, 'Admin/RecentMemberDetail.html')
+
+def MemberDetail(request):
+  return  render(request, 'Admin/RecentMemberDetail.html')
+def NewProjects(request):
+  return  render(request, 'Admin/NewProjects.html')
+def PaymentApprove(request):
+  return  render(request, 'Admin/PaymentApproval.html')
+def ActiveProject(request):
+  return  render(request, 'Admin/ActiveProjects.html')
 
 # Worker
 @login_required(login_url='login')
@@ -163,7 +189,17 @@ def WorkerSample(request):
 
   return  render(request, 'Worker/Workersamples.html', {'samples':samples})
 
+def WorkerOrders(request): 
+  return render(request , 'Worker/WorkerOrders.html')
 
+def RecentQuotes(request): 
+  return render(request , 'Worker/RecentQuotes.html')
+
+def OrderDetail(request): 
+  return render(request , 'Worker/OrderDetail.html')
+
+def WorkerChat(request): 
+  return render(request , 'Worker/Chatpage.html')
 
 @login_required(login_url='login')
 def AddWorkerSample(request):

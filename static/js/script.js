@@ -27,4 +27,16 @@ function toggleOffCanvas() {
       }
     });
   });
-  
+
+  function toggleSections(section1Id, section2Id) {
+    var section1 = document.getElementById(section1Id);
+    var section2 = document.getElementById(section2Id);
+
+    if (section1.classList.contains("hidden_sect")) {
+        section1.classList.remove("hidden_sect");
+        section2.classList.add("hidden_sect");
+    } else {
+        section1.classList.add("hidden_sect");
+        section2.classList.remove("hidden_sect");
+    }
+}

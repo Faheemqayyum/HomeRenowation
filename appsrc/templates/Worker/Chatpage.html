@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Workers</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/index.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+    <link href="fontawesomefree/css/all.min.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+</head>
+
+<body>
+    <div class="main_wrapper">
+        {% include 'components/workersidebar.html'%}
+        <div class="right_container">
+            <p class="sub_head_2 imptext">Message Page</p>
+            <div class="content_wrapper">
+                <div class="chat-container">
+                    <div class="users-list">
+                        <p class="message-head">Messages</p>
+                        <div class="users">
+                            <p>User 1</p>
+                            <p>User 2</p>
+                            <p>User 3</p>
+                        </div>
+                    </div>
+                    <div class="chat-window chat-none">
+                        <div class="chat-header">
+                            <p class="receiver-name">User 1</p>
+                        </div>
+                        <div class="messages">
+                            <div class="message receiver">
+                                This is a message from the receiver.
+                            </div>
+                            <div class="message sender">
+                                This is a message from the sender.
+                            </div>
+                            <div class="message receiver">
+                                Another message from the receiver.
+                            </div>
+                            <div class="message sender">
+                                Another message from the sender.
+                            </div>
+                            <div class="message receiver">
+                                Another message from the receiver.
+                            </div>
+                            <div class="message sender">
+                                Another message from the sender.
+                            </div>
+                            <div class="message receiver">
+                                Another message from the receiver.
+                            </div>
+                            <div class="message sender">
+                                Another message from the sender.
+                            </div>
+                            <div class="message receiver">
+                                Another message from the receiver.
+                            </div>
+                            <div class="message sender">
+                                Another message from the sender.
+                            </div>
+                        </div>
+                        <div class="input-area">
+                            <input type="text" id="messageInput" placeholder="Type a message...">
+                            <button onclick="sendMessage()">Send</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const users = document.querySelectorAll('.users p');
+            const chatWindows = document.querySelectorAll('.chat-window');
+            const userList = document.querySelector('.users-list');
+
+            users.forEach((user, index) => {
+                user.addEventListener('click', () => {
+                    if (window.innerWidth < 600) { // Check if screen width is less than 768px
+                        // Hide user list only on mobile screens
+                        userList.style.display = 'none';
+                    }
+
+                    // Hide all chat windows
+                    chatWindows.forEach(window => {
+                        window.classList.add('chat-none');
+                    });
+
+                    // Show the selected chat window
+                    chatWindows[index].classList.remove('chat-none');
+                });
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

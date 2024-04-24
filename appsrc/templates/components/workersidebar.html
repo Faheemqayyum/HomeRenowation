@@ -1,35 +1,47 @@
 {% load static %}
 <div class="main_sidebar">
-<div class="sidebar">
-    <div>
-      <a href="{% url 'homepage' %}">  
-        <img src="{% static 'media/logo.png' %}" alt="logo" class="logo_img"></a>
+    <div class="sidebar">
+        <div>
+            <a href="{% url 'homepage' %}">
+                <img src="{% static 'media/logo.png' %}" alt="logo" class="logo_img"></a>
+        </div>
+        <ul>
+            <li>
+                <a href="{% url 'workerdashboard' %}" class="dashboard">
+                    <i class="fa-solid fa-house"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'workersample' %}" class="WorkerSample">
+                    <i class="fa-solid fa-clipboard-user"></i>
+                    <p>Work Sample</p>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'recentquotes' %}" class="recentquotes">
+                    <i class="fa-solid fa-clipboard-user"></i>
+                    <p>Recent Quotes</p>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'workerorders' %}" class="workerorders">
+                    <i class="fa-solid fa-clipboard-user"></i>
+                    <p>Worker Orders</p>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'workerchat' %}" class="workerchat">
+                    <i class="fa-solid fa-message"></i>
+                    <p>Chat</p>
+                </a>
+            </li>
+            <li>
+                <a href="/logout" class="dashboard">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <p>Log Out</p>
+                </a>
+            </li>
+        </ul>
     </div>
-    <ul>
-        <li>
-            <a href="{% url 'workerdashboard' %}" class="dashboard">
-                <i class="fa-solid fa-house"></i>
-                <p>Dashboard</p>
-            </a>
-        </li>
-        <li>
-            <a href="{% url 'workersample' %}" class="WorkerSample">
-                <i class="fa-solid fa-clipboard-user"></i>
-                <p>Work Sample</p>
-            </a>
-        </li>
-        <li>
-            <a href="{% url 'workerprofile' %}" class="Profile">
-                <i class="fa-solid fa-user"></i>
-                <p>Profile</p>
-            </a>
-        </li>
-        <li>
-            <a href="/logout" class="dashboard">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <p>Log Out</p>
-            </a>
-        </li>
-    </ul>
-</div>
 </div>

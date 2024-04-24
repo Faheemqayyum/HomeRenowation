@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,45 +28,45 @@
         {% include 'components/adminsidebar.html'%}
         <div class="right_container">
             <div class="horizontal justify-between align-center fullwidth">
-                <p class="sub_head_2 imptext margin-bottom">Worker Detail</p>
+                <p class="sub_head_2 imptext margin-bottom">Client Detail</p>
                 <div class="horizontal justify-between align-center gap-10">
-                    <button type="button" onclick="accept_reject('{{worker.id}}','Accept')"
-                        class="main_btn">Accept</button>
-                    <button type="button" onclick="accept_reject('{{worker.id}}','Decline')"
-                        class="main_btn">Decline</button>
+                    <button onclick="accept_reject('{{client.id}}','Accept')" class="small_btn">Accept</button>
+                    <button onclick="accept_reject('{{client.id}}','Decline')" class="small_btn">Decline</button>
                 </div>
             </div>
             <div class="vertical justify-start align-start gap-10 fullwidth">
                 <div class="horizontal justify-between align-center fullwidth">
                     <div class="horizontal justify-start align-center gap-10">
-                        <p class="workerhead">Worker Name:</p>
-                        <p class="card_text">Worker Name</p>
+                        <p class="Clienthead">Client Name:</p>
+                        <p class="card_text">Client Name</p>
                     </div>
 
                 </div>
                 <div class="horizontal justify-start align-center gap-10">
-                    <p class="workerhead">Worker Email:</p>
-                    <p class="card_text">Worker Email</p>
+                    <p class="Clienthead">Client Email:</p>
+                    <p class="card_text">Client Email</p>
                 </div>
                 <div class="horizontal justify-start align-center gap-10">
-                    <p class="workerhead">Worker CNIC:</p>
-                    <p class="card_text">Worker CNIC</p>
+                    <p class="Clienthead">Client CNIC:</p>
+                    <p class="card_text">Client CNIC</p>
                 </div>
                 <div class="horizontal justify-start align-center gap-10">
-                    <p class="workerhead">Worker Profession</p>
-                    <p class="card_text">Worker Email</p>
+                    <p class="Clienthead">Client Profession</p>
+                    <p class="card_text">Client Email</p>
                 </div>
                 <div class="horizontal justify-start align-center gap-10">
-                    <p class="workerhead">Worker Experience</p>
-                    <p class="card_text">Worker Email</p>
+                    <p class="Clienthead">Client Experience</p>
+                    <p class="card_text">Client Email</p>
                 </div>
                 <div class="horizontal justify-start align-center gap-10">
-                    <p class="workerhead">Worker Phone Number</p>
-                    <p class="card_text">Worker Email</p>
+                    <p class="Clienthead">Client Phone Number</p>
+                    <p class="card_text">Client Email</p>
                 </div>
                 <div class="vertical justify-start align-start">
-                    <p class="workerhead">Worker Bio</p>
-                    <p class="card_text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus et quos libero quas excepturi ex provident blanditiis molestiae harum fuga ratione velit dolorum necessitatibus molestias, perspiciatis veritatis, non, exercitationem illo?</p>
+                    <p class="Clienthead">Client Bio</p>
+                    <p class="card_text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus et quos
+                        libero quas excepturi ex provident blanditiis molestiae harum fuga ratione velit dolorum
+                        necessitatibus molestias, perspiciatis veritatis, non, exercitationem illo?</p>
                 </div>
                 <div class="horizontal gap-10 justify-between align-center">
                     <img src="" alt="">
@@ -81,6 +80,12 @@
     </div>
 
     <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
+</div>
+
+<script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>
