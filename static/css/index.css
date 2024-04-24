@@ -1,11 +1,17 @@
 :root {
-  --primarycl: #0cd2e4da;
-  --secondarycl: #f1f1f1;
+  
+  --primarycl: #757fef;
+  --secondarycl: #919af2;
+  --grey: #efefef;
+  --grey-hover: #b3b3b3;
+  --greybg: #f5f5f5;
+  --greyimg: #eaeefd;
+  --tablehead: #f7faff;
   --thirdcl: #f6f6f6;
   --textcl: #313131;
   --main-br-cl: #f4f4f4;
   --border-cl: #979797;
-  --primary-gradient: linear-gradient(90deg, #def7fb 0%, #6cecf8 100%);
+  --primary-gradient: linear-gradient(90deg, #def7fb 0%, #a3e7ee 100%);
   --mainfont-family: "Poppins", sans-serif;
   --input-font: "Mulish",  sans-serif;
 }
