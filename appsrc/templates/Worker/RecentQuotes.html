@@ -27,26 +27,27 @@
 
 <body>
     <div class="main_wrapper">
-        {% include 'components/adminsidebar.html'%}
+        {% include 'components/workersidebar.html'%}
         <div class="right_container">
-            <p class="sub_head_2 imptext">Workers</p>
+            <p class="sub_head_2 imptext">New Quotes</p>
             <div class="content_wrapper">
                 <div class="recentmembers box">
                     <div style="overflow-x: auto; width: 100%;">
                     <table class="dash_table">
                         <tr>
-                            <th>Name</th>
-                            <th>Email</th>
+                            <th>Project Title</th>
+                            <th>Project Description</th>
                             <th>Category</th>
-                            <th>CNIC</th>
-                            <th>Phone</th>
+                            <th>Project Budget</th>
+                            <th>Location</th>
+                            <th>Client Name</th>
                             <th>Status</th>
                         </tr>
                         {% for worker in workers %}
                         <tr>
                             <td><img src ="{{worker.get_profile_pic}}" class="profile_pic"></td>
                             <td>{{worker.first_name}} {{worker.last_name}}</td>
-                            <td>{{worker.email}}</td>
+                                <td>{{worker.email}}</td>
                             <td>{{worker.worker_profile.all.0.profession}}</td>
                             <td>{{worker.cnic}}</td>
                             <td>{{worker.phone}}</td>

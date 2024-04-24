@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 # Admin
-# TODO  client and worker detail pages for admin side to accept and reject for admin
+# TODO recent member detail and worker detail page
 # TODO  Active projects page 
 # TODO  Payment approval page  
 # TODO  New Projects page  
@@ -161,6 +161,12 @@ def RecentWorkersDetail(request):
 
 def MemberDetail(request):
   return  render(request, 'Admin/RecentMemberDetail.html')
+def NewProjects(request):
+  return  render(request, 'Admin/NewProjects.html')
+def PaymentApprove(request):
+  return  render(request, 'Admin/PaymentApproval.html')
+def ActiveProject(request):
+  return  render(request, 'Admin/ActiveProjects.html')
 
 # Worker
 @login_required(login_url='login')
@@ -183,7 +189,17 @@ def WorkerSample(request):
 
   return  render(request, 'Worker/Workersamples.html', {'samples':samples})
 
+def WorkerOrders(request): 
+  return render(request , 'Worker/WorkerOrders.html')
 
+def RecentQuotes(request): 
+  return render(request , 'Worker/RecentQuotes.html')
+
+def OrderDetail(request): 
+  return render(request , 'Worker/OrderDetail.html')
+
+def WorkerChat(request): 
+  return render(request , 'Worker/Chatpage.html')
 
 @login_required(login_url='login')
 def AddWorkerSample(request):

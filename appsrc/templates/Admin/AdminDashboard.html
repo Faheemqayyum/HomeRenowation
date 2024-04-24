@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <!-- <link rel="stylesheet" href="{% static 'css/index.css' %}"> -->
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
@@ -66,23 +66,24 @@
                                 <th>Action</th>
                             </tr>
                             {% for client in clients %}
-                            <form id="memberform-{{client.id}}" method="POST" action="{% url 'accept_reject_user' %}">
+                            <form id="memberform-{{client.id}}" method="POST">
                                 {% csrf_token %}
-                              
                                 <tr>
-                                    <td ><a class="link_td"  href="{% url 'memberdetail' %}"> {{client.first_name}} {{client.last_name}} </a></td>
+                                    <td> {{client.first_name}}
+                                        {{client.last_name}} </td>
                                     <td>{{client.email}}</td>
                                     <td>{{client.phone}}</td>
                                     <td>{{client.cnic}}</td>
                                     <td class="horizontal gap-10">
-                                        <button onclick="accept_reject('{{client.id}}','Accept')" class="small_btn">Accept</button>
-                                        <button onclick="accept_reject('{{client.id}}','Decline')" class="small_btn">Decline</button>
+                                        <a href="{% url 'memberdetail' %}">
+                                            <button class="main_btn">View</button>
+                                        </a>
                                     </td>
                                     <input value="{{client.id}}" name="member_id" id="member_id" hidden>
                                     <input value="" name="status" id="status-{{client.id}}" hidden>
                                 </tr>
-                            </from>
-                            {% endfor %}
+                                </from>
+                                {% endfor %}
                         </table>
                     </div>
                 </div>
@@ -102,7 +103,7 @@
                             </tr>
                             {% for worker in worker_requests %}
                             <tr>
-                                <form id="memberform-{{worker.id}}" method="POST" action="{% url 'accept_reject_user' %}" >
+                                <form id="memberform-{{worker.id}}" method="POST">
                                     {% csrf_token %}
                                     <td>{{worker.first_name}} {{worker.first_name}}</td>
                                     <td>{{worker.email}}</td>
@@ -110,8 +111,8 @@
                                     <td>{{worker.worker_profile.all.0.experience}}</td>
                                     <td>{{worker.phone}}</td>
                                     <td class="horizontal gap-10">
-                                        <button type="button" onclick="accept_reject('{{worker.id}}','Accept')" class="small_btn">Accept</button>
-                                        <button type="button" onclick="accept_reject('{{worker.id}}','Decline')" class="small_btn">Decline</button>
+                                        <a href="{% url 'recentworkersdetail' %}">
+                                            <button class="main_btn">View</button> </a>
                                     </td>
                                     <input value="{{worker.id}}" name="worker_id" id="worker_id" hidden>
                                     <input value="" name="status" id="status-{{worker.id}}" hidden>
@@ -121,7 +122,7 @@
                             {% endfor %}
                         </table>
 
-                        
+
                     </div>
                 </div>
 
@@ -132,8 +133,8 @@
 
     <script src="{% static 'js/script.js' %}"></script>
     <script>
-        function accept_reject(id, action){
-            document.getElementById(`status-${id}`).value=action;
+        function accept_reject(id, action) {
+            document.getElementById(`status-${id}`).value = action;
             console.log(action)
             document.getElementById(`memberform-${id}`).submit();
         }

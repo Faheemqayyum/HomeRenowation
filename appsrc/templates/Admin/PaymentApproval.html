@@ -29,17 +29,20 @@
     <div class="main_wrapper">
         {% include 'components/adminsidebar.html'%}
         <div class="right_container">
-            <p class="sub_head_2 imptext">Workers</p>
+            <p class="sub_head_2 imptext">New Projects Added</p>
             <div class="content_wrapper">
                 <div class="recentmembers box">
                     <div style="overflow-x: auto; width: 100%;">
                     <table class="dash_table">
                         <tr>
-                            <th>Name</th>
-                            <th>Email</th>
+                            <th>Project Name</th>
+                            <th>Project Details</th>
                             <th>Category</th>
-                            <th>CNIC</th>
-                            <th>Phone</th>
+                            <th>Budget</th>
+                            <th>Worker Name</th>
+                            <th>Worker PhoneNumber</th>
+                            <!-- <th>Client Name</th> -->
+                            <th>Images Uploaded</th>
                             <th>Status</th>
                         </tr>
                         {% for worker in workers %}

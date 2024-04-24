@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recent Member</title>
+    <title>Recent Client Detail</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <!-- <link rel="stylesheet" href="{% static 'css/index.css' %}"> -->
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
@@ -21,53 +21,62 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-
 </head>
 
 <body>
 
-
-
     <div class="main_wrapper">
         {% include 'components/adminsidebar.html'%}
         <div class="right_container">
-            <p class="sub_head_2 imptext margin-bottom">Members</p>
-            <div class="content_wrapper">
-                <div class="recentmembers box">
-                   
-                    <div style="overflow-x: auto; width: 100%;">
-                        <table class="dash_table ">
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Profession</th>
-                                <th>Experience</th>
-                                <th>PhoneNumber</th>
-                                <th>Action</th>
-                            </tr>
-                            <tr>
-
-                                <a href="{% url 'recentmembersdetail' %}">
-                                    <td>Jawad</td>
-                                    <td>jawad32@gmail.com</td>
-                                    <td>Painters</td>
-                                    <td>2</td>
-                                    <td>10</td>
-                                    <td class="horizontal gap-10">
-                                        <button class="small_btn">Accept</button>
-                                        <button class="small_btn">Decline</button>
-                                    </td>
-
-                                </a>
-                            </tr>
-                        </table>
+            <div class="horizontal justify-between align-center fullwidth">
+                <p class="sub_head_2 imptext margin-bottom">Worker Detail</p>
+                <div class="horizontal justify-between align-center gap-10">
+                    <button type="button" onclick="accept_reject('{{worker.id}}','Accept')"
+                        class="main_btn">Accept</button>
+                    <button type="button" onclick="accept_reject('{{worker.id}}','Decline')"
+                        class="main_btn">Decline</button>
                 </div>
-                </div>
-                
+            </div>
+            <div class="vertical justify-start align-start gap-10 fullwidth">
+                <div class="horizontal justify-between align-center fullwidth">
+                    <div class="horizontal justify-start align-center gap-10">
+                        <p class="workerhead">Worker Name:</p>
+                        <p class="card_text">Worker Name</p>
+                    </div>
 
+                </div>
+                <div class="horizontal justify-start align-center gap-10">
+                    <p class="workerhead">Worker Email:</p>
+                    <p class="card_text">Worker Email</p>
+                </div>
+                <div class="horizontal justify-start align-center gap-10">
+                    <p class="workerhead">Worker CNIC:</p>
+                    <p class="card_text">Worker CNIC</p>
+                </div>
+                <div class="horizontal justify-start align-center gap-10">
+                    <p class="workerhead">Worker Profession</p>
+                    <p class="card_text">Worker Email</p>
+                </div>
+                <div class="horizontal justify-start align-center gap-10">
+                    <p class="workerhead">Worker Experience</p>
+                    <p class="card_text">Worker Email</p>
+                </div>
+                <div class="horizontal justify-start align-center gap-10">
+                    <p class="workerhead">Worker Phone Number</p>
+                    <p class="card_text">Worker Email</p>
+                </div>
+                <div class="vertical justify-start align-start">
+                    <p class="workerhead">Worker Bio</p>
+                    <p class="card_text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus et quos libero quas excepturi ex provident blanditiis molestiae harum fuga ratione velit dolorum necessitatibus molestias, perspiciatis veritatis, non, exercitationem illo?</p>
+                </div>
+                <div class="horizontal gap-10 justify-between align-center">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                    <img src="" alt="">
+                </div>
             </div>
         </div>
+    </div>
 
     </div>
 

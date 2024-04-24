@@ -25,12 +25,22 @@ urlpatterns = [
     path('memberdetail/',views.MemberDetail,name='memberdetail'),
     path('recentworkers/',views.RecentWorkers,name='recentworkers'),
     path('recentworkersdetail/',views.RecentWorkersDetail,name='recentworkersdetail'),
+    
+    path('recentprojects/',views.NewProjects,name='recentprojects'),
+    path('activeprojects/',views.ActiveProject,name='activeprojects'),
+    path('paymentapprove/',views.PaymentApprove,name='paymentapprove'),
+    
     # Worker
     path('workerdashboard/',views.WorkerDashboard,name='workerdashboard'),
     path('workersample/',views.WorkerSample,name='workersample'),
     path('addwork/',views.AddWorkerSample,name='addwork'),
     path('workerprofile/',views.WorkerProfile,name='workerprofile'),
     path('editworkerprofile/',views.EditWorkerProfile,name='editworkerprofile'),
+    path('recentquotes/',views.RecentQuotes,name='recentquotes'),
+    path('workerorders/',views.WorkerOrders,name='workerorders'),
+    path('orderdetail/',views.OrderDetail,name='orderdetail'),
+    path('workerchat/',views.WorkerChat,name='workerchat'),
+    
      # Client
     path('clientdashboard/',views.ClientDashboard,name='clientdashboard'),
     path('showjob/',views.ShowJobs,name='showjob'),
