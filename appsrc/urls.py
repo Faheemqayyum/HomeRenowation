@@ -22,9 +22,9 @@ urlpatterns = [
     path('accept_reject_user/',views.acceptRejectUser,name='accept_reject_user'),
     
     path('recentmembers/',views.RecentMembers,name='recentmembers'),
-    path('memberdetail/',views.MemberDetail,name='memberdetail'),
+    path('memberdetail/<str:id>',views.MemberDetail,name='memberdetail'),
     path('recentworkers/',views.RecentWorkers,name='recentworkers'),
-    path('recentworkersdetail/',views.RecentWorkersDetail,name='recentworkersdetail'),
+    path('recentworkersdetail/<str:id>',views.RecentWorkersDetail,name='recentworkersdetail'),
     
     path('recentprojects/',views.NewProjects,name='recentprojects'),
     path('activeprojects/',views.ActiveProject,name='activeprojects'),

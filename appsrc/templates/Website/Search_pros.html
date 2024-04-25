@@ -37,158 +37,40 @@
         <div class="horizontal justify-between align-start fullwidth paddingX gap-10">
             <div class="vertical gap-10 scroll_div">
                 <div class="fixed_para">
-                    <p class="card_text padding-5">40 Jobs Found</p>
+                    <p class="card_text padding-5"></p>
                 </div>
-                <div class="horizontal gap-10 align-center card_border worker_card padding-10 fullwidth">
-                    <div class="vertical">
-                        <img src="{% static 'media/default-user.png' %}" alt="" class="loccard_img" />
-                    </div>
-                    <div class="vertical">
-                        <div class="horizontal justify-between align-center fullwidth gap-10">
-                            <div class="vertical gap-5 fullwidth">
-                                <p class="card_text">Professionals Window Cleaning</p>
-                                <div class="vertical gap-5 margin-bottom">
-                                    <div class="Rating">
-                                        <i class="fa-solid fa-star"></i> 5 (2 Jobs)
+                {% for pro in pros %}
+                    <div class="horizontal gap-10 align-center card_border worker_card padding-10 fullwidth">
+                        <div class="vertical">
+                            <img src="{{pro.get_profile_pic}}" alt="" class="loccard_img" />
+                        </div>
+                        <div class="vertical">
+                            <div class="horizontal justify-between align-center fullwidth gap-10">
+                                <div class="vertical gap-5 fullwidth">
+                                    <p class="card_text">{{pro.worker_profile.all.0.profession}}</p>
+                                    <div class="vertical gap-5 margin-bottom">
+                                        <div class="Rating">
+                                            <i class="fa-solid fa-star"></i> {{pro.worker_profile.all.0.rating}} ({{pro.worker_profile.count_projects}} Jobs)
+                                        </div>
+                                        <p class="card_text Rating">
+                                            <i class="fa-solid fa-location-dot"></i> {{pro.address}}
+                                        </p>
                                     </div>
-                                    <p class="card_text Rating">
-                                        <i class="fa-solid fa-location-dot"></i> Wah Cantt
-                                        Pakistan
-                                    </p>
+                                </div>
+                                <div>
+                                    <button class="main_btn" onclick="toggleSections('section1', 'section2'); update_worker('{{pro.name}}', '{{pro.worker_profile.all.0.profession}}',' {{pro.worker_profile.all.0.about}}', '{{pro.address}}', '{{pro.worker_profile.all.0.count_projects}}', '{{pro.worker_profile.all.0.rating}}')">Select</button>
                                 </div>
                             </div>
-                            <div>
-                                <button class="main_btn" onclick="toggleSections('section1', 'section2')">Select</button>
-                            </div>
-                        </div>
-                        <hr class="hr_line">
-                        <div class="padding-10">
-                            <div class="card_title ">
-                                Exterior Cleaning
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="horizontal gap-10 align-center card_border worker_card padding-10 fullwidth">
-                    <div class="vertical">
-                        <img src="{% static 'media/default-user.png' %}" alt="" class="loccard_img" />
-                    </div>
-                    <div class="vertical">
-                        <div class="horizontal justify-between align-center fullwidth gap-10">
-                            <div class="vertical gap-5 fullwidth">
-                                <p class="card_text">Professionals Window Cleaning</p>
-                                <div class="vertical gap-5 margin-bottom">
-                                    <div class="Rating">
-                                        <i class="fa-solid fa-star"></i> 5 (2 Jobs)
-                                    </div>
-                                    <p class="card_text Rating">
-                                        <i class="fa-solid fa-location-dot"></i> Wah Cantt
-                                        Pakistan
-                                    </p>
+                            <hr class="hr_line">
+                            <div class="padding-10">
+                                <div class="card_title ">
+                                    {{pro.worker_profile.all.0.profession}}
                                 </div>
                             </div>
-                            <div>
-                                <button class="main_btn" onclick="toggleSections('section1', 'section2')">Select</button>
-                            </div>
-                        </div>
-                        <hr class="hr_line">
-                        <div class="padding-10">
-                            <div class="card_title ">
-                                Exterior Cleaning
-                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="horizontal gap-10 align-center card_border worker_card padding-10 fullwidth">
-                    <div class="vertical">
-                        <img src="{% static 'media/default-user.png' %}" alt="" class="loccard_img" />
-                    </div>
-                    <div class="vertical">
-                        <div class="horizontal justify-between align-center fullwidth gap-10">
-                            <div class="vertical gap-5 fullwidth">
-                                <p class="card_text">Professionals Window Cleaning</p>
-                                <div class="vertical gap-5 margin-bottom">
-                                    <div class="Rating">
-                                        <i class="fa-solid fa-star"></i> 5 (2 Jobs)
-                                    </div>
-                                    <p class="card_text Rating">
-                                        <i class="fa-solid fa-location-dot"></i> Wah Cantt
-                                        Pakistan
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <button class="main_btn" onclick="toggleSections('section1', 'section2')">Select</button>
-                            </div>
-                        </div>
-                        <hr class="hr_line">
-                        <div class="padding-10">
-                            <div class="card_title ">
-                                Exterior Cleaning
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="horizontal gap-10 align-center card_border worker_card padding-10 fullwidth">
-                    <div class="vertical">
-                        <img src="{% static 'media/default-user.png' %}" alt="" class="loccard_img" />
-                    </div>
-                    <div class="vertical">
-                        <div class="horizontal justify-between align-center fullwidth gap-10">
-                            <div class="vertical gap-5 fullwidth">
-                                <p class="card_text">Professionals Window Cleaning</p>
-                                <div class="vertical gap-5 margin-bottom">
-                                    <div class="Rating">
-                                        <i class="fa-solid fa-star"></i> 5 (2 Jobs)
-                                    </div>
-                                    <p class="card_text Rating">
-                                        <i class="fa-solid fa-location-dot"></i> Wah Cantt
-                                        Pakistan
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <button class="main_btn" onclick="toggleSections('section1', 'section2')">Select</button>
-                            </div>
-                        </div>
-                        <hr class="hr_line">
-                        <div class="padding-10">
-                            <div class="card_title ">
-                                Exterior Cleaning
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="horizontal gap-10 align-center card_border worker_card padding-10 fullwidth">
-                    <div class="vertical">
-                        <img src="{% static 'media/default-user.png' %}" alt="" class="loccard_img" />
-                    </div>
-                    <div class="vertical">
-                        <div class="horizontal justify-between align-center fullwidth gap-10">
-                            <div class="vertical gap-5 fullwidth">
-                                <p class="card_text">Professionals Window Cleaning</p>
-                                <div class="vertical gap-5 margin-bottom">
-                                    <div class="Rating">
-                                        <i class="fa-solid fa-star"></i> 5 (2 Jobs)
-                                    </div>
-                                    <p class="card_text Rating">
-                                        <i class="fa-solid fa-location-dot"></i> Wah Cantt
-                                        Pakistan
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <button class="main_btn" onclick="toggleSections('section1', 'section2')">Select</button>
-                            </div>
-                        </div>
-                        <hr class="hr_line">
-                        <div class="padding-10">
-                            <div class="card_title ">
-                                Exterior Cleaning
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
+               
                 <!-- More card elements -->
             </div>
             <div class="other_div">

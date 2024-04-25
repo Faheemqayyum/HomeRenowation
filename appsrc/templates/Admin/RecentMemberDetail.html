@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,35 +40,25 @@
                 <div class="horizontal justify-between align-center fullwidth">
                     <div class="horizontal justify-start align-center gap-10">
                         <p class="Clienthead">Client Name:</p>
-                        <p class="card_text">Client Name</p>
+                        <p class="card_text">{{client.first_name}} {{client.last_name}}</p>
                     </div>
 
                 </div>
                 <div class="horizontal justify-start align-center gap-10">
                     <p class="Clienthead">Client Email:</p>
-                    <p class="card_text">Client Email</p>
+                    <p class="card_text">{{client.email}}</p>
                 </div>
                 <div class="horizontal justify-start align-center gap-10">
                     <p class="Clienthead">Client CNIC:</p>
-                    <p class="card_text">Client CNIC</p>
+                    <p class="card_text">{{client.cnic}}</p>
                 </div>
                 <div class="horizontal justify-start align-center gap-10">
                     <p class="Clienthead">Client Profession</p>
-                    <p class="card_text">Client Email</p>
-                </div>
-                <div class="horizontal justify-start align-center gap-10">
-                    <p class="Clienthead">Client Experience</p>
-                    <p class="card_text">Client Email</p>
+                    <p class="card_text">{{client.profession}}</p>
                 </div>
                 <div class="horizontal justify-start align-center gap-10">
                     <p class="Clienthead">Client Phone Number</p>
-                    <p class="card_text">Client Email</p>
-                </div>
-                <div class="vertical justify-start align-start">
-                    <p class="Clienthead">Client Bio</p>
-                    <p class="card_text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus et quos
-                        libero quas excepturi ex provident blanditiis molestiae harum fuga ratione velit dolorum
-                        necessitatibus molestias, perspiciatis veritatis, non, exercitationem illo?</p>
+                    <p class="card_text">{{client.phone}}</p>
                 </div>
                 <div class="horizontal gap-10 justify-between align-center">
                     <img src="" alt="">

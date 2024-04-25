@@ -5,24 +5,31 @@
         <div class="horizontal justify-between align-center">
             <div class="vertical web_inputs">
                 <p for="worker_name" class="bold_text_2">Worker Name:</p>
-                <p class="card_text">Joseph</p>
+                <p class="card_text" id='name'> Joseph</p>
             </div>
             <button class="main_btn">Message</button>
         </div>
         <div class="vertical web_inputs">
+            <p for="worker_name" class="bold_text_2">Profession:</p>
+            <p class="card_text" id='profession'> Profession</p>
+        </div>
+        <div class="vertical web_inputs">
             <p for="worker_name" class="bold_text_2">Worker Details:</p>
-            <p class="card_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, vitae distinctio.
+            <p class="card_text" id="about">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, vitae distinctio.
                 Error dignissimos assumenda pariatur illo dicta nesciunt distinctio impedit!</p>
         </div>
         <div class="vertical web_inputs">
+            <p for="worker_name" class="bold_text_2">Location</p>
+            <p class="card_text" id='location'>2</p>
+        </div>
+        <div class="vertical web_inputs">
             <p for="worker_name" class="bold_text_2">Total Projects:</p>
-            <p class="card_text">2</p>
+            <p class="card_text" id="projects">2</p>
+        <div class="vertical web_inputs">
+            <p for="worker_name" class="bold_text_2">Rating:</p>
+            <p class="card_text" id="rating">2</p>
         </div>
-        <div class="" style="border: 1px solid black; height: 300px;">
-            <p>Google Map</p>
-            <!--Google Map -->
-        </div>
-        <div class="vertical gap-5">
+        {% comment %} <div class="vertical gap-5">
             <p class="bold_text_2">Client Reviews</p>
             <div class="vertical web_inputs">
                 <div class="horizontal justify-between align-center fullwidth">
@@ -34,7 +41,19 @@
                 <p class="card_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, vitae
                     distinctio. Error dignissimos assumenda pariatur illo dicta nesciunt distinctio impedit!</p>
             </div>
-        </div>
+        </div> {% endcomment %}
         
     </div>
 </div>
+
+<script>
+function update_worker(name, profession, about, location, projects, rating){
+    document.getElementById("name").innerText = name;
+    document.getElementById("profession").innerText = profession;
+    document.getElementById("about").innerText = about;
+    document.getElementById("location").innerText = location;
+    document.getElementById("projects").innerText = projects;
+    document.getElementById("rating").innerText = rating;
+
+}
+</script>

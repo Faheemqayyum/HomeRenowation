@@ -75,8 +75,8 @@
                                     <td>{{client.phone}}</td>
                                     <td>{{client.cnic}}</td>
                                     <td class="horizontal gap-10">
-                                        <a href="{% url 'memberdetail' %}">
-                                            <button class="main_btn">View</button>
+                                        <a href="{% url 'memberdetail' id=client.id %}">
+                                            <button type="button" class="main_btn">View</button>
                                         </a>
                                     </td>
                                     <input value="{{client.id}}" name="member_id" id="member_id" hidden>
@@ -103,7 +103,7 @@
                             </tr>
                             {% for worker in worker_requests %}
                             <tr>
-                                <form id="memberform-{{worker.id}}" method="POST">
+                                <form id="memberform-{{worker.id}}" method="">
                                     {% csrf_token %}
                                     <td>{{worker.first_name}} {{worker.first_name}}</td>
                                     <td>{{worker.email}}</td>
@@ -111,8 +111,8 @@
                                     <td>{{worker.worker_profile.all.0.experience}}</td>
                                     <td>{{worker.phone}}</td>
                                     <td class="horizontal gap-10">
-                                        <a href="{% url 'recentworkersdetail' %}">
-                                            <button class="main_btn">View</button> </a>
+                                        <a href="{% url 'recentworkersdetail' id=worker.id %}">
+                                            <button type="button" class="main_btn">View</button> </a>
                                     </td>
                                     <input value="{{worker.id}}" name="member_id" id="worker_id" hidden>
                                     <input value="" name="status" id="status-{{worker.id}}" hidden>

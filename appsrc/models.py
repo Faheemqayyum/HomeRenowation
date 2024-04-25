@@ -13,6 +13,9 @@ class User(AbstractUser):
     cnic = models.CharField(max_length = 20, null = True, blank = True)
     phone = models.CharField(max_length = 20, null = True, blank = True)
     address = models.CharField(max_length = 1000, null = True, blank = True)
+    about = models.CharField(max_length = 10000, null = True, blank = True)
+    
+    
     
     @property
     def get_profile_pic(self):
@@ -23,6 +26,11 @@ class User(AbstractUser):
         else:
             return ""
     
+    @property
+    def name(self):
+        return f"{self.first_name} {self.last_name}"
+    
+    
 class WorkerProfileModel(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE, related_name="worker_profile")
     cnic_front = models.ImageField(upload_to="images/", null = True)
@@ -31,6 +39,9 @@ class WorkerProfileModel(models.Model):
     profession = models.CharField(max_length = 200, null = True, blank = True)
     about = models.CharField(max_length = 200, null = True, blank = True)
     
+    count_projects = models.IntegerField(default = 0)
+    rating = models.FloatField(default=5)
+
     @property
     def get_cnic_front(self):
         

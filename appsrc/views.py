@@ -6,6 +6,37 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 
+
+# login
+# sign up
+
+
+# todo:
+# get quote: place quote
+# workers in searchpros
+# view quotes in search project
+
+
+# admin:
+# member detail page fix
+# worker detail page view fix
+# admin accept/decline new projects
+# accepted projects
+
+
+# worker:
+# recent projects
+# on going projects
+# recent quotes or bids 
+# worker orders
+# chat
+
+
+
+
+
+
+
 # Create your views here.
 
 # Admin
@@ -27,7 +58,9 @@ def Homepage(request):
   return  render(request, 'Website/homepage.html')
 
 def SearchPros(request):
-  return  render(request, 'Website/Search_pros.html')
+  pros = User.objects.filter(is_approved = True, ).all()
+  
+  return  render(request, 'Website/Search_pros.html',{"pros":pros})
 
 def SearchProject(request):
   return  render(request, 'Website/Search_project.html')
@@ -155,12 +188,41 @@ def RecentWorkers(request):
   members = User.objects.filter(is_worker = True).order_by('-id')
   return  render(request, 'Admin/RecentWorkers.html',{"workers":members})
 
-@login_required(login_url='login')
-def RecentWorkersDetail(request):
-  return  render(request, 'Admin/RecentWorkerDetail.html')
 
-def MemberDetail(request):
-  return  render(request, 'Admin/RecentMemberDetail.html')
+@login_required(login_url='login')
+def RecentWorkersDetail(request, id):
+  
+  if User.objects.filter(id = id, is_worker = True).exists():
+    user = User.objects.get(id = id)
+  else:
+    if request.user.is_superuser:
+      return redirect("admindashboard")
+    else:
+      return redirect("homepage")
+    
+  if request.method == "POST":
+    if request.POST.get("action") == "accept":
+      user.is_approved = True
+    elif request.POST.get("action") == "decline":
+      user.is_declined = True
+    
+    user.save()
+     
+
+  return  render(request, 'Admin/RecentWorkerDetail.html', {"worker":user})
+
+
+@login_required(login_url='login')
+def MemberDetail(request, id):
+  if request.user.is_superuser:
+    if User.objects.filter(id = id).exists():
+      user = User.objects.get(id = id)
+    else:
+      return redirect("admindashboard")
+  else:
+    return redirect("homepage")
+  
+  return  render(request, 'Admin/RecentMemberDetail.html', {"user":user})
 def NewProjects(request):
   return  render(request, 'Admin/NewProjects.html')
 def PaymentApprove(request):
@@ -243,6 +305,7 @@ def EditWorkerProfile(request):
     profession = request.POST.get("profession")
     experience = request.POST.get("experience")
     cnic = request.POST.get("cnic")
+    about = request.POST.get("about")
     
     profile_pic = request.FILES.get("profile_pic")
     cnic_front = request.FILES.get("cnic_front")
@@ -262,6 +325,7 @@ def EditWorkerProfile(request):
     
     worker_instance.experience = experience
     worker_instance.profession = profession
+    worker_instance.about = about
     
     if profile_pic:
       user.profile_pic = profile_pic

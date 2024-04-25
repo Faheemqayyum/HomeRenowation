@@ -31,49 +31,62 @@
             <div class="horizontal justify-between align-center fullwidth">
                 <p class="sub_head_2 imptext margin-bottom">Worker Detail</p>
                 <div class="horizontal justify-between align-center gap-10">
-                    <button type="button" onclick="accept_reject('{{worker.id}}','Accept')"
-                        class="main_btn">Accept</button>
-                    <button type="button" onclick="accept_reject('{{worker.id}}','Decline')"
-                        class="main_btn">Decline</button>
+                    <form method="POST" >
+                        {% csrf_token %}
+                        <input name="action" value="accept" hidden>
+                        <input name="id" value="{{worker.id}}" hidden>
+                        <button type="submit" onclick="accept_reject('{{worker.id}}','Accept')"
+                            class="main_btn">Accept</button>
+                    </form>
+                    
+                    <form method="POST" >
+                        {% csrf_token %}
+                        <input name="action" value="decline" hidden>
+                        <input name="id" value="{{worker.id}}" hidden>
+                        <button type="submit" onclick="accept_reject('{{worker.id}}','Accept')"
+                            class="main_btn">Decline</button>
+                    </form>
+
                 </div>
             </div>
             <div class="vertical justify-start align-start gap-10 fullwidth">
                 <div class="horizontal justify-between align-center fullwidth">
                     <div class="horizontal justify-start align-center gap-10">
                         <p class="workerhead">Worker Name:</p>
-                        <p class="card_text">Worker Name</p>
+                        <p class="card_text">{{worker.name}}</p>
                     </div>
 
                 </div>
                 <div class="horizontal justify-start align-center gap-10">
                     <p class="workerhead">Worker Email:</p>
-                    <p class="card_text">Worker Email</p>
+                    <p class="card_text">{{worker.email}}</p>
                 </div>
                 <div class="horizontal justify-start align-center gap-10">
                     <p class="workerhead">Worker CNIC:</p>
-                    <p class="card_text">Worker CNIC</p>
+                    <p class="card_text">{{worker.cnic}}</p>
                 </div>
                 <div class="horizontal justify-start align-center gap-10">
                     <p class="workerhead">Worker Profession</p>
-                    <p class="card_text">Worker Email</p>
+                    <p class="card_text">{{worker.worker_profile.all.0.profession}}</p>
                 </div>
                 <div class="horizontal justify-start align-center gap-10">
                     <p class="workerhead">Worker Experience</p>
-                    <p class="card_text">Worker Email</p>
+                    <p class="card_text">{{worker.worker_profile.all.0.experience}}</p>
                 </div>
                 <div class="horizontal justify-start align-center gap-10">
                     <p class="workerhead">Worker Phone Number</p>
-                    <p class="card_text">Worker Email</p>
+                    <p class="card_text">{{worker.phone}}</p>
                 </div>
                 <div class="vertical justify-start align-start">
                     <p class="workerhead">Worker Bio</p>
-                    <p class="card_text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus et quos libero quas excepturi ex provident blanditiis molestiae harum fuga ratione velit dolorum necessitatibus molestias, perspiciatis veritatis, non, exercitationem illo?</p>
+                    <p class="card_text">{{worker.worker_profile.all.0.about}}</p>
                 </div>
                 <div class="horizontal gap-10 justify-between align-center">
-                    <img src="" alt="">
-                    <img src="" alt="">
-                    <img src="" alt="">
+                    <img src="{{worker.get_profile_pic}}" alt="">
+                    <img src="{{worker.worker_profile.all.0.get_cnic_front}}" alt="">
+                    <img src="{{worker.worker_profile.all.0.get_cnic_back}}" alt="">
                 </div>
+
             </div>
         </div>
     </div>
