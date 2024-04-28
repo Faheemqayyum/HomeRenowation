@@ -528,3 +528,17 @@ def EditClientProfile(request):
   user = User.objects.get(id = request.user.id)
 
   return  render(request, 'Client/EditProfile.html', {"user":user})
+
+def ClientChat(request):
+  return render(request, 'Client/Chatpage.html')
+
+def ClientQuotes(request):
+  return render(request, 'Client/ClientQuotes.html')
+
+def WorkerQuotes(request):
+  return render(request, 'Client/WorkerQuotes.html')
+
+def AcceptOrder(request):
+  return render(request, 'Client/AcceptOrder.html')
+def PaymentPage(request):
+  return render(request, 'Client/PaymentPage.html')

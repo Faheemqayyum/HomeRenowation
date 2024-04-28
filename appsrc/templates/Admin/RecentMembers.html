@@ -49,9 +49,9 @@
                             <td>{{member.email}}</td>
                             <td>{{member.phone}}</td>
                             <td>{{member.cnic}}</td>
-                            <td class="horizontal gap-10">
+                            <td class="horizontal gap-10 justify-center align-center">
                                 {% if member.is_declined %}
-                                    <button class="small_btn">Delined</button>
+                                    <button class="small_btn">Declined</button>
                                 {% elif member.is_approved %}
                                     <button class="small_btn">Approved</button>
                                 {% else %}

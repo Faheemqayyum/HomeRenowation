@@ -50,6 +50,11 @@ urlpatterns = [
     path('clientdashboard/',views.ClientDashboard,name='clientdashboard'),
     path('showjob/',views.ShowJobs,name='showjob'),
     path('addjob/',views.AddJob,name='addjob'),
+    path('clientchat/',views.ClientChat,name='clientchat'),
+    path('clientquotes/',views.ClientQuotes,name='clientquotes'),
+    path('workerquotes/',views.WorkerQuotes,name='workerquotes'),
+    path('acceptorder/',views.AcceptOrder,name='acceptorder'),
+    path('paymentpage/',views.PaymentPage,name='paymentpage'),
     path('clientprofile/',views.ClientProfile,name='clientprofile'),
     path('editclientprofile/',views.EditClientProfile,name='editclientprofile'),
 ]

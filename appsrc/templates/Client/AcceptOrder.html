@@ -29,9 +29,11 @@
         {% include 'components/workersidebar.html'%}
         <div class="right_container">
             <div class="horizontal justify-between align-center fullwidth">
-                <p class="sub_head_2 imptext margin-bottom">Order Detail Detail</p>
+                <p class="sub_head_2 imptext margin-bottom">Accept Order Detail</p>
                 <div class="horizontal justify-between align-center gap-10">
                     <button class="main_btn">Accept</button>
+                    <button class="main_btn">Reject</button>
+                    <button class="main_btn">Message</button>
                 </div>
             </div>
             <div class="bg-white vertical gap-20">
@@ -48,19 +50,27 @@
                         <p class="card_text">{{client.email}}</p>
                     </div>
                     <div class="horizontal justify-start align-center gap-10">
-                        <p class="Clienthead">Client Name:</p>
+                        <p class="Clienthead">Worker Name:</p>
                         <p class="card_text">{{client.cnic}}</p>
                     </div>
                     <div class="horizontal justify-start align-center gap-10">
-                        <p class="Clienthead">Client Location</p>
+                        <p class="Clienthead">Worker Phone No</p>
                         <p class="card_text">{{client.profession}}</p>
                     </div>
                     <div class="horizontal justify-start align-center gap-10">
-                        <p class="Clienthead">Client Phone Number</p>
+                        <p class="Clienthead">Worker Address</p>
                         <p class="card_text">{{client.phone}}</p>
                     </div>
                     <div class="horizontal justify-start align-center gap-10">
-                        <p class="Clienthead">Amount</p>
+                        <p class="Clienthead">Category</p>
+                        <p class="card_text">{{client.phone}}</p>
+                    </div>
+                    <div class="horizontal justify-start align-center gap-10">
+                        <p class="Clienthead">Worker Experience</p>
+                        <p class="card_text">{{client.phone}}</p>
+                    </div>
+                    <div class="horizontal justify-start align-center gap-10">
+                        <p class="Clienthead">Budget Qouted</p>
                         <p class="card_text">{{client.phone}}</p>
                     </div>
                     <div class="vertical gap-10">

@@ -27,39 +27,33 @@
 
 <body>
     <div class="main_wrapper">
-        {% include 'components/adminsidebar.html'%}
+        {% include 'components/clientsidebar.html'%}
         <div class="right_container">
-            <p class="sub_head_2 imptext">Workers</p>
+            <p class="sub_head_2 imptext">Worker Requested Quotes</p>
             <div class="content_wrapper">
-                <div class="recentmembers box">
+                <div class="recentmembers box bg-white">
                     <div style="overflow-x: auto; width: 100%;">
                     <table class="dash_table">
                         <tr>
-                            <th>Worker Image</th>
-                            <th>Name</th>
-                            <th>Email</th>
+                            <th>Worker Name</th>
+                            <th>Worker Phone No</th>
+                            <th>Experience</th>
                             <th>Category</th>
-                            <th>CNIC</th>
-                            <th>Phone</th>
-                            <th>Status</th>
+                            <th>Project Name</th>
+                            <th>Project Description</th>
+                            <th>Budget Qouted</th>
+                            <th>Location</th>
+                            <th>Action</th>
                         </tr>
                         {% for worker in workers %}
                         <tr>
-                            <td><img src ="{{worker.get_profile_pic}}" class="profile_pic"></td>
                             <td>{{worker.first_name}} {{worker.last_name}}</td>
-                            <td>{{worker.email}}</td>
+                                <td>{{worker.email}}</td>
                             <td>{{worker.worker_profile.all.0.profession}}</td>
                             <td>{{worker.cnic}}</td>
                             <td>{{worker.phone}}</td>
                             <td class="horizontal gap-10 justify-center align-center">
-                                {% if worker.is_declined %}
-                                <button class="small_btn">Declined</button>
-                            {% elif worker.is_approved %}
-                                <button class="small_btn">Approved</button>
-                            {% else %}
-                                <button class="small_btn">Pending</button>
-                            {% endif %}
-
+                                <button class="main_btn">View Details</button>
                             </td>
                         </tr>
                         {% endfor %}
