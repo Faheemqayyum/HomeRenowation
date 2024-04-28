@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <!-- <link rel="stylesheet" href="{% static 'css/index.css' %}"> -->
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
@@ -33,7 +33,7 @@
                 <p class="sub_head_2 imptext margin-bottom">Profile</p>
                 <a href="{% url 'editworkerprofile' %}"><button class="main_btn">Edit Profile</button></a>
             </div>
-            <div class="horizontal gap-10 justify-start align-start card_shadow padding-10">
+            <div class="horizontal gap-10 justify-start align-start card_shadow padding-10 bg-white">
                 <div class="vertical">
                     <img src="{{user.get_profile_pic}}" alt="" class="profile_img">
                 </div>

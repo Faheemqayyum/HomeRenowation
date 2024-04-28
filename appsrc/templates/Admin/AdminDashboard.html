@@ -69,12 +69,47 @@
                             <form id="memberform-{{client.id}}" method="POST">
                                 {% csrf_token %}
                                 <tr>
-                                    <td> {{client.first_name}}
+                                    <td>{{client.first_name}}
                                         {{client.last_name}} </td>
                                     <td>{{client.email}}</td>
                                     <td>{{client.phone}}</td>
                                     <td>{{client.cnic}}</td>
-                                    <td class="horizontal gap-10">
+                                    <td class="horizontal gap-10 justify-center align-center">
+                                        <a href="{% url 'memberdetail' id=client.id %}">
+                                            <button type="button" class="main_btn">View</button>
+                                        </a>
+                                    </td>
+                                    <input value="{{client.id}}" name="member_id" id="member_id" hidden>
+                                    <input value="" name="status" id="status-{{client.id}}" hidden>
+                                </tr>
+                                </from>
+                                {% endfor %}
+                        </table>
+                    </div>
+                </div>
+                <div class="recentmembers box">
+                    <div class="horizontal fullwidth space-between">
+                        <h4 class="box_title">Recent Members</h4>
+                    </div>
+                    <div style="overflow-x: auto; width: 100%;">
+                        <table class="dash_table">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone Number</th>
+                                <th>CNIC </th>
+                                <th>Action</th>
+                            </tr>
+                            {% for client in clients %}
+                            <form id="memberform-{{client.id}}" method="POST">
+                                {% csrf_token %}
+                                <tr>
+                                    <td>{{client.first_name}}
+                                        {{client.last_name}} </td>
+                                    <td>{{client.email}}</td>
+                                    <td>{{client.phone}}</td>
+                                    <td>{{client.cnic}}</td>
+                                    <td class="horizontal gap-10 justify-center align-center">
                                         <a href="{% url 'memberdetail' id=client.id %}">
                                             <button type="button" class="main_btn">View</button>
                                         </a>
@@ -110,7 +145,7 @@
                                     <td>{{worker.worker_profile.all.0.profession}}</td>
                                     <td>{{worker.worker_profile.all.0.experience}}</td>
                                     <td>{{worker.phone}}</td>
-                                    <td class="horizontal gap-10">
+                                    <td class="horizontal gap-10 justify-center align-center">
                                         <a href="{% url 'recentworkersdetail' id=worker.id %}">
                                             <button type="button" class="main_btn">View</button> </a>
                                     </td>

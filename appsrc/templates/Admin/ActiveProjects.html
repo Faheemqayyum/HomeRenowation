@@ -29,7 +29,7 @@
     <div class="main_wrapper">
         {% include 'components/adminsidebar.html'%}
         <div class="right_container">
-            <p class="sub_head_2 imptext">New Projects Added</p>
+            <p class="sub_head_2 imptext">Active Projects</p>
             <div class="content_wrapper">
                 <div class="recentmembers box">
                     <div style="overflow-x: auto; width: 100%;">
@@ -50,9 +50,9 @@
                             <td>{{worker.worker_profile.all.0.profession}}</td>
                             <td>{{worker.cnic}}</td>
                             <td>{{worker.phone}}</td>
-                            <td class="horizontal gap-10">
+                            <td class="horizontal gap-10 justify-center align-center">
                                 {% if worker.is_declined %}
-                                <button class="small_btn">Delined</button>
+                                <button class="small_btn">Declined</button>
                             {% elif worker.is_approved %}
                                 <button class="small_btn">Approved</button>
                             {% else %}

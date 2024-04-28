@@ -1,5 +1,4 @@
 :root {
-  
   --primarycl: #757fef;
   --secondarycl: #919af2;
   --grey: #efefef;
@@ -13,7 +12,6 @@
   --border-cl: #979797;
   --primary-gradient: linear-gradient(90deg, #def7fb 0%, #a3e7ee 100%);
   --mainfont-family: "Poppins", sans-serif;
-  --input-font: "Mulish",  sans-serif;
 }
 /* .header{
   height: calc(100vh - 90vh);
@@ -269,7 +267,7 @@ main {
   box-shadow: 0px 0px 10px rgba(24, 23, 23, 0.2);
 }
 .hr_border {
-  background: #048995;
+  background: var(--primarycl);
   width: 110px;
   height: 2px;
 }
@@ -451,7 +449,7 @@ main {
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
-.project_img{
+.project_img {
   width: 150px;
   height: 150px;
   border: 1px solid var(--border-cl);
