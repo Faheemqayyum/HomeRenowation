@@ -35,50 +35,36 @@
                     <div class="users-list">
                         <p class="message-head">Messages</p>
                         <div class="users">
-                            <p>User 1</p>
-                            <p>User 2</p>
-                            <p>User 3</p>
+                            {% for room in rooms %}
+                            {% if request.user.is_worker %}
+                            <a href="{% url 'chat' room_name=room.room_name %}">{{room.getClient}}</a>
+                            {% else %}
+                            <a><p></p></a>
+                            <a href="{% url 'chat' room_name=room.room_name %}">{{room.getWorker}}</a>
+                            {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="chat-window chat-none">
                         <div class="chat-header">
-                            <p class="receiver-name">User 1</p>
+                            <p class="receiver-name">{{selected_user}}</p>
                         </div>
-                        <div class="messages">
-                            <div class="message receiver">
-                                This is a message from the receiver.
+                        <div class="messages" id='chat-log'>
+                            {% for msg in messages %}
+                            {% if msg.sender_id.id == request.user.id %}
+                                <div class="message sender">
+                                    {{msg.message_text}}
+                                </div>
+                                {% else %}
+                            <div  class="message receiver">
+                                {{msg.message_text}}
                             </div>
-                            <div class="message sender">
-                                This is a message from the sender.
-                            </div>
-                            <div class="message receiver">
-                                Another message from the receiver.
-                            </div>
-                            <div class="message sender">
-                                Another message from the sender.
-                            </div>
-                            <div class="message receiver">
-                                Another message from the receiver.
-                            </div>
-                            <div class="message sender">
-                                Another message from the sender.
-                            </div>
-                            <div class="message receiver">
-                                Another message from the receiver.
-                            </div>
-                            <div class="message sender">
-                                Another message from the sender.
-                            </div>
-                            <div class="message receiver">
-                                Another message from the receiver.
-                            </div>
-                            <div class="message sender">
-                                Another message from the sender.
-                            </div>
+                            {% endif %}
+                            {% endfor %}
                         </div>
                         <div class="input-area">
                             <input type="text" id="messageInput" placeholder="Type a message...">
-                            <button onclick="sendMessage()">Send</button>
+                            <button id="chat-message-submit" onclick="sendMessage()">Send</button>
                         </div>
                     </div>
                 </div>
@@ -90,6 +76,12 @@
 
     <script src="{% static 'js/script.js' %}"></script>
     <script>
+        function scrollToBottom() {
+            var myDiv = document.getElementById("messages");
+            myDiv.scrollTop = myDiv.scrollHeight;
+        }
+    //    scrollToBottom();
+    
         document.addEventListener("DOMContentLoaded", function () {
             const users = document.querySelectorAll('.users p');
             const chatWindows = document.querySelectorAll('.chat-window');
@@ -114,6 +106,71 @@
         });
 
 
+
+
+
+
+
+        var wsStart = 'wss://';
+        // check if protocol is https or http
+        if (window.location.protocol == 'http:') {
+            // if https: use wss:
+            wsStart = 'ws://';
+        }
+        var roomName = "{{selected}}"
+
+        console.log(wsStart, roomName);
+        const chatSocket = new WebSocket(
+            wsStart
+            + window.location.host
+            + '/ws/messages/'
+            + roomName
+            + '/'
+        );
+    
+
+        var sender_id = "{{request.user.id}}";
+
+        chatSocket.onmessage = function (e) {
+            const data = JSON.parse(e.data);
+            if (data.sender == sender_id)
+                document.querySelector('#chat-log').innerHTML += "<div class='message sender'>" + `${data.message}` + "</div>";
+            else
+                document.querySelector('#chat-log').innerHTML += "<div class='message receiver'>" + `${data.message}` + "</div>";
+                //document.querySelector('#chat-log').innerHTML += "<div class='group-chat-messages receiver'>" + `<span style='color:blue'>${data.sender_name}:</span> ${data.message}` + "</div>";
+            //scrollToBottom()
+        };
+    
+        chatSocket.onclose = function (e) {
+            console.error('Chat socket closed unexpectedly', e);
+        };
+    
+    
+    
+        document.querySelector('#messageInput').focus();
+        document.querySelector('#messageInput').onkeyup = function (e) {
+            if (e.key === 'Enter') {  // enter, return
+                document.querySelector('#chat-message-submit').click();
+            }
+        };
+    
+        //document.querySelector('#chat-message-submit').onclick = function(e) {
+        function sendMessage() {
+            // Get the input value
+            var inputValue = document.getElementById('messageInput').value;
+    
+                const messageInputDom = document.getElementById("messageInput");
+                //const message = messageInputDom.value;
+                const message = messageInputDom.value;
+                console.log(message)
+                chatSocket.send(JSON.stringify({
+                    'message': message,
+                    "sender": sender_id,
+                }));
+                messageInputDom.value = '';
+        }
+    
+    
     </script>
 </body>
 

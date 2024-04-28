@@ -6,7 +6,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-
+from django.db.models import Q
 
 # login
 # sign up
@@ -63,9 +63,49 @@ def SearchPros(request):
   
   return  render(request, 'Website/Search_pros.html',{"pros":pros})
 
+
+@login_required(login_url='login')
+def messagePro(request):
+  
+  print(request.GET)
+  pro_id = request.GET.get("pro_id")
+  client_id = request.user.id
+  room_name = f"{client_id}_{pro_id}"
+  
+  if ChatRoom_Model.objects.filter(Q(Q(user1__id = client_id) & Q(user2__id = pro_id)) | (Q(user1__id = client_id) & Q(user2__id = pro_id))).exists() == False:
+    
+    room_name = f"{client_id}_{pro_id}"
+    try:
+      ChatRoom_Model.objects.create(
+        room_name = room_name,
+        user1 = User.objects.get(id = client_id),
+        user2 = User.objects.get(id = pro_id)
+      )
+      redirect_url = request.build_absolute_uri(
+            reverse('chat', kwargs={'room_name': room_name})
+            )
+      return redirect(redirect_url)
+    except Exception as e:
+        print("<><><><><><><>",e)
+        return redirect('searchpros')
+  
+  else:
+    try:
+      chatroom = ChatRoom_Model.objects.get(Q(Q(user1__id = client_id) & Q(user2__id = pro_id)) | (Q(user1__id = client_id) & Q(user2__id = pro_id)))
+      chatroom = chatroom.room_name
+      
+      redirect_url = request.build_absolute_uri(
+              reverse('chat', kwargs={'room_name': room_name})
+              )
+      return redirect(redirect_url)
+    except Exception as e: 
+      print(">>>>>>>", e)
+      
+    return redirect('searchpros')
+
 def SearchProject(request):
   
-  quotes = NewQuote.objects.filter(order_placed = False).order_by('-')
+  quotes = NewQuote.objects.filter(order_placed = False).order_by('-date_placed')
   
   return  render(request, 'Website/Search_project.html',{'quotes':quotes})
 
@@ -303,8 +343,27 @@ def RecentQuotes(request):
 def OrderDetail(request): 
   return render(request , 'Worker/OrderDetail.html')
 
+
+@login_required(login_url='login')
 def WorkerChat(request): 
-  return render(request , 'Worker/Chatpage.html')
+  user_rooms = ChatRoom_Model.objects.filter(Q(user1__id = request.user.id) | Q(user2__id = request.user.id))
+  
+  return render(request , 'Worker/Chatpage.html', {'rooms':user_rooms})
+
+@login_required(login_url='login')
+def Chat(request, room_name):
+  print(room_name)
+  
+  if ChatRoom_Model.objects.filter(Q(Q(user1__id = request.user.id) & Q(room_name = room_name)) | (Q(user2__id = request.user.id) & Q(room_name = room_name))).exists():
+    chatroom = ChatRoom_Model.objects.get(Q(Q(user1__id = request.user.id) & Q(room_name = room_name)) | (Q(user2__id = request.user.id) & Q(room_name = room_name)))
+    messages = User_Message.objects.filter(chat_room = chatroom)
+    user_rooms = ChatRoom_Model.objects.filter(Q(user1__id = request.user.id) | Q(user2__id = request.user.id))
+    
+    print(">>>>>>><>>>>>>>>>>>>><<<<<<<<<<<")
+    selected_user_name = chatroom.getClient if request.user.is_worker else chatroom.getWorker
+    return render(request, 'Worker/Chatpage.html', {'messages':messages, 'selected_user':selected_user_name,'selected':room_name,'rooms':user_rooms})
+  
+  return redirect("workerchat")
 
 @login_required(login_url='login')
 def AddWorkerSample(request):

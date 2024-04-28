@@ -2,13 +2,16 @@
 <div class="horizontal align-center gap-10">
     <div class="vertical gap-10">
 
-        <div class="horizontal justify-between align-center">
-            <div class="vertical web_inputs">
-                <p for="worker_name" class="bold_text_2">Worker Name:</p>
-                <p class="card_text" id='name'> Joseph</p>
+        <form action="{% url 'message_pro' %}" method="GET">
+            <div class="horizontal justify-between align-center">
+                <input name="pro_id" value="" id="pro_id" hidden> 
+                <div class="vertical web_inputs">
+                    <p for="worker_name" class="bold_text_2">Worker Name:</p>
+                    <p class="card_text" id='name'> Joseph</p>
+                </div>
+                <button class="main_btn" type="submit">Message</button>
             </div>
-            <button class="main_btn">Message</button>
-        </div>
+        </form>
         <div class="vertical web_inputs">
             <p for="worker_name" class="bold_text_2">Profession:</p>
             <p class="card_text" id='profession'> Profession</p>
@@ -47,13 +50,14 @@
 </div>
 
 <script>
-function update_worker(name, profession, about, location, projects, rating){
+function update_worker(name, profession, about, location, projects, rating, pro_id){
     document.getElementById("name").innerText = name;
     document.getElementById("profession").innerText = profession;
     document.getElementById("about").innerText = about;
     document.getElementById("location").innerText = location;
     document.getElementById("projects").innerText = projects;
     document.getElementById("rating").innerText = rating;
+    document.getElementById("pro_id").value=pro_id;
 
 }
 </script>

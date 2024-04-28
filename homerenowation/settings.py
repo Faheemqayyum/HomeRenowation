@@ -21,6 +21,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -59,6 +60,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'homerenowation.wsgi.application'
+ASGI_APPLICATION = 'homerenowation.asgi.application'
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+        
+    },
+}
 
 
 # Database

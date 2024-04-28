@@ -17,6 +17,9 @@ urlpatterns = [
     path('register/',views.SignUpPage,name='register'),
     path('resetpassword/',views.ResetPassword,name='resetpassword'),
     
+    path('message_pro/',views.messagePro,name='message_pro'),
+    
+    
     # Admin
     path('admindashboard/',views.AdminDashboard,name='admindashboard'),
     path('accept_reject_user/',views.acceptRejectUser,name='accept_reject_user'),
@@ -40,6 +43,8 @@ urlpatterns = [
     path('workerorders/',views.WorkerOrders,name='workerorders'),
     path('orderdetail/',views.OrderDetail,name='orderdetail'),
     path('workerchat/',views.WorkerChat,name='workerchat'),
+    path('clientChat/',views.WorkerChat,name='clientChat'),
+    path('chat/<str:room_name>',views.Chat,name='chat'),
     
      # Client
     path('clientdashboard/',views.ClientDashboard,name='clientdashboard'),
