@@ -26,9 +26,6 @@
                 <input type="text" id="city" name="city" placeholder="Search City" />
             </div>
             <div class="web_inputs">
-                <input type="text" id="distance" name="distance" placeholder="Search Distance" />
-            </div>
-            <div class="web_inputs">
                 <input type="text" id="budget" name="budget" placeholder="Search Budget" />
             </div>
             <div><button class="small_btn">Clear</button></div>
@@ -39,99 +36,36 @@
         <div class="main_border"></div>
         <div class="horizontal justify-between align-start fullwidth paddingX gap-10">
             <div class="vertical gap-10 scroll_div">
-                <div class="fixed_para" >
+                <div class="fixed_para">
                     <p class="card_text padding-5">40 Jobs Found</p>
                 </div>
                 {% for job in jobs %}
                 <div class="vertical gap-5 align-start justify-start card_border padding-10">
                     <p class="card_text">{{job.project_name}}</p>
                     <div class="horizontal_2 align-center gap-5">
-                     <div class="horizontal_2 gap-5 align-center Rating">
-                         <i class="fa-solid fa-location-dot"></i>{{job.location}}</div>
+                        <div class="horizontal_2 gap-5 align-center Rating">
+                            <i class="fa-solid fa-location-dot"></i>{{job.location}}
+                        </div>
 
-                    <div class="hr_line"></div>
-                    <p class="small_text">{{job.description}}</p>
-                    <div class="horizontal justify-start align-center">
-                        <button class="main_btn"  onclick="toggleSections('section1', 'section2'); updateJobDetails('{{job.project_name}}', '{{job.description}}','{{job.client_name}}', '{{job.location}}', '{{job.date_placed|date}}', {{job.quotes}}, '{{job.budget}}')">See Details</button>
+                        <div class="hr_line"></div>
+                        <p class="small_text">{{job.description}}</p>
+                        <div class="horizontal justify-start align-center">
+                            <button class="main_btn"
+                                onclick="toggleSections('section1', 'section2'); updateJobDetails('{{job.project_name}}', '{{job.description}}','{{job.client_name}}', '{{job.location}}', '{{job.date_placed|date}}', {{job.quotes}}, '{{job.budget}}')">See
+                                Details</button>
+                        </div>
+
                     </div>
-                    
-                 </div>
-                 {% endfor %}
-             
-                <div class="vertical gap-5 align-start justify-start card_border padding-10">
-                    <p class="card_text">I need an architect or engineer to help with my roof.</p>
-                    <div class="horizontal_2 align-center gap-5">
-                     <div class="horizontal_2 gap-5 align-center Rating">
-                         <i class="fa-solid fa-location-dot"></i> Wah Cantt Pakistan</div>
-                     <div class="horizontal_2 gap-5 align-center Rating">
-                         <i class="fa-solid fa-circle-dollar-to-slot"></i>
-                          Budget</div>
-                    </div>
-                    <div class="hr_line"></div>
-                    <p class="small_text">I need my roof raised three feet. 44x28ft roof. Minimum 9ft high at the center. I would like either an architect or engineer to create the code-compliant plans that I could take to a builder for construction.</p>
-                    <div class="horizontal justify-start align-center">
-                        <button class="main_btn"  onclick="toggleSections('section1', 'section2')">See Details</button>
-                    </div>
-                    
-                 </div>
-             
-                <div class="vertical gap-5 align-start justify-start card_border padding-10">
-                    <p class="card_text">I need an architect or engineer to help with my roof.</p>
-                    <div class="horizontal_2 align-center gap-5">
-                     <div class="horizontal_2 gap-5 align-center Rating">
-                         <i class="fa-solid fa-location-dot"></i> Wah Cantt Pakistan</div>
-                     <div class="horizontal_2 gap-5 align-center Rating">
-                         <i class="fa-solid fa-circle-dollar-to-slot"></i>
-                          Budget</div>
-                    </div>
-                    <div class="hr_line"></div>
-                    <p class="small_text">I need my roof raised three feet. 44x28ft roof. Minimum 9ft high at the center. I would like either an architect or engineer to create the code-compliant plans that I could take to a builder for construction.</p>
-                    <div class="horizontal justify-start align-center">
-                        <button class="main_btn"  onclick="toggleSections('section1', 'section2')">See Details</button>
-                    </div>
-                    
-                 </div>
-             
-                <div class="vertical gap-5 align-start justify-start card_border padding-10">
-                    <p class="card_text">I need an architect or engineer to help with my roof.</p>
-                    <div class="horizontal_2 align-center gap-5">
-                     <div class="horizontal_2 gap-5 align-center Rating">
-                         <i class="fa-solid fa-location-dot"></i> Wah Cantt Pakistan</div>
-                     <div class="horizontal_2 gap-5 align-center Rating">
-                         <i class="fa-solid fa-circle-dollar-to-slot"></i>
-                          Budget</div>
-                    </div>
-                    <div class="hr_line"></div>
-                    <p class="small_text">I need my roof raised three feet. 44x28ft roof. Minimum 9ft high at the center. I would like either an architect or engineer to create the code-compliant plans that I could take to a builder for construction.</p>
-                    <div class="horizontal justify-start align-center">
-                        <button class="main_btn"  onclick="toggleSections('section1', 'section2')">See Details</button>
-                    </div>
-                    
-                 </div>
-             
-                <div class="vertical gap-5 align-start justify-start card_border padding-10">
-                    <p class="card_text">I need an architect or engineer to help with my roof.</p>
-                    <div class="horizontal_2 align-center gap-5">
-                     <div class="horizontal_2 gap-5 align-center Rating">
-                         <i class="fa-solid fa-location-dot"></i> Wah Cantt Pakistan</div>
-                     <div class="horizontal_2 gap-5 align-center Rating">
-                         <i class="fa-solid fa-circle-dollar-to-slot"></i>
-                          Budget</div>
-                    </div>
-                    <div class="hr_line"></div>
-                    <p class="small_text">I need my roof raised three feet. 44x28ft roof. Minimum 9ft high at the center. I would like either an architect or engineer to create the code-compliant plans that I could take to a builder for construction.</p>
-                    <div class="horizontal justify-start align-center">
-                        <button class="main_btn"  onclick="toggleSections('section1', 'section2')">See Details</button>
-                    </div>
-                    
-                 </div>
-             
+                </div>
+
+                {% endfor %}
             </div>
             <div class="other_div">
-                <div class="bx-shadow vertical justify-center align-center padding-10" id="section1"  style="
+                <div class="bx-shadow vertical justify-center align-center padding-10" id="section1" style="
                 margin: 20px auto;">
                     <h2 class="main_head_2">Note</h2>
-                    <p class="bold_text margin-bottom">You can Select any of the Projects from this list on the left side.</p>
+                    <p class="bold_text margin-bottom">You can Select any of the Projects from this list on the left
+                        side.</p>
                 </div>
                 <div class="bx-shadow padding-10 hidden_sect" id="section2" style="
                 margin: 20px auto;">
@@ -140,7 +74,7 @@
             </div>
         </div>
     </main>
-    
+
     {% include 'components/footer.html'%}
 
     <script src="{% static 'js/script.js' %}"></script>
