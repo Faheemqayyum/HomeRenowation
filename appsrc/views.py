@@ -107,7 +107,7 @@ def SearchProject(request):
   
   quotes = NewQuote.objects.filter(order_placed = False).order_by('-date_placed')
   
-  return  render(request, 'Website/Search_project.html',{'quotes':quotes})
+  return  render(request, 'Website/Search_project.html',{'jobs':quotes})
 
 def QuoteProject(request):
   if not request.user.is_authenticated:
