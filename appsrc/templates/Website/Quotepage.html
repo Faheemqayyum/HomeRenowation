@@ -20,42 +20,64 @@
     <main class="paddingY">
         <div class="vertical justify-center align-center fullwidth gap-20">
             <h2 class="main_head_2">Place A Quote</h2>
-        
+
+    <form method = 'POST' class="vertical justify-center align-center gap-10 fullwidth">
+                {% csrf_token %}
         <div class="vertical justify-center align-center gap-10 fullwidth" style="max-width: 700px;">
             <div class="web_inputs horizontal fullwidth">
                 <label for="Name">Enter Your Name:</label>
-                <input type="text" id="Name" name="Name" placeholder="Enter Your Name" />
+                <input type="text" id="Name" name="Name" placeholder="Enter Your Name" required/>
             </div>
             <div class="web_inputs horizontal fullwidth">
                 <label for="Email">Enter Your Email:</label>
-                <input type="text" id="Email" name="Email" placeholder="Enter Your Email" />
+                <input type="text" id="Email" name="Email" placeholder="Enter Your Email" required/>
             </div>
             <div class="web_inputs horizontal fullwidth">
                 <label for="project_name">Enter Project Name:</label>
-                <input type="text" id="project_name" name="project_name" placeholder="Enter Project Name" />
+                <input type="text" id="project_name" name="project_name" placeholder="Enter Project Name" required />
             </div>
             <div class="web_inputs horizontal fullwidth">
                 <label for="project_desc">Enter Project Description:</label>
-                <textarea cols="5" rows="5" id="project_desc" name="project_desc" placeholder="Project Description" ></textarea>
+                <textarea cols="5" rows="5" id="project_desc" name="project_desc" placeholder="Project Description" required></textarea>
             </div>
             <div class="web_inputs horizontal fullwidth">
                 <label for="project_budget">Enter Project Budget:</label>
-                <input type="text" id="project_budget" name="project_budget" placeholder="Enter Project Budget" />
+                <input type="text" id="project_budget" name="project_budget" placeholder="Enter Project Budget" required/>
             </div>
             <div class="web_inputs horizontal fullwidth">
                 <label for="project_location">Enter Location</label>
-                <input type="text" id="project_location" name="project_location" placeholder="Enter Project Location" />
+                <input type="text" id="project_location" name="project_location" placeholder="Enter Project Location" required/>
+            </div>
+            <div class="web_inputs horizontal fullwidth">
+                <label for="project_location">Category</label>
+                <select name="category" id="category">
+                    <option value="Painters">Painters</option>
+                    <option value="Electrician">Electrician</option>
+                    <option value="Roofers">Roofers</option>
+                    <option value="HandyMan">HandyMan</option>
+                    <option value="Landscapers">Landscapers</option>
+                    <option value="Plumber">Plumber</option>
+                    <option value="Cleaners">Cleaners</option>
+                    <option value="AppliancesInstallers">Appliances Installers</option>
+                </select>
             </div>
             <div class="horizontal justify-start fullwidth justify-center">
                 <button class="main_btn">Get Quote</button>
             </div>
         </div>
+    </form>
     </div>
     </main>
 
     {% include 'components/footer.html'%}
 
     <script src="{% static 'js/script.js' %}"></script>
+
+    <script>
+        var uploaded = "{{uploaded}}"
+        if (uploaded === "True")
+            alert("Quote is placed successfully")
+    </script>
 </body>
 
 </html>

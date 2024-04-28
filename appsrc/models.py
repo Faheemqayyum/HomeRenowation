@@ -102,3 +102,19 @@ class JobImages(models.Model):
         if self.image:
             return self.image.url
         return ""
+    
+    
+    
+class NewQuote(models.Model):
+    client_name = models.CharField(max_length=1000, null = False)
+    email = models.CharField(max_length=1000, null = False)
+    description = models.CharField(max_length=1000, null = False)
+    project_name = models.CharField(max_length=1000, null = False)
+    location = models.CharField(max_length=1000, null = False)
+    budget = models.CharField(max_length=1000, null = False)
+    category = models.CharField(max_length=1000, null = False)
+    
+    order_placed = models.BooleanField(default = False)
+    quotes = models.IntegerField(default= 0)
+    date_placed = models.DateField(auto_now_add=True)
+    

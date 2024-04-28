@@ -9,3 +9,5 @@ admin.site.register(WorkerSampleProject)
 admin.site.register(SampleProjectImages)
 admin.site.register(Job)
 admin.site.register(JobImages)
+admin.site.register(NewQuote)
+

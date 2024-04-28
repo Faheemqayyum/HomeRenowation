@@ -5,6 +5,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 
 # login
@@ -63,10 +64,44 @@ def SearchPros(request):
   return  render(request, 'Website/Search_pros.html',{"pros":pros})
 
 def SearchProject(request):
-  return  render(request, 'Website/Search_project.html')
+  
+  quotes = NewQuote.objects.filter(order_placed = False).order_by('-')
+  
+  return  render(request, 'Website/Search_project.html',{'quotes':quotes})
 
 def QuoteProject(request):
-  return  render(request, 'Website/Quotepage.html')
+  if not request.user.is_authenticated:
+    login_url = request.build_absolute_uri(
+            reverse('login')
+            )+"?next=quoteproject"
+
+    return redirect(login_url)
+  
+  
+  uploaded = False
+  if request.method == "POST":
+    name = request.POST.get('Name')
+    Email = request.POST.get('Email')
+    project_desc = request.POST.get('project_desc')
+    project_name = request.POST.get('project_name')
+    project_location = request.POST.get('project_location')
+    project_budget = request.POST.get('project_budget')
+    
+    category = request.POST.get('category')
+    
+    NewQuote.objects.create(
+      client_name = name,
+      email = Email,
+      description = project_desc,
+      project_name = project_name,
+      location = project_location,
+      budget = project_budget,
+      category = category
+    )
+    uploaded = True
+    
+    
+  return  render(request, 'Website/Quotepage.html', {'uploaded':uploaded})
 
 
 def LoginPage(request):
@@ -83,10 +118,18 @@ def LoginPage(request):
       if user_data is not None:
         auth_login(request, user_data)  
         if user.is_superuser:
+          if request.GET.get("next"):
+            return redirect(request.GET.get("next"))
           return redirect("admindashboard")
+
         elif user.is_worker:
+          if request.GET.get("next"):
+            return redirect(request.GET.get("next"))
           return redirect("workerdashboard")
+
         else:
+          if request.GET.get("next"):
+            return redirect(request.GET.get("next"))
           return redirect("clientdashboard")
         
       else:
@@ -94,7 +137,7 @@ def LoginPage(request):
     else:
         error = "Invalid Username or password"
       
-      
+
   return  render(request, 'Website/Login.html', {'error':error, 'email':email})
 
 
