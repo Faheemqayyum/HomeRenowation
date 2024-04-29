@@ -43,7 +43,7 @@ urlpatterns = [
     path('workerorders/',views.WorkerOrders,name='workerorders'),
     path('orderdetail/',views.OrderDetail,name='orderdetail'),
     path('workerchat/',views.WorkerChat,name='workerchat'),
-    path('clientChat/',views.WorkerChat,name='clientChat'),
+    path('clientChat/',views.ClientChat,name='clientChat'),
     path('chat/<str:room_name>',views.Chat,name='chat'),
     
      # Client

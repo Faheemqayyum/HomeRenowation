@@ -26,11 +26,11 @@
         <div class="vertical justify-center align-center gap-10 fullwidth" style="max-width: 700px;">
             <div class="web_inputs horizontal fullwidth">
                 <label for="Name">Enter Your Name:</label>
-                <input type="text" id="Name" name="Name" placeholder="Enter Your Name" required/>
+                <input type="text" id="Name" name="Name" value="{{request.user.first_name}} {{request.user.last_name}}" placeholder="Enter Your Name" required/>
             </div>
             <div class="web_inputs horizontal fullwidth">
                 <label for="Email">Enter Your Email:</label>
-                <input type="text" id="Email" name="Email" placeholder="Enter Your Email" required/>
+                <input type="text" id="Email" value="{{request.user.email}}" name="Email" placeholder="Enter Your Email" required/>
             </div>
             <div class="web_inputs horizontal fullwidth">
                 <label for="project_name">Enter Project Name:</label>

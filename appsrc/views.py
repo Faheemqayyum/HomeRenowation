@@ -51,6 +51,7 @@ from django.db.models import Q
 # TODO  page to display new orders for worker
 # TODO  page to display order detail and also add a message button 
 
+
 # Client 
 # TODO view quote requests 
 # TODO accept order and payment page ()
@@ -347,6 +348,7 @@ def OrderDetail(request):
 @login_required(login_url='login')
 def WorkerChat(request): 
   user_rooms = ChatRoom_Model.objects.filter(Q(user1__id = request.user.id) | Q(user2__id = request.user.id))
+
   
   return render(request , 'Worker/Chatpage.html', {'rooms':user_rooms})
 
@@ -529,8 +531,11 @@ def EditClientProfile(request):
 
   return  render(request, 'Client/EditProfile.html', {"user":user})
 
+@login_required(login_url="login")
 def ClientChat(request):
-  return render(request, 'Client/Chatpage.html')
+
+  user_rooms = ChatRoom_Model.objects.filter(Q(user1__id = request.user.id) | Q(user2__id = request.user.id))
+  return render(request, 'Worker/Chatpage.html', {"rooms":user_rooms})
 
 def ClientQuotes(request):
   return render(request, 'Client/ClientQuotes.html')
