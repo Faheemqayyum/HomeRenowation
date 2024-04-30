@@ -40,7 +40,7 @@
         <div class="horizontal justify-between align-start fullwidth paddingX gap-10">
             <div class="vertical gap-10 scroll_div">
                 <div class="fixed_para" >
-                    <p class="card_text padding-5">40 Jobs Found</p>
+                    <p class="card_text padding-5">{{jobs.length}} Jobs Found</p>
                 </div>
                 {% for job in jobs %}
                 <div class="vertical gap-5 align-start justify-start card_border padding-10">
@@ -56,6 +56,7 @@
                     </div>
                     
                  </div>
+                </div>
                  {% endfor %}
              
                 <div class="vertical gap-5 align-start justify-start card_border padding-10">
