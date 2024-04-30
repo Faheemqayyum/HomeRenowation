@@ -26,9 +26,6 @@
                 <input type="text" id="city" name="city" placeholder="Search City" />
             </div>
             <div class="web_inputs">
-                <input type="text" id="distance" name="distance" placeholder="Search Distance" />
-            </div>
-            <div class="web_inputs">
                 <input type="text" id="budget" name="budget" placeholder="Search Budget" />
             </div>
             <div><button class="small_btn">Clear</button></div>
@@ -46,13 +43,18 @@
                 <div class="vertical gap-5 align-start justify-start card_border padding-10">
                     <p class="card_text">{{job.project_name}}</p>
                     <div class="horizontal_2 align-center gap-5">
-                     <div class="horizontal_2 gap-5 align-center Rating">
-                         <i class="fa-solid fa-location-dot"></i>{{job.location}}</div>
+                        <div class="horizontal_2 gap-5 align-center Rating">
+                            <i class="fa-solid fa-location-dot"></i>{{job.location}}
+                        </div>
 
-                    <div class="hr_line"></div>
-                    <p class="small_text">{{job.description}}</p>
-                    <div class="horizontal justify-start align-center">
-                        <button class="main_btn"  onclick="toggleSections('section1', 'section2'); updateJobDetails('{{job.project_name}}', '{{job.description}}','{{job.client_name}}', '{{job.location}}', '{{job.date_placed|date}}', {{job.quotes}}, '{{job.budget}}')">See Details</button>
+                        <div class="hr_line"></div>
+                        <p class="small_text">{{job.description}}</p>
+                        <div class="horizontal justify-start align-center">
+                            <button class="main_btn"
+                                onclick="toggleSections('section1', 'section2'); updateJobDetails('{{job.project_name}}', '{{job.description}}','{{job.client_name}}', '{{job.location}}', '{{job.date_placed|date}}', {{job.quotes}}, '{{job.budget}}')">See
+                                Details</button>
+                        </div>
+
                     </div>
                     
                  </div>
@@ -129,10 +131,11 @@
              
             </div>
             <div class="other_div">
-                <div class="bx-shadow vertical justify-center align-center padding-10" id="section1"  style="
+                <div class="bx-shadow vertical justify-center align-center padding-10" id="section1" style="
                 margin: 20px auto;">
                     <h2 class="main_head_2">Note</h2>
-                    <p class="bold_text margin-bottom">You can Select any of the Projects from this list on the left side.</p>
+                    <p class="bold_text margin-bottom">You can Select any of the Projects from this list on the left
+                        side.</p>
                 </div>
                 <div class="bx-shadow padding-10 hidden_sect" id="section2" style="
                 margin: 20px auto;">
@@ -141,7 +144,7 @@
             </div>
         </div>
     </main>
-    
+
     {% include 'components/footer.html'%}
 
     <script src="{% static 'js/script.js' %}"></script>
