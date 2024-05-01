@@ -119,6 +119,8 @@ class NewQuote(models.Model):
     date_placed = models.DateField(auto_now_add=True)
     
     
+    def __str__(self):
+        return f"{self.project_name}"
     
 
 
@@ -192,6 +194,10 @@ class Bid(models.Model):
     
     accepted = models.BooleanField(default = False)
     declined = models.BooleanField(default = False)
+
+    def __str__(self):
+        return f"{self.user.name}"
+
     
     
 class Order(models.Model):
