@@ -160,6 +160,10 @@ class ChatRoom_Model(models.Model):
     def __str__(self):
         return self.room_name
     
+
+
+
+
     
 class User_Message(models.Model):
     chat_room = models.ForeignKey(ChatRoom_Model, on_delete=models.CASCADE, null = True, related_name='chatroom')
@@ -167,8 +171,14 @@ class User_Message(models.Model):
     sender_id = models.ForeignKey(User, on_delete=models.CASCADE, null = False)
     message_text = models.CharField(max_length=300,default='-', null=True)
 
+
+
+
     def __str__(self):
         return self.message_text[:10]
+
+
+
 
 class UserRoom(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
@@ -178,6 +188,8 @@ class UserRoom(models.Model):
     
     def __str__(self):
         return f"{self.user.name} {self.chat_room.display_name()}"
+
+
 
         
         
