@@ -27,7 +27,11 @@
 
 <body>
     <div class="main_wrapper">
-        {% include 'components/workersidebar.html'%}
+        {% if request.user.is_worker %}
+            {% include 'components/workersidebar.html'%}
+        {% else %}
+            {% include 'components/clientsidebar.html'%}
+        {% endif %}
         <div class="right_container">
             <p class="sub_head_2 imptext">Message Page</p>
             <div class="content_wrapper">

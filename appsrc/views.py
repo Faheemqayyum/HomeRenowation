@@ -598,6 +598,8 @@ def EditClientProfile(request):
   return  render(request, 'Client/EditProfile.html', {"user":user})
 
 def ClientChat(request):
+  user_rooms = ChatRoom_Model.objects.filter(Q(user1__id = request.user.id) | Q(user2__id = request.user.id))
+
   return render(request, 'Client/Chatpage.html')
 
 def ClientQuotes(request):
