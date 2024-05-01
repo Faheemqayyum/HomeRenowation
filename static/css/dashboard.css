@@ -11,7 +11,6 @@
   --main-br-cl: #f4f4f4;
   --border-cl: #979797;
   --primary-gradient: linear-gradient(90deg, #def7fb 0%, #a3e7ee 100%);
-  --mainfont-family: "Poppins", sans-serif;
 }
 .logo_img {
   width: 200px;
@@ -185,14 +184,14 @@
   width: 100%;
   border-collapse: collapse;
   border: 1px solid var(--bordercl);
-  /* padding: 10px 20px; */
   margin-bottom: 20px;
 }
 .dash_table th {
-  padding: 10px;
+  padding-top: 18px;
+  padding-bottom: 18px;
   font-size: 16px;
-  font-weight: 500;
-  line-height: 20px;
+  font-weight: 400;
+  line-height: 1.4;
   letter-spacing: 0em;
   text-align: center;
   color: #4d4d4d;
@@ -205,16 +204,21 @@
   border-left: 1px solid var(--primarycl);
 }
 .dash_table td {
-  padding: 5px;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: 0em;
+  position: relative;
+  width: auto;
   text-align: center;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height:1.4;
+  letter-spacing: 0em;
+  overflow: auto;
   color: var(--border-cl);
   border-right: 1px solid var(--primarycl);
   border-bottom: 1px solid var(--primarycl);
 }
+
 .dash_table td:first-child {
   border-left: 1px solid var(--primarycl);
 }
@@ -222,7 +226,48 @@
   background-color: var(--primarycl);
   color: white;
 }
+.receipt_img {
+  width: 100%;
+  max-height: 100px;
+  object-fit: contain;
+}
+/* Modal styles */
+.modalimg {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
 
+.modalimg-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.modalimg-close {
+  color: white;
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.modalimg-close:hover,
+.modalimg-close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+/* modal end */
 .image_upload {
   width: 250px; /* Adjust width as needed */
   margin: auto;

@@ -8,8 +8,7 @@
                 <p class="card_text" id="project_title">Joseph</p>
             </div>
             <button class="main_btn" id="openModalBtn">Bidding</button>
-            <div id="AllModal" class="modal">
-               
+            <div id="AllModal" class="modal">        
                 <form class="vertical justify-start align-start gap-10 padding-10" action="{% url 'send_bid'%}" method="POST">
                     {% csrf_token %} 
                     <div class="modal-content">
@@ -17,7 +16,7 @@
                             <p>Worker Info</p>
                             <span id='closeModalBtn' class="close" onclick="">&times;</span>
                         </div>  
-                        <div >
+                        <div class="vertical gap-10 align-center padding-10">
                             <input name="quote_id" id="quote_id" value="" hidden>
                             <div class="web_inputs horizontal fullwidth">
                                 <label for="project_budget">Enter Project Budget:</label>
@@ -27,7 +26,7 @@
                                 <label for="project_location">Estimated Time</label>
                                 <input type="text" id="bid_estimated_time" name="bid_estimated_time"  placeholder="Enter Project Location" required/>
                             </div>
-                            </div>
+                            
                             <div class="web_inputs horizontal fullwidth">
                                 <label for="project_location">Description</label>
                                 <textarea type="text" id="bid_description" name="bid_description"  placeholder="Enter Project Location" required></textarea>
@@ -55,22 +54,22 @@
         </div>
         <div class="horizontal justify-between align-center gap-10 fullwidth">
             <div class="vertical gap-5">
-                <p class="small_text">
+                <p class="bold_text_2">
                     Posted
                 </p>
-                <p class="bold_text" id="posted">04-06-2024</p>
+                <p class="card_text" id="posted">04-06-2024</p>
             </div>
             <div class="vertical gap-5">
-                <p class="small_text">
+                <p class="bold_text_2">
                     Est Budget
                 </p>
-                <p class="bold_text" id="budget__">Rs. </p>
+                <p class="card_text" id="budget__">Rs. </p>
             </div>
             <div class="vertical gap-5">
-                <p class="small_text" >
+                <p class="bold_text_2" >
                     Bidders
                 </p>
-                <p class="bold_text" id="bids"></p>
+                <p class="card_text" id="bids"></p>
             </div>
 
         </div>
@@ -79,12 +78,12 @@
             <p>Google Map</p>
             <!--Google Map -->
         </div>
-        <div class="vertical gap-5">
+        <!-- <div class="vertical gap-5">
             <p class="bold_text_2">Project Images:</p>
             <div class="images_grid">
                 <img src="" alt="" class="project_img">
             </div>
-        </div>
+        </div> -->
 
     </div>
 </div>

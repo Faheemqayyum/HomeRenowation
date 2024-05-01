@@ -45,7 +45,8 @@
                         </tr>
                         {% for worker in workers %}
                         <tr>
-                            <td><img src ="{{worker.get_profile_pic}}" class="profile_pic"></td>
+                            <td>
+                                <div class="horizontal_2 justify-center align-center"><img src ="{{worker.get_profile_pic}}" class="profile_pic"></td></div>
                             <td>{{worker.first_name}} {{worker.last_name}}</td>
                             <td>{{worker.email}}</td>
                             <td>{{worker.worker_profile.all.0.profession}}</td>

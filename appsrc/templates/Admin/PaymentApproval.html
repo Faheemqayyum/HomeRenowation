@@ -33,79 +33,106 @@
             <div class="content_wrapper">
                 <div class="recentmembers box">
                     <div style="overflow-x: auto; width: 100%;">
-                    <table class="dash_table">
-                        <tr>
-                            <th>Project Name</th>
-                            <th>Client Name</th>
-                            <th>Amount</th>
-                            <th>Transaction ID</th>
-                            <th>Receipt</th>
-                            <th>Worker Name</th>
-                            <th>Approve</th>
-                        </tr>
-                        {% for payment in approvals %}
-                        <tr>
-                            <td>{{payment.bid.quote.project_name}}</td>
-                            <td>{{payment.client.first_name}} {{payment.client.last_name}}</td>
-                            <td>{{payment.bid.bid_amount}}</td>
-                            <td>{{payment.TID}}</td>
-                            <td><img src="{{payment.get_receipt}}" alt="No Image"/> </td>
-                            <td>{{payment.bid.user.first_name}} {{payment.bid.user.last_name}}</td>
-                            <td>
-                                <form method="POST">
-                                    {% csrf_token %}
-                                    <input name='action' value="accept" hidden readonly>
-                                    <input name='order_id' value="{{payment.id}}" hidden readonly>
-                                    <button class="main_btn"> Accept </button>
-                                </form>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </table>
+                        <table class="dash_table">
+                            <tr>
+                                <th>Project Name</th>
+                                <th>Client Name</th>
+                                <th>Amount</th>
+                                <th>Transaction ID</th>
+                                <th>Receipt</th>
+                                <th>Worker Name</th>
+                                <th>Approve</th>
+                            </tr>
+                            {% for payment in approvals %}
+                            <tr>
+                                <td>{{payment.bid.quote.project_name}}</td>
+                                <td>{{payment.client.first_name}} {{payment.client.last_name}}</td>
+                                <td>{{payment.bid.bid_amount}}</td>
+                                <td>{{payment.TID}}</td>
+                                <td><img src="{{payment.get_receipt}}" alt="No Image" /> </td>
+                                <td>{{payment.bid.user.first_name}} {{payment.bid.user.last_name}}</td>
+                                <td>
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <input name='action' value="accept" hidden readonly>
+                                        <input name='order_id' value="{{payment.id}}" hidden readonly>
+                                        <button class="main_btn"> Accept </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
                 </div>
-                </div>
-                
+
 
             </div>
-
-
-
 
 
             <p class="sub_head_2 imptext">Approved</p>
             <div class="content_wrapper">
                 <div class="recentmembers box">
                     <div style="overflow-x: auto; width: 100%;">
-                    <table class="dash_table">
-                        <tr>
-                            <th>Project Name</th>
-                            <th>Client Name</th>
-                            <th>Amount</th>
-                            <th>Transaction ID</th>
-                            <th>Receipt</th>
-                            <th>Worker Name</th>
-                        </tr>
-                        {% for payment in approved %}
-                        <tr>
-                            <td>{{payment.bid.quote.project_name}}</td>
-                            <td>{{payment.client.first_name}} {{payment.client.last_name}}</td>
-                            <td>{{payment.bid.bid_amount}}</td>
-                            <td>{{payment.TID}}</td>
-                            <td><img src="{{payment.get_receipt}}" alt="No Image"/> </td>
-                            <td>{{payment.bid.user.first_name}} {{payment.bid.user.last_name}}</td>
-                            
-                        </tr>
-                        {% endfor %}
-                    </table>
+                        <table class="dash_table">
+                            <tr>
+                                <th>Project Name</th>
+                                <th>Client Name</th>
+                                <th>Amount</th>
+                                <th>Transaction ID</th>
+                                <th>Receipt</th>
+                                <th>Worker Name</th>
+                            </tr>
+                            {% for payment in approved %}
+                            <tr>
+                                <td>{{payment.bid.quote.project_name}}</td>
+                                <td>{{payment.client.first_name}} {{payment.client.last_name}}</td>
+                                <td>{{payment.bid.bid_amount}}</td>
+                                <td>{{payment.TID}}</td>
+                                <td>
+                                    <img src="{{payment.get_receipt}}" alt="No Image" class="receipt_img"
+                                        id="receiptImage" />
+                                    <div class="modalimg" id="imageModal">
+                                        <span class="modalimg-close" id="closeModal">&times;</span>
+                                        <img src="{{payment.get_receipt}}" alt="ReceiptImage" class="modalimg-content"
+                                            id="modalImage">
+                                    </div>
+                                </td>
+                                <td>{{payment.bid.user.first_name}} {{payment.bid.user.last_name}}</td>
+
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
                 </div>
-                </div>
-                
+
 
             </div>
         </div>
 
     </div>
+    <script>
+        // Get the image element and the modal
+        const image = document.getElementById("receiptImage");
+        const modal = document.getElementById("imageModal");
 
+        // When the user clicks the image, show the modal
+        image.addEventListener("click", function () {
+            modal.style.display = "block";
+        });
+
+        // When the user clicks the close button, hide the modal
+        document.getElementById("closeModal").addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+
+        // When the user clicks anywhere outside of the modal, hide it
+        window.addEventListener("click", function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        });
+
+    </script>
     <script src="{% static 'js/script.js' %}"></script>
 </body>
 

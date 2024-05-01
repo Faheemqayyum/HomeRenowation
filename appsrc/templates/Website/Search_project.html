@@ -42,40 +42,24 @@
                 {% for job in jobs %}
                 <div class="vertical gap-5 align-start justify-start card_border padding-10">
                     <p class="card_text">{{job.project_name}}</p>
-                    <div class="horizontal_2 align-center gap-5">
-                        <div class="horizontal_2 gap-5 align-center Rating">
+                    <div class="horizontal justify-between align-center fullwidth gap-5">
+                        <div class="horizontal gap-5 align-center Rating">
                             <i class="fa-solid fa-location-dot"></i>{{job.location}}
                         </div>
 
                         <div class="hr_line"></div>
-                        <p class="small_text">{{job.description}}</p>
                         <div class="horizontal justify-start align-center">
                             <button class="main_btn"
                                 onclick="toggleSections('section1', 'section2'); updateJobDetails('{{job.project_name}}', '{{job.description}}','{{job.client_name}}', '{{job.location}}', '{{job.date_placed|date}}', '{{job.quotes}}', '{{job.budget}}', '{{job.id}}')">See
                                 Details</button>
                         </div>
-
                     </div>
+                    <p class="small_text">{{job.description}}</p>
+                        
                     
                  </div>
                  {% endfor %}
              
-                <div class="vertical gap-5 align-start justify-start card_border padding-10">
-                    <p class="card_text">I need an architect or engineer to help with my roof.</p>
-                    <div class="horizontal_2 align-center gap-5">
-                     <div class="horizontal_2 gap-5 align-center Rating">
-                         <i class="fa-solid fa-location-dot"></i> Wah Cantt Pakistan</div>
-                     <div class="horizontal_2 gap-5 align-center Rating">
-                         <i class="fa-solid fa-circle-dollar-to-slot"></i>
-                          Budget</div>
-                    </div>
-                    <div class="hr_line"></div>
-                    <p class="small_text">I need my roof raised three feet. 44x28ft roof. Minimum 9ft high at the center. I would like either an architect or engineer to create the code-compliant plans that I could take to a builder for construction.</p>
-                    <div class="horizontal justify-start align-center">
-                        <button class="main_btn"  onclick="toggleSections('section1', 'section2')">See Details</button>
-                    </div>
-                    
-                 </div>
              
             </div>
             <div class="other_div">

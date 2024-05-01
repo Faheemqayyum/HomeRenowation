@@ -11,7 +11,6 @@
   --main-br-cl: #f4f4f4;
   --border-cl: #979797;
   --primary-gradient: linear-gradient(90deg, #def7fb 0%, #a3e7ee 100%);
-  --mainfont-family: "Poppins", sans-serif;
 }
 /* .header{
   height: calc(100vh - 90vh);
