@@ -32,35 +32,35 @@
                 <p class="sub_head_2 imptext margin-bottom">Payment Detail</p>
             </div>
             <div class="container">
-                <form class="payment-form">
+                <form class="payment-form" method='post' enctype="multipart/form-data">
+                  {% csrf_token %}
                   <div class="form-group">
-                    <label for="account-holder" class="form-label">Account Holder Name:</label>
-                    <input type="text" id="account-holder" name="account-holder" class="form-input" required>
-                  </div>
+                    <p class="sub_head_2 imptext margin-bottom">Account Detail</p>
+                    <label for="account-holder" class="form-label">Bank: Easypaisa/Jazzcash </label>
+                    <label for="account-holder" class="form-label">Account No: 0303030033 </label>
+                    <label for="account-holder" class="form-label">Account Holder Name: FAHIM </label>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="payment-amount" class="form-label">Total Amount:</label>
+                      <input type="text" id="payment-amount" name="payment-amount" value="{{order.bid.bid_amount}}" readonly class="form-input" required>
+                    </div>
+  
                   <div class="form-group">
                     <label for="transaction-id" class="form-label">Transaction ID:</label>
                     <input type="text" id="transaction-id" name="transaction-id" class="form-input" required>
                   </div>
                   <div class="form-group">
-                    <label for="payment-amount" class="form-label">Payment Amount:</label>
-                    <input type="text" id="payment-amount" name="payment-amount" class="form-input" required>
+                    <label for="expiry-date" class="form-label">Name</label>
+                    <input type="text" id="expiry-date" name="name" class="form-input" required>
                   </div>
                   <div class="form-group">
-                    <label for="card-number" class="form-label">Card Number:</label>
-                    <input type="text" id="card-number" name="card-number" class="form-input" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="expiry-date" class="form-label">Expiry Date:</label>
-                    <input type="text" id="expiry-date" name="expiry-date" class="form-input" required>
-                  </div>
-                  <div class="form-group">
-                    <label for="cvv" class="form-label">CVV:</label>
-                    <input type="text" id="cvv" name="cvv" class="form-input" required>
+                    <label for="cvv" class="form-label">Receipt:</label>
+                    <input type="file" id="receipt" name="receipt" class="form-input" accept="image/*" required>
                   </div>
                   <button type="submit" class="submit-btn">Submit Payment</button>
                 </form>
               </div>
-
         </div>
     </div>
 

@@ -29,33 +29,36 @@
     <div class="main_wrapper">
         {% include 'components/clientsidebar.html'%}
         <div class="right_container">
-            <p class="sub_head_2 imptext">Worker Requested Quotes</p>
+            <p class="sub_head_2 imptext">Bids</p>
             <div class="content_wrapper">
-                <div class="recentmembers box bg-white">
+                <div class="recentmembers box">
+                    <div class="horizontal fullwidth space-between">
+                        <h4 class="box_title">Bids</h4>
+                    </div>
                     <div style="overflow-x: auto; width: 100%;">
-                    <table class="dash_table">
+                    <table class="dash_table ">
                         <tr>
+                            <th>Project Title</th>
                             <th>Worker Name</th>
-                            <th>Worker Phone No</th>
-                            <th>Experience</th>
-                            <th>Category</th>
-                            <th>Project Name</th>
-                            <th>Project Description</th>
-                            <th>Budget Qouted</th>
-                            <th>Location</th>
+                            <th>Worker Rating</th>
+                            <th>Description</th>
+                            <th>Quote</th>
+                            <th>Estimated Time</th>
                             <th>Action</th>
                         </tr>
-                        {% for worker in workers %}
-                        <tr>
-                            <td>{{worker.first_name}} {{worker.last_name}}</td>
-                                <td>{{worker.email}}</td>
-                            <td>{{worker.worker_profile.all.0.profession}}</td>
-                            <td>{{worker.cnic}}</td>
-                            <td>{{worker.phone}}</td>
-                            <td class="horizontal gap-10 justify-center align-center">
-                                <button class="main_btn">View Details</button>
-                            </td>
-                        </tr>
+                        {% for bid in bids %}
+                            <tr>
+                                <td>{{bid.quote.project_name}}</td>
+                                <td>{{bid.user.first_name}} {{bid.user.last_name}}</td>
+                                <td>{{bid.user.worker_profile.all.0.rating}} </td>
+                                <td>{{bid.bid_description}}</td>
+                                <td>{{bid.bid_amount}}PKR</td>
+                                <td>{{bid.bid_estimated_time}}</td>                                
+                                <td class="horizontal gap-10 justify-center align-center">
+                                    <a href="{% url 'acceptorder' id=bid.id %}"> <button class="small_btn">View</button>
+                                    </a>
+                                </td>
+                            </tr>
                         {% endfor %}
                     </table>
                 </div>

@@ -35,16 +35,16 @@
             <p class="sub_head_2 imptext margin-bottom">Dashboard</p>
             <div class="cards_grid fullwidth">
                 <div class="vertical gap-10 justify-center align-center cards">
-                    <p class="bold_text imptext">Total Prjects Completed</p>
-                    <p class="card_text">20</p>
+                    <p class="bold_text imptext">Prjects Completed</p>
+                    <p class="card_text">{{request.user.worker_profile.all.0.count_projects}}</p>
                 </div>
-                <div class="vertical gap-10 justify-center align-center cards">
+                {% comment %} <div class="vertical gap-10 justify-center align-center cards">
                     <p class="bold_text imptext">Projects In Queue</p>
                     <p class="card_text">20</p>
-                </div>
+                </div> {% endcomment %}
                 <div class="vertical gap-10 justify-center align-center cards">
-                    <p class="bold_text imptext">New Projects</p>
-                    <p class="card_text">20</p>
+                    <p class="bold_text imptext">Rating</p>
+                    <p class="card_text">{{request.user.worker_profile.all.0.rating}}</p>
                 </div>
             </div>
             <div class="content_wrapper">
@@ -53,55 +53,33 @@
                         <h4 class="box_title">Recent Projects</h4>
                     </div>
                     <div style="overflow-x: auto; width: 100%;">
-                    <table class="dash_table ">
-                        <tr>
-                            <th>Project Name</th>
-                            <th>Project Budget</th>
-                            <th>Category Type</th>
-                            <th>Due Date</th>
-                            <th>Action</th>
-                        </tr>
-                        <tr>
-                            <td>Jawad</td>
-                            <td>4000PKR</td>
-                            <td>Painters</td>
-                            <td>02-04-2024</td>
-                            <td class="horizontal gap-10 justify-center align-center">
-                                <button class="small_btn">Accept</button>
-                                <button class="small_btn">Decline</button>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                </div>
-                <div class="recentworkers box">
-                    <div class="horizontal fullwidth space-between">
-                        <h4 class="box_title">Recent Workers</h4>
-                    </div>
-                    <div style="overflow-x: auto; width: 100%;">
-                        <table class="dash_table ">
+                        <table class="dash_table">
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Category</th>
-                                <th>Projects In Queue</th>
-                                <th>Total Projects</th>
-                                <th>Action</th>
+                                <th>Project Title</th>
+                                <th>Project Description</th>
+                                <th>Bid / Budget</th>
+                                <th>Location</th>
+                                <th>Client Name</th>
+                                <th>Status</th>
                             </tr>
+                            {% for bid in quotes %}
                             <tr>
-                                <td>Jawad</td>
-                                <td>jawad32@gmail.com</td>
-                                <td>Painters</td>
-                                <td>2</td>
-                                <td>10</td>
-                                <td class="horizontal gap-10">
-                                    <button class="small_btn">Accept</button>
-                                    <button class="small_btn">Decline</button>
+                                {% comment %} <td><img src ="{{worker.get_profile_pic}}" class="profile_pic"></td> {% endcomment %}
+                                <td>{{bid.quote.project_name}}</td>
+                                    <td>{{bid.quote.description}}</td>
+    
+                                <td>{{bid.bid_amount}}/ {{bid.quote.budget}}</td>
+                                <td>{{bid.quote.location}}</td>
+                                <td>{{bid.quote.client_name}}</td>
+                                <td >
+                                        {{bid.status}}
                                 </td>
                             </tr>
+                            {% endfor %}
                         </table>
-                    </div>
                 </div>
+                </div>
+               
 
             </div>
         </div>

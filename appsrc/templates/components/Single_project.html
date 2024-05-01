@@ -1,5 +1,5 @@
 {% load static %}
-<div class="horizontal align-center gap-10">
+<div class="gap-10">
     <div class="vertical gap-10">
 
         <div class="horizontal justify-between align-center">
@@ -10,36 +10,34 @@
             <button class="main_btn" id="openModalBtn">Bidding</button>
             <div id="AllModal" class="modal">
                
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <p>Worker Info</p>
-                        <span class="close">&times;</span>
-                    </div>  
-                    <div class="vertical justify-start align-start gap-10 padding-10">
-                        <div class="web_inputs horizontal fullwidth">
-                            <label for="Name">Enter Your Name:</label>
-                            <input type="text" id="Name" name="Name" placeholder="Enter Your Name" />
-                        </div>
-                        <div class="web_inputs horizontal fullwidth">
-                            <label for="Email">Enter Your Email:</label>
-                            <input type="text" id="Email" name="Email" placeholder="Enter Your Email" />
-                        </div>
-                        <div class="web_inputs horizontal fullwidth">
-                            <label for="project_name">Enter Experience:</label>
-                            <input type="text" id="project_name" name="project_name" placeholder="Enter Project Name" />
-                        </div>
-                        <div class="web_inputs horizontal fullwidth">
-                            <label for="project_budget">Enter Project Budget:</label>
-                            <input type="text" id="project_budget" name="project_budget" placeholder="Enter Project Budget" />
-                        </div>
-                        <div class="web_inputs horizontal fullwidth">
-                            <label for="project_location">Enter Location</label>
-                            <input type="text" id="project_location" name="project_location" placeholder="Enter Project Location" />
-                        </div>
-                        <div class="horizontal justify-start fullwidth justify-center">
-                            <button class="main_btn">Get Quote</button>
-                        </div></div>   
-                </div>
+                <form class="vertical justify-start align-start gap-10 padding-10" action="{% url 'send_bid'%}" method="POST">
+                    {% csrf_token %} 
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <p>Worker Info</p>
+                            <span id='closeModalBtn' class="close" onclick="">&times;</span>
+                        </div>  
+                        <div >
+                            <input name="quote_id" id="quote_id" value="" hidden>
+                            <div class="web_inputs horizontal fullwidth">
+                                <label for="project_budget">Enter Project Budget:</label>
+                                <input type="text" id="bid_amount" name="bid_amount"  placeholder="Enter Project Budget" required/>
+                            </div>
+                            <div class="web_inputs horizontal fullwidth">
+                                <label for="project_location">Estimated Time</label>
+                                <input type="text" id="bid_estimated_time" name="bid_estimated_time"  placeholder="Enter Project Location" required/>
+                            </div>
+                            </div>
+                            <div class="web_inputs horizontal fullwidth">
+                                <label for="project_location">Description</label>
+                                <textarea type="text" id="bid_description" name="bid_description"  placeholder="Enter Project Location" required></textarea>
+                            </div>
+                            <div class="horizontal justify-start fullwidth justify-center">
+                                <button class="main_btn">Get Quote</button>
+                            </div>
+                        </div>   
+                    </div>
+                </form>
             </div>
         </div>
         <div class="vertical web_inputs">
@@ -66,13 +64,13 @@
                 <p class="small_text">
                     Est Budget
                 </p>
-                <p class="bold_text" id="budget">Rs. 0.00</p>
+                <p class="bold_text" id="budget__">Rs. </p>
             </div>
             <div class="vertical gap-5">
                 <p class="small_text" >
                     Bidders
                 </p>
-                <p class="bold_text" id="bids">05</p>
+                <p class="bold_text" id="bids"></p>
             </div>
 
         </div>
@@ -93,13 +91,16 @@
 
 
 <script>
-    function updateJobDetails(title, description,username, location, posted, bids, budget){
+    function updateJobDetails(title, description,username, location, posted, bids, budget, id){
+        console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        console.log(title, description,username, location, posted, bids, budget);
             document.getElementById('project_title').innerText = title;
             document.getElementById('project_detail').innerText = description;
             document.getElementById('user_name').innerText = username;
-            document.getElementById('poster').innerText = posted;
-            document.getElementById('budget').innerText = budget;
+            document.getElementById('posted').innerText = posted;
+            document.getElementById('budget__').innerText = budget;
             document.getElementById('bids').innerText = bids;
+            document.getElementById("quote_id").value = id;
 
     }
 </script>

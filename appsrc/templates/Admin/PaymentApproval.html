@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recent Workers</title>
+    <title>Payment Approvals</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <!-- <link rel="stylesheet" href="{% static 'css/index.css' %}"> -->
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
@@ -41,26 +41,59 @@
                             <th>Transaction ID</th>
                             <th>Receipt</th>
                             <th>Worker Name</th>
-                            <th>Status</th>
+                            <th>Approve</th>
                         </tr>
-                        {% for worker in workers %}
+                        {% for payment in approvals %}
                         <tr>
-                            <td><img src ="{{worker.get_profile_pic}}" class="profile_pic"></td>
-                            <td>{{worker.first_name}} {{worker.last_name}}</td>
-                            <td>{{worker.email}}</td>
-                            <td>{{worker.worker_profile.all.0.profession}}</td>
-                            <td>{{worker.cnic}}</td>
-                            <td>{{worker.phone}}</td>
-                            <td class="horizontal gap-10 justify-center align-center">
-                                {% if worker.is_declined %}
-                                <button class="small_btn">Declined</button>
-                            {% elif worker.is_approved %}
-                                <button class="small_btn">Approved</button>
-                            {% else %}
-                                <button class="small_btn">Pending</button>
-                            {% endif %}
-
+                            <td>{{payment.bid.quote.project_name}}</td>
+                            <td>{{payment.client.first_name}} {{payment.client.last_name}}</td>
+                            <td>{{payment.bid.bid_amount}}</td>
+                            <td>{{payment.TID}}</td>
+                            <td><img src="{{payment.get_receipt}}" alt="No Image"/> </td>
+                            <td>{{payment.bid.user.first_name}} {{payment.bid.user.last_name}}</td>
+                            <td>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input name='action' value="accept" hidden readonly>
+                                    <input name='order_id' value="{{payment.id}}" hidden readonly>
+                                    <button class="main_btn"> Accept </button>
+                                </form>
                             </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                </div>
+                
+
+            </div>
+
+
+
+
+
+            <p class="sub_head_2 imptext">Approved</p>
+            <div class="content_wrapper">
+                <div class="recentmembers box">
+                    <div style="overflow-x: auto; width: 100%;">
+                    <table class="dash_table">
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Client Name</th>
+                            <th>Amount</th>
+                            <th>Transaction ID</th>
+                            <th>Receipt</th>
+                            <th>Worker Name</th>
+                        </tr>
+                        {% for payment in approved %}
+                        <tr>
+                            <td>{{payment.bid.quote.project_name}}</td>
+                            <td>{{payment.client.first_name}} {{payment.client.last_name}}</td>
+                            <td>{{payment.bid.bid_amount}}</td>
+                            <td>{{payment.TID}}</td>
+                            <td><img src="{{payment.get_receipt}}" alt="No Image"/> </td>
+                            <td>{{payment.bid.user.first_name}} {{payment.bid.user.last_name}}</td>
+                            
                         </tr>
                         {% endfor %}
                     </table>

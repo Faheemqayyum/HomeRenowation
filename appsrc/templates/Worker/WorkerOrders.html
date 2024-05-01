@@ -37,30 +37,33 @@
                         <tr>
                             <th>Project Title</th>
                             <th>Project Description</th>
-                            <th>Category</th>
-                            <th>Project Budget</th>
                             <th>Location</th>
+                            <th>Project Budget</th>
                             <th>Client Name</th>
-                            <th>Deadline</th>
+                            <th>Start Date</th>
+                            <th>Estimated Days</th>
                             <th>Status</th>
+                            <th>Message</th>
                         </tr>
-                        {% for worker in workers %}
+                        {% for order in orders %}
                         <tr>
-                            <td><img src ="{{worker.get_profile_pic}}" class="profile_pic"></td>
-                            <td>{{worker.first_name}} {{worker.last_name}}</td>
-                                <td>{{worker.email}}</td>
-                            <td>{{worker.worker_profile.all.0.profession}}</td>
-                            <td>{{worker.cnic}}</td>
-                            <td>{{worker.phone}}</td>
+                            <td>{{order.bid.quote.project_name}}</td>
+                            <td>{{order.bid.quote.description}}</td>
+                                <td>{{order.bid.quote.location}}</td>
+                            <td>{{order.bid.bid_amount}}</td>
+                            <td>{{order.bid.quote.client_name}} </td>
+                            <td>{{order.date|date}}</td>
+                            <td>{{order.bid.bid_estimated_time}}</td>
                             <td class="horizontal gap-10 justify-center align-center">
-                                {% if worker.is_declined %}
-                                <button class="small_btn">Delined</button>
-                            {% elif worker.is_approved %}
-                                <button class="small_btn">Approved</button>
+                                {% if order.paid %}
+                                <button class="small_btn">Paid {% if order.payment_verified %} {% else %} (Not Verified Yet) {% endif %}</button>
                             {% else %}
                                 <button class="small_btn">Pending</button>
                             {% endif %}
 
+                            </td>
+                            <td>
+                                <a href="{% url 'message_pro' %}?pro_id={{order.client.id}}&is_pro=True"> <button class="small_btn">Message</button> </a>
                             </td>
                         </tr>
                         {% endfor %}
@@ -70,6 +73,46 @@
                 
 
             </div>
+
+
+
+
+
+            <p class="sub_head_2 imptext">Completed Orders</p>
+            <div class="content_wrapper">
+                <div class="recentmembers box bg-white">
+                    <div style="overflow-x: auto; width: 100%;">
+                    <table class="dash_table">
+                        <tr>
+                            <th>Project Title</th>
+                            <th>Project Budget</th>
+                            <th>Client Name</th>
+                            <th>Review</th>
+                            <th>Rating</th>
+                            <th>Message</th>
+                        </tr>
+                        {% for order in completed %}
+                        <tr>
+                            <td>{{order.bid.quote.project_name}}</td>
+                            <td>{{order.bid.bid_amount}}</td>
+                            <td>{{order.client.first_name}} {{order.client.last_name}}</td>
+                            <td>{{order.feedback|default_if_none:"-"}}</td>
+                            <td>{{order.rating|default_if_none:"-"}}</td>
+                            <td>
+                                <a href="{% url 'message_pro' %}?pro_id={{order.client.id}}&is_pro=True"> <button class="small_btn">Message</button> </a>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+
+                    
+                </div>
+                </div>
+            
+            </div>
+
         </div>
 
     </div>

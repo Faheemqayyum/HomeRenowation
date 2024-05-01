@@ -68,8 +68,13 @@ def SearchPros(request):
 def messagePro(request):
   
   print(request.GET)
+  is_pro = request.GET.get("is_pro")
+  
   pro_id = request.GET.get("pro_id")
   client_id = request.user.id
+  if is_pro:
+    pro_id, client_id = client_id, pro_id
+    
   room_name = f"{client_id}_{pro_id}"
   
   if ChatRoom_Model.objects.filter(Q(Q(user1__id = client_id) & Q(user2__id = pro_id)) | (Q(user1__id = client_id) & Q(user2__id = pro_id))).exists() == False:
@@ -105,9 +110,11 @@ def messagePro(request):
 
 def SearchProject(request):
   
+  msg = request.session.get('msg')
   quotes = NewQuote.objects.filter(order_placed = False).order_by('-date_placed')
   
-  return  render(request, 'Website/Search_project.html',{'jobs':quotes})
+  request.session['msg'] = ""
+  return  render(request, 'Website/Search_project.html',{'jobs':quotes, "msg":msg})
 
 def QuoteProject(request):
   if not request.user.is_authenticated:
@@ -142,6 +149,35 @@ def QuoteProject(request):
     
     
   return  render(request, 'Website/Quotepage.html', {'uploaded':uploaded})
+
+
+
+
+def SendBid(request):
+  if request.user.is_authenticated:
+    print(request.POST)
+    if request.user.is_worker:
+      bid_amount = request.POST.get("bid_amount")
+      bid_estimated_time = request.POST.get("bid_estimated_time")
+      bid_description = request.POST.get("bid_description")
+      quote_id = request.POST.get("quote_id")
+      
+      quote = NewQuote.objects.get(id = quote_id)
+      Bid.objects.create(
+        bid_amount = bid_amount,
+        bid_estimated_time = bid_estimated_time,
+        bid_description = bid_description,
+        quote = quote,
+        user = request.user
+      )
+      request.session['msg'] = "Quote is sent"
+    else:
+      request.session['msg'] = "You are not a worker you cannot bid"
+  else:
+    request.session['msg'] = "Please login to send bid."
+  return redirect('searchproject')
+
+
 
 
 def LoginPage(request):
@@ -309,7 +345,21 @@ def MemberDetail(request, id):
 def NewProjects(request):
   return  render(request, 'Admin/NewProjects.html')
 def PaymentApprove(request):
-  return  render(request, 'Admin/PaymentApproval.html')
+  
+  
+  if request.method == "POST":
+    order_id = request.POST.get("order_id")
+    action = request.POST.get("action")
+    
+    if action == "accept":
+      order = Order.objects.get(id = order_id)
+      order.payment_verified = True
+      order.save()
+  
+  approvals = Order.objects.filter(paid = True, payment_verified=False)
+  approved =  Order.objects.filter(paid = True, payment_verified=True).order_by('-id')
+  
+  return  render(request, 'Admin/PaymentApproval.html',{"approvals":approvals, 'approved':approved})
 def ActiveProject(request):
   return  render(request, 'Admin/ActiveProjects.html')
 
@@ -318,7 +368,12 @@ def ActiveProject(request):
 def WorkerDashboard(request):
   if not request.user.is_profile_set:
     return redirect("editworkerprofile")
-  return  render(request, 'Worker/WorkerDashboard.html')
+  
+  
+  quotes = Bid.objects.filter(user = request.user)[:5]
+  print(quotes)
+  
+  return  render(request, 'Worker/WorkerDashboard.html', {'quotes':quotes})
 
 
 @login_required(login_url='login')
@@ -334,11 +389,21 @@ def WorkerSample(request):
 
   return  render(request, 'Worker/Workersamples.html', {'samples':samples})
 
-def WorkerOrders(request): 
-  return render(request , 'Worker/WorkerOrders.html')
 
+@login_required(login_url='login')
+def WorkerOrders(request): 
+  on_going_orders = Order.objects.filter(bid__user = request.user, completed = False)
+  completed_orders = Order.objects.filter(bid__user = request.user, completed = True)
+  
+  
+  return render(request , 'Worker/WorkerOrders.html',{'orders':on_going_orders, 'completed':completed_orders})
+
+@login_required(login_url='login')
 def RecentQuotes(request): 
-  return render(request , 'Worker/RecentQuotes.html')
+  
+  quotes = Bid.objects.filter(user = request.user)
+  print(quotes)
+  return render(request , 'Worker/RecentQuotes.html', {'quotes':quotes})
 
 def OrderDetail(request): 
   return render(request , 'Worker/OrderDetail.html')
@@ -452,7 +517,10 @@ def EditWorkerProfile(request):
 @login_required(login_url='login')
 def ClientDashboard(request):
   
-  return  render(request, 'Client/Dashboard.html')
+  # recent bids
+  bids = Bid.objects.filter(quote__email = request.user.email, status__iexact = 'Sent').order_by('-id')[:10]
+  
+  return  render(request, 'Client/Dashboard.html',{'bids':bids})
 
 
 @login_required(login_url='login')
@@ -533,12 +601,112 @@ def ClientChat(request):
   return render(request, 'Client/Chatpage.html')
 
 def ClientQuotes(request):
-  return render(request, 'Client/ClientQuotes.html')
+  quotes = NewQuote.objects.filter(email = request.user.email).order_by('-id')
+  
+  return render(request, 'Client/ClientQuotes.html', {'quotes':quotes})
 
-def WorkerQuotes(request):
-  return render(request, 'Client/WorkerQuotes.html')
 
-def AcceptOrder(request):
-  return render(request, 'Client/AcceptOrder.html')
-def PaymentPage(request):
-  return render(request, 'Client/PaymentPage.html')
+
+@login_required(login_url='login')
+def ClientOrders(request): 
+  
+  
+  if request.method == "POST":
+    action = request.POST.get("action")
+    if action.strip().lower() == "complete":
+      order_id = request.POST.get("order_id")
+      if Order.objects.filter(id = order_id, client__id = request.user.id).exists():
+        order = Order.objects.get(id = order_id)
+        order.completed = True
+        order.save()
+    elif action == "feedback":
+      order_id = request.POST.get("order_id")
+      feedback = request.POST.get("feedback")
+      rating = request.POST.get("rating")
+      if Order.objects.filter(id = order_id, client__id = request.user.id).exists():
+        
+        order = Order.objects.get(id = order_id)
+        order.feedback = feedback
+        order.rating = float(rating)
+        order.save()
+        
+        Feedback.objects.create(
+          user = order.bid.user,
+          feedback = feedback,
+          rating = rating,
+        )
+        
+        
+        worker = User.objects.get(id = order.bid.user.id)
+        worker_profile = WorkerProfileModel.objects.get(user = worker)
+        rating_total = worker_profile.rating * worker_profile.count_projects
+        rating_total += float(rating)
+        worker_profile.count_projects += 1
+        rating_total = round(rating_total / worker_profile.count_projects, 1)
+        
+        worker_profile.save()
+        worker.save()
+  
+  on_going_orders = Order.objects.filter(client = request.user, completed = False)
+  completed_orders = Order.objects.filter(client = request.user, completed = True)
+  
+  
+  return render(request , 'Client/ClientOrders.html',{'orders':on_going_orders, 'completed':completed_orders})
+
+
+
+@login_required(login_url='login')
+def WorkerQuotes(request, id):
+  
+  if NewQuote.objects.filter(id = id, email__iexact = request.user.email).exists():
+    bids = Bid.objects.filter(quote__id = id)
+  else:
+    return redirect('homepage')
+  
+  return render(request, 'Client/WorkerQuotes.html', {'bids':bids})
+
+@login_required(login_url='login')
+def AcceptOrder(request, id):
+  
+  bid = Bid.objects.get(id = id)
+  
+  if request.method == "POST":
+    action = request.POST.get("action")
+    if action == "Accept":
+      bid.accepted = True
+      bid.status = "accepted"
+      bid.save()
+      order = Order.objects.create(
+        bid = bid,
+        client = User.objects.get(id = request.user.id),
+      )
+      order.save()
+      redirect_url = request.build_absolute_uri(
+            reverse('paymentpage', kwargs={'order_id': id})
+            )
+      return redirect(redirect_url)
+    elif action == "Reject":
+      bid.declined = True
+      bid.status = "declined"
+      bid.save()
+      return redirect("")
+  
+  return render(request, 'Client/AcceptOrder.html',{'bid':bid})
+def PaymentPage(request, order_id):
+
+  order = Order.objects.get(id = order_id)
+  if request.method == "POST":
+    
+    transaction_id = request.POST.get('transaction-id ')
+    receipt = request.FILES.get('receipt')
+    name = request.POST.get('name')
+    
+    order.paid= True
+    order.payee_name = name
+    order.receipt = receipt
+    order.TID = transaction_id
+    
+    order.save()
+    
+    return redirect("clientorders")
+  return render(request, 'Client/PaymentPage.html', {"order":order})

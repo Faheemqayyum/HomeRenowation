@@ -11,6 +11,10 @@ urlpatterns = [
     path('searchpros/',views.SearchPros,name='searchpros'),
     path('searchproject/',views.SearchProject,name='searchproject'),
     path('quoteproject/',views.QuoteProject,name='quoteproject'),
+    path('send_bid/',views.SendBid,name='send_bid'),
+    
+    
+    
     
     path('login/',views.LoginPage,name='login'),
     path('logout/',views.logout,name='logout'),
@@ -52,9 +56,10 @@ urlpatterns = [
     path('addjob/',views.AddJob,name='addjob'),
     path('clientchat/',views.ClientChat,name='clientchat'),
     path('clientquotes/',views.ClientQuotes,name='clientquotes'),
-    path('workerquotes/',views.WorkerQuotes,name='workerquotes'),
-    path('acceptorder/',views.AcceptOrder,name='acceptorder'),
-    path('paymentpage/',views.PaymentPage,name='paymentpage'),
+    path('clientorders/',views.ClientOrders,name='clientorders'),
+    path('workerquotes/<str:id>',views.WorkerQuotes,name='workerquotes'),
+    path('acceptorder/<str:id>',views.AcceptOrder,name='acceptorder'),
+    path('paymentpage/<str:order_id>',views.PaymentPage,name='paymentpage'),
     path('clientprofile/',views.ClientProfile,name='clientprofile'),
     path('editclientprofile/',views.EditClientProfile,name='editclientprofile'),
 ]

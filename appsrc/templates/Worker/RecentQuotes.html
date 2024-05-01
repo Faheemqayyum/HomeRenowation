@@ -37,29 +37,22 @@
                         <tr>
                             <th>Project Title</th>
                             <th>Project Description</th>
-                            <th>Category</th>
-                            <th>Project Budget</th>
+                            <th>Bid / Budget</th>
                             <th>Location</th>
                             <th>Client Name</th>
                             <th>Status</th>
                         </tr>
-                        {% for worker in workers %}
+                        {% for bid in quotes %}
                         <tr>
-                            <td><img src ="{{worker.get_profile_pic}}" class="profile_pic"></td>
-                            <td>{{worker.first_name}} {{worker.last_name}}</td>
-                                <td>{{worker.email}}</td>
-                            <td>{{worker.worker_profile.all.0.profession}}</td>
-                            <td>{{worker.cnic}}</td>
-                            <td>{{worker.phone}}</td>
-                            <td class="horizontal gap-10 justify-center align-center">
-                                {% if worker.is_declined %}
-                                <button class="small_btn">Declined</button>
-                            {% elif worker.is_approved %}
-                                <button class="small_btn">Approved</button>
-                            {% else %}
-                                <button class="small_btn">Pending</button>
-                            {% endif %}
+                            {% comment %} <td><img src ="{{worker.get_profile_pic}}" class="profile_pic"></td> {% endcomment %}
+                            <td>{{bid.quote.project_name}}</td>
+                                <td>{{bid.quote.description}}</td>
 
+                            <td>{{bid.bid_amount}}/ {{bid.quote.budget}}</td>
+                            <td>{{bid.quote.location}}</td>
+                            <td>{{bid.quote.client_name}}</td>
+                            <td >
+                                    {{bid.status}}
                             </td>
                         </tr>
                         {% endfor %}

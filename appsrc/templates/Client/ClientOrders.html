@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Workers</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/index.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+    <link href="fontawesomefree/css/all.min.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
+</head>
+
+<body>
+    <div class="main_wrapper">
+        {% include 'components/clientsidebar.html'%}
+        <div class="right_container">
+            <p class="sub_head_2 imptext">New Orders</p>
+            <div class="content_wrapper">
+                <div class="recentmembers box bg-white">
+                    <div style="overflow-x: auto; width: 100%;">
+                    <table class="dash_table">
+                        <tr>
+                            <th>Project Title</th>
+                            <th>Project Description</th>
+                            <th>Location</th>
+                            <th>Project Budget</th>
+                            <th>Worker Name</th>
+                            <th>Start Date</th>
+                            <th>Estimated Days</th>
+                            <th>Status</th>
+                            <th>Message</th>
+                            <th>Mark Completed</th>
+                        </tr>
+                        {% for order in orders %}
+                        <tr>
+                            <td>{{order.bid.quote.project_name}}</td>
+                            <td>{{order.bid.quote.description}}</td>
+                                <td>{{order.bid.quote.location}}</td>
+                            <td>{{order.bid.bid_amount}}</td>
+                            <td>{{order.bid.user.first_name}} {{order.bid.user.last_name}}</td>
+                            <td>{{order.date|date}}</td>
+                            <td>{{order.bid.bid_estimated_time}}</td>
+                            <td class="horizontal gap-10 justify-center align-center">
+                                {% if order.paid %}
+                                <button class="small_btn">Paid {% if order.payment_verified %} {% else %} (Not Verified Yet) {% endif %}</button>
+                            {% else %}
+                                <a href="{% url 'paymentpage' order_id=order.id %}"> <button class="main_btn">Pay Now</button></a>
+                            {% endif %}
+
+                            </td>
+                            <td>
+                                <a href="{% url 'message_pro' %}?pro_id={{order.bid.user.id}}"> <button class="small_btn">Message</button> </a>
+                            </td>
+                            
+                            <td>
+                                <form id="complete_form_{{order.id}}" method = "POST">
+                                    {% csrf_token %}
+                                    
+                                    <input name="action" value="complete" hidden readonly>
+                                    <input name="order_id" value="{{order.id}}" hidden readonly>
+                                 <button type="button" onclick="completeOrder('complete_form_{{order.id}}')" class="main_btn">Complete</button> 
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                </div>
+                <script>
+                    function completeOrder(form_id){
+                        console.log(form_id)
+                            if(confirm("Are you sure to complete this order?"))
+                                {
+                                    document.getElementById(form_id).submit();
+                                }
+                    }
+                </script>
+
+            </div>
+
+            <p class="sub_head_2 imptext">Completed Orders</p>
+            <div class="content_wrapper">
+                <div class="recentmembers box bg-white">
+                    <div style="overflow-x: auto; width: 100%;">
+                    <table class="dash_table">
+                        <tr>
+                            <th>Project Title</th>
+                            <th>Project Budget</th>
+                            <th>Worker Name</th>
+                            <th>Review</th>
+                            <th>Rating</th>
+                            <th>Message</th>
+                        </tr>
+                        {% for order in completed %}
+                        <tr>
+                            <td>{{order.bid.quote.project_name}}</td>
+                            <td>{{order.bid.bid_amount}}</td>
+                            <td>{{order.bid.user.first_name}} {{order.bid.user.last_name}}</td>
+                            <td>{{order.feedback|default_if_none:"-"}}</td>
+                            <td>{{order.rating|default_if_none:"-"}}</td>
+                            <td>
+                                <a href="{% url 'message_pro' %}?pro_id={{order.bid.user.id}}"> <button class="small_btn">Message</button> </a>
+                            </td>
+
+                            <td>
+                            {% if order.feedback is None %}
+                                <button id="openModalBtn_" onclick="document.getElementById('AllModal{{order.id}}').style.display = 'block';" class="main_btn">Leave Review </button>
+                                <div id="AllModal{{order.id}}" class="modal">
+               
+                                    <form class="vertical justify-start align-start gap-10 padding-10" method="POST">
+                                        {% csrf_token %} 
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <p>Feedback</p>
+                                                <span id='closeModalBtn' class="close_" onclick="document.getElementById('AllModal{{order.id}}').style.display = 'none';">&times;</span>
+                                            </div>  
+                                            <div >
+                                                <input name="order_id" id="order_id" value="{{order.id}}" hidden>
+                                                <input name="action" id="action" value="feedback" hidden>
+                                                <div class="web_inputs horizontal fullwidth">
+                                                    <label for="project_budget">Enter Feedback</label>
+                                                    <input type="text" id="bid_amount" name="feedback"  placeholder="Feedback about worker" required/>
+                                                </div>
+                                                <div class="web_inputs horizontal fullwidth">
+                                                    <label for="project_location">Rating</label>
+                                                    <input type="number" id="rating" name="rating" min='0.0' max='5.0' placeholder="5.0" required/>
+                                                </div>
+                                                <div class="horizontal justify-start fullwidth justify-center">
+                                                    <button class="main_btn">Submit</button>
+                                                </div>
+                                            </div>   
+                                        </div>
+                                    </form>
+                                </div>
+                            {% endif %}
+                            </td>
+                            0
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+
+                    
+                </div>
+                </div>
+            
+            </div>
+        </div>
+
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>

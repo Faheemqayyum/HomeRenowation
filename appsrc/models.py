@@ -178,3 +178,50 @@ class UserRoom(models.Model):
         return f"{self.user.name} {self.chat_room.display_name()}"
 
         
+        
+class Bid(models.Model):
+    quote = models.ForeignKey(NewQuote, on_delete=models.CASCADE, null = False, related_name = "bids")
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name = "bids", null = True)
+    
+    bid_amount = models.CharField(max_length=100, null = False)
+    bid_estimated_time = models.CharField(max_length=100, null = False)
+    bid_description = models.CharField(max_length=100, null = False)
+    
+    status = models.CharField(default = "Sent", max_length=1000)
+    
+    accepted = models.BooleanField(default = False)
+    declined = models.BooleanField(default = False)
+    
+    
+class Order(models.Model):
+    bid = models.ForeignKey(Bid, related_name="order", null = False, on_delete=models.CASCADE)
+    client = models.ForeignKey(User, related_name="order", null = True, on_delete=models.CASCADE)
+    
+    paid = models.BooleanField(default=False)
+    payment_verified = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True)
+    TID = models.CharField(max_length=100, null = True, blank = True)
+    receipt = models.ImageField(upload_to='images/', null = True, blank = True)
+    completed = models.BooleanField(default=False)
+    rating = models.FloatField(null = True, blank = True)
+    feedback = models.CharField(max_length=1000, null = True, blank = True)
+    
+    payee_name = models.CharField(max_length=1000, null = True, blank = True)
+    
+    @property
+    def get_receipt(self):
+        if self.receipt:
+            return self.receipt.url
+        else:
+            return ""
+        
+        
+        
+class Feedback(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null =True, blank = True, related_name='feebacks')
+    feedback = models.CharField(max_length=1000, null = False, blank = False)
+    rating = models.FloatField(default = 0.0)
+    
+    
+    

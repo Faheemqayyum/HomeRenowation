@@ -26,14 +26,22 @@
 
 <body>
     <div class="main_wrapper">
-        {% include 'components/workersidebar.html'%}
+        {% include 'components/clientsidebar.html'%}
         <div class="right_container">
             <div class="horizontal justify-between align-center fullwidth">
                 <p class="sub_head_2 imptext margin-bottom">Accept Order Detail</p>
                 <div class="horizontal justify-between align-center gap-10">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input name="action" value="Accept" hidden readonly>
                     <button class="main_btn">Accept</button>
+                    </form>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <input name="action" value="Reject" hidden readonly>
                     <button class="main_btn">Reject</button>
-                    <button class="main_btn">Message</button>
+                    </form>
+                    <a href="{% url 'message_pro' %}?pro_id={{bid.user.id}}"> <button class="main_btn">Message</button></a>
                 </div>
             </div>
             <div class="bg-white vertical gap-20">
@@ -41,39 +49,44 @@
                     <div class="horizontal justify-between align-center fullwidth">
                         <div class="horizontal justify-start align-center gap-10">
                             <p class="Clienthead">Project Name:</p>
-                            <p class="card_text">{{client.first_name}} {{client.last_name}}</p>
+                            <p class="card_text">{{bid.quote.project_name}}</p>
                         </div>
+
 
                     </div>
                     <div class="horizontal justify-start align-center gap-10">
                         <p class="Clienthead">Project Description:</p>
-                        <p class="card_text">{{client.email}}</p>
+                        <p class="card_text">{{bid.quote.description}}</p>
                     </div>
                     <div class="horizontal justify-start align-center gap-10">
                         <p class="Clienthead">Worker Name:</p>
-                        <p class="card_text">{{client.cnic}}</p>
+                        <p class="card_text">{{bid.user.first_name}} {{bid.user.last_name}}</p>
                     </div>
                     <div class="horizontal justify-start align-center gap-10">
                         <p class="Clienthead">Worker Phone No</p>
-                        <p class="card_text">{{client.profession}}</p>
+                        <p class="card_text">{{bid.user.phone}}</p>
                     </div>
                     <div class="horizontal justify-start align-center gap-10">
                         <p class="Clienthead">Worker Address</p>
-                        <p class="card_text">{{client.phone}}</p>
+                        <p class="card_text">{{bid.user.address}}</p>
                     </div>
                     <div class="horizontal justify-start align-center gap-10">
                         <p class="Clienthead">Category</p>
-                        <p class="card_text">{{client.phone}}</p>
+                        <p class="card_text">{{bid.user.worker_profile.all.0.profession}}</p>
                     </div>
                     <div class="horizontal justify-start align-center gap-10">
                         <p class="Clienthead">Worker Experience</p>
-                        <p class="card_text">{{client.phone}}</p>
+                        <p class="card_text">{{bid.user.worker_profile.all.0.experience}}</p>
                     </div>
                     <div class="horizontal justify-start align-center gap-10">
                         <p class="Clienthead">Budget Qouted</p>
-                        <p class="card_text">{{client.phone}}</p>
+                        <p class="card_text">{{bid.bid_amount}}</p>
                     </div>
-                    <div class="vertical gap-10">
+                    <div class="horizontal justify-start align-center gap-10">
+                        <p class="Clienthead">Estimated Time</p>
+                        <p class="card_text">{{bid.bid_estimated_time}}</p>
+                    </div>
+                    <div class="vertical gap-10" style='display:none;'>
                         <p class="Clienthead">Project Images</p>
                         <div class="horizontal gap-10 justify-between align-center">
                             <img src="" alt="">
