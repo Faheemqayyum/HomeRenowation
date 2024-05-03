@@ -696,7 +696,7 @@ def AcceptOrder(request, id):
       bid.declined = True
       bid.status = "declined"
       bid.save()
-      return redirect("")
+      return redirect("clientdashboard")
   
   return render(request, 'Client/AcceptOrder.html',{'bid':bid})
 def PaymentPage(request, order_id):

@@ -68,8 +68,8 @@
                                 <td>{{bid.bid_estimated_time}}</td>
                                 
                                 <td class="horizontal gap-10 justify-center align-center">
-                                    <button class="small_btn">Accept</button>
-                                    <button class="small_btn">Decline</button>
+                                    <a href="{% url 'acceptorder' id=bid.id %}"> <button class="small_btn">View</button>
+                                    </a>
                                 </td>
                             </tr>
                         {% endfor %}

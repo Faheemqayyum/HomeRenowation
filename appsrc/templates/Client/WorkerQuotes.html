@@ -55,9 +55,13 @@
                                 <td>{{bid.bid_amount}}PKR</td>
                                 <td>{{bid.bid_estimated_time}}</td>                                
                                 <td class="horizontal gap-10 justify-center align-center">
-                                    <a href="{% url 'acceptorder' id=bid.id %}"> <button class="small_btn">View</button>
-                                    </a>
-                                </td>
+                                    {% if bid.declined %}
+                                         <button class="small_btn">Declined</button>
+                                    {% else %}
+                                        <a href="{% url 'acceptorder' id=bid.id %}"> <button class="small_btn">View</button>
+                                        </a>
+                                    {% endif %}
+                     </td>
                             </tr>
                         {% endfor %}
                     </table>
