@@ -631,29 +631,34 @@ def ClientOrders(request):
       feedback = request.POST.get("feedback")
       rating = request.POST.get("rating")
       if Order.objects.filter(id = order_id, client__id = request.user.id).exists():
-        
-        order = Order.objects.get(id = order_id)
-        order.feedback = feedback
-        order.rating = float(rating)
-        order.save()
-        
-        Feedback.objects.create(
-          user = order.bid.user,
-          feedback = feedback,
-          rating = rating,
+        try:
+              order = Order.objects.get(id = order_id)
+              order.feedback = feedback
+              order.rating = float(rating)
+              order.save()
+              
+              Feedback.objects.create(
+                user = order.bid.user,
+                feedback = feedback,
+                rating = rating,
         )
         
         
-        worker = User.objects.get(id = order.bid.user.id)
-        worker_profile = WorkerProfileModel.objects.get(user = worker)
-        rating_total = worker_profile.rating * worker_profile.count_projects
-        rating_total += float(rating)
-        worker_profile.count_projects += 1
-        rating_total = round(rating_total / worker_profile.count_projects, 1)
-        
-        worker_profile.save()
-        worker.save()
+    
+              worker = User.objects.get(id = order.bid.user.id)
+              worker_profile = WorkerProfileModel.objects.get(user = worker)
+              rating_total = worker_profile.rating * worker_profile.count_projects
+              rating_total += float(rating)
+              worker_profile.count_projects += 1
+              rating_total = round(rating_total / worker_profile.count_projects, 1)
+              
+              worker_profile.save()
+              worker.save()
   
+
+        except:
+               pass
+
   on_going_orders = Order.objects.filter(client = request.user, completed = False)
   completed_orders = Order.objects.filter(client = request.user, completed = True)
   
