@@ -122,6 +122,8 @@ def QuoteProject(request):
             reverse('login')
             )+"?next=quoteproject"
 
+
+
     return redirect(login_url)
   
   
@@ -148,7 +150,10 @@ def QuoteProject(request):
     uploaded = True
     
     
-  return  render(request, 'Website/Quotepage.html', {'uploaded':uploaded})
+  prices = Prices.objects.values().all()
+  prices = list(prices)
+  print(prices)
+  return  render(request, 'Website/Quotepage.html', {'uploaded':uploaded,'prices':prices})
 
 
 

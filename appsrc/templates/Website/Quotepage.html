@@ -40,17 +40,17 @@
                 <label for="project_desc">Enter Project Description:</label>
                 <textarea cols="5" rows="5" id="project_desc" name="project_desc" placeholder="Project Description" required></textarea>
             </div>
-            <div class="web_inputs horizontal fullwidth">
-                <label for="project_budget">Enter Project Budget:</label>
-                <input type="text" id="project_budget" name="project_budget" placeholder="Enter Project Budget" required/>
-            </div>
+
+            
             <div class="web_inputs horizontal fullwidth">
                 <label for="project_location">Enter Location</label>
                 <input type="text" id="project_location" name="project_location" placeholder="Enter Project Location" required/>
             </div>
+
             <div class="web_inputs horizontal fullwidth">
                 <label for="project_location">Category</label>
-                <select name="category" id="category">
+                <select name="category" id="category" onchange="get_budget()" required>
+                    <option value="">Select Category</option>
                     <option value="Painters">Painters</option>
                     <option value="Electrician">Electrician</option>
                     <option value="Roofers">Roofers</option>
@@ -61,6 +61,27 @@
                     <option value="AppliancesInstallers">Appliances Installers</option>
                 </select>
             </div>
+
+
+            <div class="web_inputs horizontal fullwidth">
+                <label for="project_budget">Per Daily / Per Hour:</label>
+                <select type="text" id="day_hour" name="day_hour" onchange="get_budget()">
+                    <option value="day"> Day</option> 
+                    <option value="hour"> Hour</option> 
+                </select>
+            </div>
+            
+
+            <div class="web_inputs horizontal fullwidth">
+                <label for="project_budget">Per Daily / Per Hour:</label>
+                <input type="number" value='1' min="1" id="estimated_time" name="estimated_time" onchange="get_budget()">
+            </div>
+            
+            <div class="web_inputs horizontal fullwidth">
+                <label for="project_budget">Estimated Budget:</label>
+                <input type="text" id="project_budget" name="project_budget" placeholder="Enter Project Budget" required/>
+            </div>
+
             <div class="horizontal justify-start fullwidth justify-center">
                 <button class="main_btn">Get Quote</button>
             </div>
@@ -77,6 +98,41 @@
         var uploaded = "{{uploaded}}"
         if (uploaded === "True")
             alert("Quote is placed successfully")
+
+        var prices = {{prices|safe}}
+        console.log(prices)
+
+
+        function get_budget(){
+            category = document.getElementById('category').value;
+            day_hour = document.getElementById('day_hour').value;
+
+            time = parseInt(document.getElementById("estimated_time").value);
+            console.log(time);
+            var budget = 1000;
+            var found = false;
+            for (var v = 0; v< prices.length; v++){
+                if (prices[v]['category'].toLowerCase() == category.toLowerCase()){
+                    console.log(prices);
+                    if(day_hour == 'day'){
+                        budget = time * prices[v]['daily_price']
+                    } else{
+                        budget = time * prices[v]['hour_price']
+                    }
+                    found = true;
+                }
+            }
+            if(!found){
+                if(day_hour == 'day'){
+                    budget = time * 1000;
+                } else{
+                    budget = time * 500;
+                }
+            }
+            console.log(budget);
+            document.getElementById('project_budget').value = budget;
+        }
+
     </script>
 </body>
 

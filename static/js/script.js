@@ -13,14 +13,6 @@ function toggleOffCanvas() {
     });
 });
 
-document.getElementById("openModalBtn").addEventListener("click", function() {
-  document.getElementById("AllModal").style.display = "block";
-});
-
-
-document.querySelector(".close").addEventListener("click", function() {
-  document.getElementById("AllModal").style.display = "none";
-});
   document.addEventListener('DOMContentLoaded', function() {
     var accBtn = document.querySelector('.accordion-btn');
     var accContent = document.querySelector('.accordion-content');
