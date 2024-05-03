@@ -32,6 +32,11 @@
             <p for="worker_name" class="bold_text_2">Rating:</p>
             <p class="card_text" id="rating">2</p>
         </div>
+
+        <div id="map" class="" style="border: 1px solid black; height: 300px; ">
+            <p>Google Map</p>
+            <!--Google Map -->
+        </div>
         {% comment %} <div class="vertical gap-5">
             <p class="bold_text_2">Client Reviews</p>
             <div class="vertical web_inputs">
@@ -50,14 +55,21 @@
 </div>
 
 <script>
-function update_worker(name, profession, about, location, projects, rating, pro_id){
-    document.getElementById("name").innerText = name;
-    document.getElementById("profession").innerText = profession;
-    document.getElementById("about").innerText = about;
-    document.getElementById("location").innerText = location;
-    document.getElementById("projects").innerText = projects;
-    document.getElementById("rating").innerText = rating;
-    document.getElementById("pro_id").value=pro_id;
 
-}
+    function update_worker(name, profession, about, location, projects, rating, pro_id){
+        console.log(location);
+        codeAddress(location);
+        document.getElementById("name").innerText = name;
+        document.getElementById("profession").innerText = profession;
+        document.getElementById("about").innerText = about;
+        document.getElementById("location").innerText = location;
+        document.getElementById("projects").innerText = projects;
+        document.getElementById("rating").innerText = rating;
+        codeAddress(location);
+        document.getElementById("pro_id").value=pro_id;
+
+
+    }
+
+
 </script>

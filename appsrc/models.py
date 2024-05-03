@@ -208,7 +208,7 @@ class Bid(models.Model):
     declined = models.BooleanField(default = False)
 
     def __str__(self):
-        return f"{self.user.name}"
+        return f"{self.quote.client_name}"
 
     
     
@@ -241,5 +241,14 @@ class Feedback(models.Model):
     feedback = models.CharField(max_length=1000, null = False, blank = False)
     rating = models.FloatField(default = 0.0)
     
+    
+
+class Prices(models.Model):
+    category = models.CharField(max_length=1000)
+    hour_price = models.IntegerField(default= 500)
+    daily_price = models.IntegerField(default=1200)
+    
+    def __str__(self) -> str:
+        return f"{self.category} | {self.daily_price}"
     
     
