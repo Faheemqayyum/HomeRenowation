@@ -81,6 +81,13 @@
                 margin: 20px auto;">
                     <h2 class="main_head_2">Note</h2>
                     <p class="bold_text margin-bottom">You can Select any of the Professionals from this list on the left side.</p>
+
+                    <div id="map_div" class="" style="border: 1px solid black; height: 300px; width:300px ">
+                        <p>Google Map</p>
+                    <!--Google Map -->
+                    </div>
+
+                    </div>
                 </div>
                 <div class="bx-shadow padding-10 hidden_sect" id="section2" style="
                 margin: 20px auto;">
@@ -95,9 +102,14 @@
     <script>
 
         var geocoder;
-        var map;
+        var map, map2;
         var address = "new york city";
-    var tester = null;
+        var tester = null;
+
+        var hidden_indexes = {}
+
+
+
         function initMap() {
             geocoder = new google.maps.Geocoder();
 
@@ -106,31 +118,73 @@
                 zoom: 12,
                 center: uluru
             });
+
+            map2 = new google.maps.Map(document.getElementById('map_div'), {
+                zoom: 12,
+                center: uluru
+            });
+
             var marker = new google.maps.Marker({
                 position: uluru,
                 map: map
             });
         }
+        var infowindow = new google.maps.InfoWindow();
+
+        function createMarker(adrs, html){
+
+            try{
+                    geocoder.geocode({ 'address': adrs }, function (results, status) {
+                    console.log(results);
+                    var latLng = {lat: results[0].geometry.location.lat (), lng: results[0].geometry.location.lng ()};
+                    console.log (latLng);
+                    if (status == 'OK') {
+                        
+                        var marker = new google.maps.Marker({
+                            position: latLng,
+                            map: map2
+                        });
+                        google.maps.event.addListener(marker, 'click', function(){
+                            infowindow.setContent(html);
+                            infowindow.open(map2, marker);
+                        });
+                        
+                        return marker;
+            
+                        
+                    } else {
+                        return null;
+                    }
+                });
+            }
+            catch(err){
+                return null;
+            }
+
+            return null;
+
+}
         function codeAddress(addres) {
     
-            geocoder.geocode({ 'address': addres }, function (results, status) {
-                console.log(results);
-                var latLng = {lat: results[0].geometry.location.lat (), lng: results[0].geometry.location.lng ()};
-                console.log (latLng);
-                if (status == 'OK') {
-                    console.log("map",status);
-                    map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 12,
-                        center: latLng
-                    });
-                    var marker = new google.maps.Marker({
-                        position: latLng,
-                        map: map
-                    });
-                } else {
-                    alert('Geocode was not successful for the following reason: ' + status);
-                }
-            });
+                    geocoder.geocode({ 'address': addres }, function (results, status) {
+                    console.log(results);
+                    var latLng = {lat: results[0].geometry.location.lat (), lng: results[0].geometry.location.lng ()};
+                    console.log (latLng);
+                    if (status == 'OK') {
+                        console.log("map",status);
+                        map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 12,
+                            center: latLng
+                        });
+                        var marker = new google.maps.Marker({
+                            position: latLng,
+                            map: map
+                        });
+                    } else {
+                        alert('Geocode was not successful for the following reason: ' + status);
+                    }
+                });
+            
         }
 
 
@@ -151,7 +205,7 @@
             }
             else if (service != "")
             {  
-                workerCards.forEach(card => {
+                 workerCards.forEach(card => {
                     const serviceText = card.querySelector(".service").innerText.toLowerCase();
                     console.log(serviceText)
                     if (serviceText.includes(service) ) {
@@ -186,6 +240,27 @@
             document.getElementById("service").value = "";
             filter();
         }
+
+        var addresses = []
+        {% for pro in pros %}
+            addresses.push({'address':'{{pro.address}}','name':"{{pro.first_name}} {{pro.last_name}}"})
+        {% endfor %}
+
+
+
+        function MarkWorkersOnMap(){
+            map2 = new google.maps.Map(document.getElementById('map_div'), {
+                zoom: 12,
+                center: uluru
+            });
+
+            for(var v = 0; v<addresses.length; v++){
+                createMarker(addresses[v]['address'], addresses[v]['name'])
+            }
+        }
+
+
+        MarkWorkersOnMap();
     </script>
 </body>
 

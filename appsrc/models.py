@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models import Sum, Count, Avg
 
 # Create your models here.
 
@@ -15,7 +16,7 @@ class User(AbstractUser):
     address = models.CharField(max_length = 1000, null = True, blank = True)
     about = models.CharField(max_length = 10000, null = True, blank = True)
     
-    
+
     
     @property
     def get_profile_pic(self):
@@ -49,6 +50,7 @@ class WorkerProfileModel(models.Model):
             return self.cnic_front.url
         else:
             return ""
+    
     @property
     def get_cnic_back(self):
         
@@ -57,6 +59,19 @@ class WorkerProfileModel(models.Model):
         else:
             return ""
     
+    @property
+    def get_average_rating(self):
+        average_rating = Feedback.objects.filter(user__id = self.user.id).aggregate(avg_rating=Avg('rating'))
+        return average_rating['avg_rating'] if average_rating['avg_rating'] else 0
+    
+    
+    @property
+    def get_commulative_rating(self):
+        
+        feedbacks = Feedback.objects.filter(user__id = self.user.id).aggregate(avg_rating = Avg('rating'))
+        
+        return feedbacks['avg_rating']
+        
     
 class WorkerSampleProject(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE, related_name="sample_projects")
@@ -240,7 +255,15 @@ class Feedback(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null =True, blank = True, related_name='feebacks')
     feedback = models.CharField(max_length=1000, null = False, blank = False)
     rating = models.FloatField(default = 0.0)
+    client_name = models.CharField(null=True, max_length=150)
     
+
+    def to_json(self):
+        return {
+            "client": self.client_name,
+            'feedback': self.feedback,
+            'rating': self.rating
+        }
     
 
 class Prices(models.Model):

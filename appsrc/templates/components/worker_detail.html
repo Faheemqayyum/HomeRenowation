@@ -37,19 +37,21 @@
             <p>Google Map</p>
             <!--Google Map -->
         </div>
-        {% comment %} <div class="vertical gap-5">
-            <p class="bold_text_2">Client Reviews</p>
-            <div class="vertical web_inputs">
-                <div class="horizontal justify-between align-center fullwidth">
-                    <p class="card_text">Client Name</p>
-                    <div class="Rating">
-                        <i class="fa-solid fa-star"></i> 5
+        <div id="reviews_div"> 
+            <div class="vertical gap-5">
+                <p class="bold_text_2">Client Reviews</p>
+                <div class="vertical web_inputs">
+                    <div class="horizontal justify-between align-center fullwidth">
+                        <p class="card_text">Client Name</p>
+                        <div class="Rating">
+                            <i class="fa-solid fa-star"></i> 5
+                        </div>
                     </div>
+                    <p class="card_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, vitae
+                        distinctio. Error dignissimos assumenda pariatur illo dicta nesciunt distinctio impedit!</p>
                 </div>
-                <p class="card_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, vitae
-                    distinctio. Error dignissimos assumenda pariatur illo dicta nesciunt distinctio impedit!</p>
             </div>
-        </div> {% endcomment %}
+        </div>
         
     </div>
 </div>
@@ -69,7 +71,62 @@
         document.getElementById("pro_id").value=pro_id;
 
 
+        getReviews(pro_id);
+
     }
 
 
+    function getReviews(pro_id){
+        $.ajax({
+            url:"{% url 'getReviews' %}",
+            type: "GET",
+            data: {
+                worker_id: pro_id
+            },
+            
+            success: function (data) {
+                console.log(data);
+                add_to_reviews_div(data.feedbacks);
+            },
+
+            // Error handling 
+            error: function (error) {
+                console.log(`Error ${error}`);
+            }
+        });
+    }
+
+
+    function add_to_reviews_div(reviews){
+        
+        var reviewsDiv = document.getElementById("reviews_div");
+        reviewsDiv.innerHTML = "";
+
+        for(var v = 0; v<reviews.length; v++){
+
+            console.log(reviews[v])
+            // Select the element with id "reviews_div"
+
+            // Create a new div element to hold the provided HTML content
+            var newDiv = document.createElement("div");
+            newDiv.innerHTML = `
+                <div class="vertical gap-5">
+                    <div class="vertical web_inputs">
+                        <div class="horizontal justify-between align-center fullwidth">
+                            <p class="card_text" style='font-weight:bolder'>${reviews[v].client}</p>
+                            <div class="Rating">
+                                <i class="fa-solid fa-star"></i> ${reviews[v].rating}
+                            </div>
+                        </div>
+                        <p class="card_text">${reviews[v].feedback}</p>
+                    </div>
+                </div>
+            `;
+
+            // Append the new div element to the "reviews_div" element
+            reviewsDiv.appendChild(newDiv);
+
+        }
+        
+    }
 </script>

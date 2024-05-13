@@ -7,54 +7,9 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.db.models import Q
-
-# login
-# sign up
-
-
-# todo:
-# get quote: place quote
-# workers in searchpros
-# view quotes in search project
-
-
-# admin:
-# member detail page fix
-# worker detail page view fix
-# admin accept/decline new projects
-# accepted projects
-
-
-# worker:
-# recent projects
-# on going projects
-# recent quotes or bids 
-# worker orders
-# chat
-
-
-
-
-
-
+from django.http import JsonResponse
 
 # Create your views here.
-
-# Admin
-# TODO recent member detail and worker detail page
-# TODO  Active projects page 
-# TODO  Payment approval page  
-# TODO  New Projects page  
-
-# Worker 
-# TODO  page to display all new quotes
-# TODO  page to display new orders for worker
-# TODO  page to display order detail and also add a message button 
-
-# Client 
-# TODO view quote requests 
-# TODO accept order and payment page ()
-# TODO  page to display order detail and also add a message button 
 def Homepage(request):
   return  render(request, 'Website/homepage.html')
 
@@ -641,10 +596,9 @@ def ClientOrders(request):
                 user = order.bid.user,
                 feedback = feedback,
                 rating = rating,
+                client_name = f"{request.user.first_name} {request.user.last_name}"
         )
-        
-        
-    
+          
               worker = User.objects.get(id = order.bid.user.id)
               worker_profile = WorkerProfileModel.objects.get(user = worker)
               rating_total = worker_profile.rating * worker_profile.count_projects
@@ -722,3 +676,18 @@ def PaymentPage(request, order_id):
     
     return redirect("clientorders")
   return render(request, 'Client/PaymentPage.html', {"order":order})
+
+
+def getReviews(request):
+  
+  id = request.GET.get('worker_id')
+  feedbacks = Feedback.objects.filter(user_id = id).order_by('-rating')
+  feedbacks_list = []
+  for feedback in feedbacks:
+    feedbacks_list.append(feedback.to_json())
+    
+  
+  return JsonResponse({'feedbacks':feedbacks_list})
+
+
+

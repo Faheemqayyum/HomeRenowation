@@ -62,6 +62,9 @@ urlpatterns = [
     path('paymentpage/<str:order_id>',views.PaymentPage,name='paymentpage'),
     path('clientprofile/',views.ClientProfile,name='clientprofile'),
     path('editclientprofile/',views.EditClientProfile,name='editclientprofile'),
+    
+    
+    path('getReviews/',views.getReviews,name='getReviews'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
