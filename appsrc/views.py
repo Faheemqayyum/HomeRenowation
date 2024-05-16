@@ -654,7 +654,7 @@ def AcceptOrder(request, id):
       )
       order.save()
       redirect_url = request.build_absolute_uri(
-            reverse('paymentpage', kwargs={'order_id': id})
+            reverse('paymentpage', kwargs={'order_id': order.id})
             )
       return redirect(redirect_url)
     elif action == "Reject":
