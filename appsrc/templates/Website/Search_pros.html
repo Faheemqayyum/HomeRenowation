@@ -250,8 +250,8 @@
 
         function MarkWorkersOnMap(){
             map2 = new google.maps.Map(document.getElementById('map_div'), {
-                zoom: 12,
-                center: uluru
+                zoom: 8,
+                center: { lat: 33.7715, lng: 72.7511}
             });
 
             for(var v = 0; v<addresses.length; v++){

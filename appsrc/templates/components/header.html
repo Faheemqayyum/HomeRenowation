@@ -34,12 +34,7 @@
                     <div class="menu-wrap">
                         <ul class="menu">
                             <li class="menu-item">
-                                <a href="#">Blog</a>
-                                <ul class="drop-menu">
-                                    <li class="drop-menu-item padding-10">
-                                        <p>Blog Title</p>
-                                    </li>
-                                </ul>
+                                <a href="{% url 'blogs' %}">Blog</a>
                             </li>
                         </ul>
                     </div>
@@ -73,10 +68,12 @@
                 <li><a href="{% url 'register' %}">Sign Up</a></li>
                 {% endif %}
             </ul>
-            <a href="{% url 'quoteproject' %}"> <button class="main_btn lg_btn">Get Quote</button> </a>
+            {% if not request.user.is_worker %}
+            <a href="{% url 'quoteproject' %}"> <button class="main_btn lg_btn">Post Job</button> </a>
             <button class="menu_icon sm_btn" onclick="toggleOffCanvas()">
                 <i class="fas fa-bars"></i>
             </button>
+            {% endif %}
         </div>
         <div id="offcanvas" class="offcanvas">
             <div class="horizontal_2 justify-between align-center fullwidth">
@@ -187,7 +184,9 @@
                 <li><a href="{% url 'register' %}">Sign Up</a></li>
             </ul>
 
-            <a href="{% url 'quoteproject' %}"> <button class="main_btn lg_btn">Get Quote</button> </a>
+            {% if not request.user.is_worker %}
+            <a href="{% url 'quoteproject' %}"> <button class="main_btn lg_btn">Post Job</button> </a>
+            {% endif %}
         </div>
     </nav>
 </header>

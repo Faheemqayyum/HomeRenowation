@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 
+from datetime import datetime, timedelta
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import authenticate
@@ -11,7 +12,10 @@ from django.http import JsonResponse
 
 # Create your views here.
 def Homepage(request):
-  return  render(request, 'Website/homepage.html')
+  
+  # GET BEST PROS
+  best_workers = WorkerProfileModel.objects.filter(user__is_approved = True).order_by('-rating','-count_projects')[:4]
+  return  render(request, 'Website/homepage.html',{'workers':best_workers})
 
 def SearchPros(request):
   pros = User.objects.filter(is_approved = True, ).all()
@@ -130,6 +134,8 @@ def SendBid(request):
         quote = quote,
         user = request.user
       )
+      quote.quotes = quote.quotes+1
+      quote.save()
       request.session['msg'] = "Quote is sent"
     else:
       request.session['msg'] = "You are not a worker you cannot bid"
@@ -691,3 +697,220 @@ def getReviews(request):
 
 
 
+def AllBlogs(request):
+    blogs = Blog.objects.filter(is_active = True).order_by('-id')
+    
+    return render(request,'Website/Blogs.html', {'blogs':blogs})
+
+def ReadBlog(request):
+    image = []
+    if request.GET.get('blog'):
+        blog = Blog.objects.get(id = int(request.GET.get('blog')))
+        images = BlogImage.objects.filter(blog = blog)
+        
+    else:
+        blog = Blog.objects.all().first()
+        images = BlogImage.objects.filter(blog = blog)
+        
+    return render(request,'Website/SingleBlog.html',{'blog':blog, 'images':images})
+
+
+
+def AddBlog(request):
+  
+  if request.method == "POST":
+    
+            title = request.POST.get('addtitle')
+            subtitle = request.POST.get('subtitle')
+            desc = request.POST.get('adddesc')
+            author = request.POST.get("AuthorName")
+            image = request.FILES.get('blog_image')
+            date_str = request.POST.get('Date')
+            date_value = datetime.strptime(date_str, '%Y-%m-%d')
+            
+            first_para = request.POST.get('first_para')
+            second_para = request.POST.get('second_para')
+            third_para = request.POST.get('third_para')
+            list1 = request.POST.get('list1')
+            list2 = request.POST.get('list2')
+            image2 = request.FILES.get('blog_image2')
+            # reviewer = request.POST.get('reviewer')
+            # review = request.POST.get('review')
+            heading1 = request.POST.get('heading1')
+            heading2 = request.POST.get('heading2')
+            
+            if Blog.objects.filter(
+                title = title,
+                subtitle = subtitle,
+                description = desc,
+                date = date_value,
+                author = author,
+                first_para = first_para 
+                ).exists():
+                
+                pass
+            else:
+                blog = Blog.objects.create(
+                    title = title,
+                    subtitle = subtitle,
+                    description = desc,
+                    image = image,
+                    is_active = True,
+                    date = date_value,
+                    author = author,
+                    first_para = first_para,
+                    second_para = second_para,
+                    third_para = third_para,
+                    list1 = list1,
+                    list2 = list2,
+                    image2 = image2,
+                    # reviewer = reviewer,    
+                    # review = review,    
+                    heading1 = heading1,
+                    heading2 = heading2
+
+                )
+                
+                url = request.POST.get("youtubeurl")
+                if url != "":
+                    blog.video_url = url
+                else:
+                    video = request.FILES.get("video")
+                    blog.video = video
+                
+                blog.save()
+
+                for img in request.FILES.getlist("small_images"):
+                    BlogImage.objects.create(
+                        image = img,
+                        blog = blog,
+                    )
+                
+                return redirect("adminBlogs")
+  return render(request,'Admin/AddBlog.html',{})
+  pass
+
+
+
+def AdminBlogs(request):
+    
+  if request.method == "POST":
+    if request.POST.get("action") == "delete_blog":
+      id = request.POST.get("blog_id")
+      try:
+        Blog.objects.get(id = id).delete()
+      except: 
+        pass
+  
+  active_blogs = Blog.objects.filter(is_active = True).order_by('-id')
+  return render(request, 'Admin/Blogs.html', {'blogs':active_blogs})
+    
+
+def EditBlog(request):
+    print(request.method)
+    if request.method == "GET":
+        blog_id = request.GET.get('blog_id')
+        if(Blog.objects.filter(id=int(blog_id)).exists()):
+            blog_instance = Blog.objects.get(id = int(blog_id))
+            images = BlogImage.objects.filter(blog = blog_instance)
+        
+            return render(request, 'Admin/EditBlog.html',{'blog':blog_instance, 'images':images})
+
+    else:
+        
+        action = request.POST.get('action')
+        if action is None:
+            blog_id = request.POST.get("id")
+
+            blog_instance = None
+            
+            if(Blog.objects.filter(id=int(blog_id)).exists()):
+                blog_instance = Blog.objects.get(id = int(blog_id))
+            
+            else:
+                return None
+            
+            print(type(blog_instance))
+            title = request.POST.get('addtitle')
+            subtitle = request.POST.get('subtitle')
+            desc = request.POST.get('adddesc')
+            author = request.POST.get("AuthorName")
+            image = request.FILES.get('image')
+            date_str = request.POST.get('Date')
+            date_value = datetime.strptime(date_str, '%Y-%m-%d')
+            
+            first_para = request.POST.get('first_para')
+            second_para = request.POST.get('second_para')
+            third_para = request.POST.get('third_para')
+            list1 = request.POST.get('list1')
+            list2 = request.POST.get('list2')
+            # reviewer = request.POST.get('reviewer')
+            # review = request.POST.get('review')
+            heading1 = request.POST.get('heading1')
+            heading2 = request.POST.get('heading2')
+            
+            if image is not None:
+                blog_instance.image = image
+                
+            blog_instance.title = title
+            blog_instance.subtitle = subtitle
+            blog_instance.description = desc
+            blog_instance.date = date_value
+            blog_instance.author = author
+            blog_instance.first_para = first_para  
+            blog_instance.second_para = second_para   
+            blog_instance.third_para = third_para   
+            blog_instance.list1 = list1   
+            blog_instance.list2 = list2
+            blog_instance.heading1 = heading1
+            blog_instance.heading2 = heading2
+            
+            
+            
+            url = request.POST.get("youtubeurl")
+            if url != "" and url is not None:
+                if blog_instance.video:
+                    blog_instance.video = None
+                    
+                blog_instance.video_url = url
+            else:
+                video = request.FILES.get("video")
+                if video:
+                    if blog_instance.video_url != None or blog_instance.video_url != "":
+                        blog_instance.video_url = ""
+                    blog_instance.video = video
+            
+            imgs = request.FILES.getlist("small_images")
+            
+            if len(imgs)>0:
+                # BlogImage.objects.filter(blog = blog_instance).delete()
+                for img in imgs:
+                    BlogImage.objects.create(
+                        image = img,
+                        blog = blog_instance,
+                    )      
+            
+            
+            blog_instance.save()
+        
+        elif action == "deleteImage":
+            id = request.POST.get('img_id')
+            if BlogImage.objects.filter(id = id).exists():
+                blog_id = BlogImage.objects.get(id = id).blog.id
+                BlogImage.objects.get(id = id).delete()
+                redirect_url = reverse('editBlogs') + f'?blog_id={blog_id}'
+                return redirect(redirect_url)
+            pass
+        elif action == "deleteVideo":
+            blog_id = request.POST.get("blog_id")
+            
+            if Blog.objects.filter(id = blog_id).exists():
+                blog = Blog.objects.get(id = blog_id)
+                blog.url = ""
+                blog.video = None
+                blog.save()
+                redirect_url = reverse('editBlogs') + f'?blog_id={blog_id}'
+                return redirect(redirect_url)
+            pass
+        
+        return redirect("adminBlogs")

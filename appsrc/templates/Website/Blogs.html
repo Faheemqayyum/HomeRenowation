@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogs</title>
+    <link
+    href="fontawesomefree/css/all.min.css"
+    rel="stylesheet"
+    type="text/css"
+  />
+  <!-- One file includes all the Font Awesome Free icons and utilities -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <script src="fontawesomefree/js/all.min.js"></script>
+    <link rel="stylesheet" href="{% static '/css/index.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/news.css' %}" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  </head>
+  <body>
+    {% include 'components/header.html'%}
+
+
+    <section class="Campaignbg">
+      <div class="horizontal_flex space-between  align-center fullwidth" style="margin-top: 20px;">
+        <div class="Campaigntext">
+          <h1
+            data-aos="fade-left"
+            data-aos-offset="200"
+            data-aos-easing="ease-in-out"
+          >
+            <!-- You can help lots of <span>people</span> by donating little..​ -->
+            News
+          </h1>
+        </div>
+        <!-- <div class="Campaign_img">
+          <img src="{% static '/media/bro.svg' %}" alt="" />
+        </div> -->
+      </div>
+      
+    </section>
+
+
+    <section class="blogs_cards_sect">
+      <div class="right_img"></div>
+      <div class="left_img"></div>
+      <div class="blog_main_wrapper">
+        {% for blog in blogs %}
+        <div class="blogs_card">
+          <div class="blog_img_div">
+            <img src="{% if blog.image %} {{blog.image.url}} {% endif %}" alt="" />
+          </div>
+          <div class="blog_content_div" style='width:100%'>
+            <p class="main_para">{{blog.date}} | {{blog.author}}</p>
+            <h2 class="main_blog_head">
+              {{blog.title}}
+            </h2>
+            <p class="small_text">
+              {{blog.subtitle}}
+            </p>
+            <div class="blog_cardbtn">
+                <a href="{% url 'blogsinglepage' %}?blog={{blog.id}}" ><button class="mainbtn">Read More</button></a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      
+      </div>
+    </section>
+    {% include 'components/footer.html'%}
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>

@@ -275,3 +275,66 @@ class Prices(models.Model):
         return f"{self.category} | {self.daily_price}"
     
     
+    
+class Blog(models.Model):
+    title = models.CharField(max_length = 1000, null = False)
+    subtitle = models.CharField(max_length = 15000, null = False)
+    heading1 = models.CharField(max_length = 15000, null = True, blank = True)
+    heading2 = models.CharField(max_length = 15000, null = True, blank = True)
+    description = models.CharField(max_length = 50000, null = True, blank = True)
+    first_para = models.CharField(max_length = 10000, null = True, blank = True)
+    second_para = models.CharField(max_length = 10000, null = True, blank = True)
+    third_para = models.CharField(max_length = 10000, null = True, blank = True)
+    list1 = models.CharField(max_length = 50000, null = True, blank = True)
+    list2 = models.CharField(max_length = 50000, null = True, blank = True)
+    author = models.CharField(max_length = 30, null = True, blank = True)
+    image = models.ImageField(upload_to='images/', null=False)
+    image2 = models.ImageField(upload_to='images/', null=True)
+    date = models.DateField(null = True, blank = True)
+    is_active = models.BooleanField(default = True)
+    
+    reviewer = models.CharField(max_length = 30, null = True, blank = True)
+    review = models.CharField(max_length = 300, null = True, blank = True)
+    
+    video_url = models.CharField(max_length = 200, null = True, blank = True)
+    video = models.FileField(upload_to= "videos/", null = True, blank = True)
+
+    @property 
+    def embedUrl(self):
+        url_ = self.video_url
+        if url_:
+            url_ = url_.replace("watch?v=", "embed/")
+            url_ = url_.split("&")[0]
+            return url_
+
+        else:
+            return ""
+        
+        
+    def __str__(self) -> str:
+        return self.title
+    
+    def list1_as_list(self):
+        if self.list1 is not None:
+            lst = self.list1.strip()
+            return lst.split("\r\n")
+        else:
+            return ""
+    
+    def list2_as_list(self):
+        if self.list2 is not None:
+            lst = self.list2.strip()
+            return lst.split("\r\n")
+        else:
+            return ""
+
+
+    @property
+    def get_image(self):
+        if self.image:
+            return self.image.url
+        return ""
+
+class BlogImage(models.Model):
+    image = models.ImageField(upload_to='images/', null = False)
+    blog = models.ForeignKey(Blog, on_delete = models.CASCADE, null = True, blank = True)

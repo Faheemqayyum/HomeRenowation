@@ -35,7 +35,7 @@
                         <div class="hr_border2"></div>
                     </div>
                     <div class="vertical gap-10 web_inputs">
-                        <input type="text" placeholder="What do you need help with? ">
+                        {% comment %} <input type="text" placeholder="What do you need help with? "> {% endcomment %}
                         <p class="bold_text">
                             Popular: Landscaping, Painting, Hire a Plumber
                         </p>
@@ -179,127 +179,32 @@
             </div>
         </div>
         <!-- Pros -->
-        <!-- <div class="vertical gap-20 justify-start align-start padding-10 fullwidth maxwidth">
+        <div class="vertical gap-20 justify-start align-start padding-10 fullwidth maxwidth">
             <div class="horizontal justify-between align-center fullwidth">
                 <p class="sub_head_2">Find local professionals on <span class="imp_text ">HomeRenovation</span> </p>
                 <button class="main_btn">View All</button>
             </div>
             <div class="cards_grid paddingX fullwidth">
-                <div class="bx-shadow vertical gap-10 align-center justify-center">
-                    <img src="{% static 'media/pros.png' %}" alt="" class="card_img">
-                    <div class="padding-10">
-                        <div class="vertical justify-start align-start">
-                            <p class="bold_text_2">
-                                Brighto Painting Service
-                            </p>
-                            <p class="hero_text_2">Painting</p>
-                            <div class="horizontal_2 gap-5 Rating hero_text_2">
-                                <i class="fa-solid fa-star"></i> 5/5 (2 Jobs)
+
+                {% for worker in workers %}
+                    <div class="bx-shadow vertical gap-10 align-center justify-center">
+                        <img src="{{worker.user.get_profile_pic}}" alt="" class="card_img">
+                        <div class="padding-10">
+                            <div class="vertical justify-start align-start">
+                                <p class="bold_text_2">
+                                    {{worker.user.name}}
+                                </p>
+                                <p class="hero_text_2">{{worker.profession}}</p>
+                                <div class="horizontal_2 gap-5 Rating hero_text_2">
+                                    <i class="fa-solid fa-star"></i> {{worker.rating}} ({{worker.count_projects}} Jobs)
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="bx-shadow vertical gap-10 align-center justify-center">
-                    <img src="{% static 'media/pros.png' %}" alt="" class="card_img">
-                    <div class="padding-10">
-                        <div class="vertical justify-start align-start">
-                            <p class="bold_text_2">
-                                Brighto Painting Service
-                            </p>
-                            <p class="hero_text_2">Painting</p>
-                            <div class="horizontal_2 gap-5 Rating hero_text_2">
-                                <i class="fa-solid fa-star"></i> 5/5 (2 Jobs)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bx-shadow vertical gap-10 align-center justify-center">
-                    <img src="{% static 'media/pros.png' %}" alt="" class="card_img">
-                    <div class="padding-10">
-                        <div class="vertical justify-start align-start">
-                            <p class="bold_text_2">
-                                Brighto Painting Service
-                            </p>
-                            <p class="hero_text_2">Painting</p>
-                            <div class="horizontal_2 gap-5 Rating hero_text_2">
-                                <i class="fa-solid fa-star"></i> 5/5 (2 Jobs)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bx-shadow vertical gap-10 align-center justify-center">
-                    <img src="{% static 'media/pros.png' %}" alt="" class="card_img">
-                    <div class="padding-10">
-                        <div class="vertical justify-start align-start">
-                            <p class="bold_text_2">
-                                Brighto Painting Service
-                            </p>
-                            <p class="hero_text_2">Painting</p>
-                            <div class="horizontal_2 gap-5 Rating hero_text_2">
-                                <i class="fa-solid fa-star"></i> 5/5 (2 Jobs)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bx-shadow vertical gap-10 align-center justify-center">
-                    <img src="{% static 'media/pros.png' %}" alt="" class="card_img">
-                    <div class="padding-10">
-                        <div class="vertical justify-start align-start">
-                            <p class="bold_text_2">
-                                Brighto Painting Service
-                            </p>
-                            <p class="hero_text_2">Painting</p>
-                            <div class="horizontal_2 gap-5 Rating hero_text_2">
-                                <i class="fa-solid fa-star"></i> 5/5 (2 Jobs)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bx-shadow vertical gap-10 align-center justify-center">
-                    <img src="{% static 'media/pros.png' %}" alt="" class="card_img">
-                    <div class="padding-10">
-                        <div class="vertical justify-start align-start">
-                            <p class="bold_text_2">
-                                Brighto Painting Service
-                            </p>
-                            <p class="hero_text_2">Painting</p>
-                            <div class="horizontal_2 gap-5 Rating hero_text_2">
-                                <i class="fa-solid fa-star"></i> 5/5 (2 Jobs)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bx-shadow vertical gap-10 align-center justify-center">
-                    <img src="{% static 'media/pros.png' %}" alt="" class="card_img">
-                    <div class="padding-10">
-                        <div class="vertical justify-start align-start">
-                            <p class="bold_text_2">
-                                Brighto Painting Service
-                            </p>
-                            <p class="hero_text_2">Painting</p>
-                            <div class="horizontal_2 gap-5 Rating hero_text_2">
-                                <i class="fa-solid fa-star"></i> 5/5 (2 Jobs)
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bx-shadow vertical gap-10 align-center justify-center">
-                    <img src="{% static 'media/pros.png' %}" alt="" class="card_img">
-                    <div class="padding-10">
-                        <div class="vertical justify-start align-start">
-                            <p class="bold_text_2">
-                                Brighto Painting Service
-                            </p>
-                            <p class="hero_text_2">Painting</p>
-                            <div class="horizontal_2 gap-5 Rating hero_text_2">
-                                <i class="fa-solid fa-star"></i> 5/5 (2 Jobs)
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
 
             </div>
-        </div> -->
+        </div>
 
 
         

@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlogSinglePage</title>
+  <link href="fontawesomefree/css/all.min.css" rel="stylesheet" type="text/css" />
+  <!-- One file includes all the Font Awesome Free icons and utilities -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="fontawesomefree/js/all.min.js"></script>
+
+  <link rel="stylesheet" href="{% static '/css/index.css' %}" />
+  <link rel="stylesheet" href="{% static '/css/news.css' %}" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+
+  <style>
+    .youtubevideo video, .youtubevideo iframe{
+      width: 100%;
+      height: 100%;
+      max-height: 400px;
+      object-fit: contain;
+      background-color: #1b9274;
+    }
+  </style>
+
+</head>
+
+<body>
+  {% include 'components/header.html'%}
+
+  <section class="blog_single_bg blog_bg"
+    style="background-image:url({% if blog.image %} {{blog.image.url}} {%endif %})">
+      <div style="max-width: 1601px;margin: 0 auto;width: 100%;">
+        <div class="single_blog_bg_inner">
+          <div class="single_blog_main_card">
+            <div class="bgbox bgbox1"></div>
+            <div class="single_blog_card">
+              <div class="blog_content">
+                <p class="main_para">{{blog.date}} | {{blog.author}}</p>
+                <h2 class="main_blog_head">
+                  {{blog.title}}
+                </h2>
+                <p class="small_text">
+                  {{blog.subtitle}}
+                </p>
+              </div>
+            </div>
+            <div class="bgbox bgbox2"></div>
+          </div>
+        </div>
+      </div>
+  </section>
+  <section class="text-sect " style="max-width: 1601px; margin: 0 auto;;">
+    <div class="horizontal_flex space-between align-start gap-20 fullwidth" style="align-items: flex-starta;">
+
+      <div class="blog_content fullwidth">
+        <p class="main_para">
+          {{blog.first_para}}
+        </p>
+
+
+      </div>
+
+      {% if blog.video or blog.video_url %}
+      <div class="single_img_div fullwidth youtubevideo">
+        {% if blog.video %}
+            <video  controls>
+              <source src="{{ blog.video.url }}" type='video/mp4'>
+              Your browser does not support the video tag.
+            </video>
+            {% else %}
+              <iframe 
+                src="{{ blog.embedUrl }}" frameborder="0"allowfullscreen="" 
+                ng-show="showvideo">
+              </iframe>
+          {% endif %}
+
+      </div>
+      {% endif %}
+    </div>
+
+    aple
+   
+
+    
+    <div class="head_Sect">
+          
+      <h1>{{blog.heading1}}</h1>
+      <p>
+        {{blog.second_para}}
+      </p>
+      <ul>
+        {% for item in blog.list1_as_list %}
+        <li>{{ item }}</li>
+        {% endfor %}
+
+      </ul>
+    </div>
+
+
+    <div class="head_Sect" style="display: none;">
+      <h4>{{blog.heading2}}</h4>
+      <p>
+        {{blog.third_para}}
+      </p>
+      <ol>
+
+        {% for line in blog.list2_as_list %}
+        <li>{{ line }}</li>
+        {% endfor %}
+
+      </ol>
+    </div>
+
+    <div class="blogs_grid">
+      {% for img in images %}
+      {% if img %}
+      <div class="horizontal blogs_imgs brcontent">
+        <img src="{{img.image.url}}" alt="">
+      </div>
+      {% else %}
+      {% endif %}
+      {% endfor %}
+
+    </div>
+  
+  
+  
+  </section>
+
+
+
+
+
+
+  <section class="latestnews">
+    <div class="main_news_div">
+      {% for blog in blogs %}
+      {% if blog is not None %}
+      <div class="cardnews" data-aos="zoom-in" data-aos-delay="">
+        <div class="newsimgdiv">
+          <button>{{blog.category}}</button>
+          <img src="{% if blog.image %} {{ blog.image.url }} {% endif %}" alt="" />
+        </div>
+        <div class="textnewsdiv">
+          <h2>{{blog.title}}</h2>
+          <div class="progress-container">
+            <div class="progress-bar" style="width: 30%"></div>
+          </div>
+          <p class="">{{blog.date}}</p>
+        </div>
+        <a href="{% url 'blogsinglepage' %}?blog={{blog.id}}"><button class="mainbtn">Read</button></a>
+      </div>
+      {% endif %}
+      {% endfor%}
+</div>
+  </section>
+  {% include 'components/footer.html'%}
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+  <script src="{% static 'js/Mainscript.js' %}"></script>
+</body>
+
+</html>

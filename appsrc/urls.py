@@ -15,7 +15,6 @@ urlpatterns = [
     
     
     
-    
     path('login/',views.LoginPage,name='login'),
     path('logout/',views.logout,name='logout'),
     path('register/',views.SignUpPage,name='register'),
@@ -61,7 +60,18 @@ urlpatterns = [
     path('acceptorder/<str:id>',views.AcceptOrder,name='acceptorder'),
     path('paymentpage/<str:order_id>',views.PaymentPage,name='paymentpage'),
     path('clientprofile/',views.ClientProfile,name='clientprofile'),
+     
     path('editclientprofile/',views.EditClientProfile,name='editclientprofile'),
+    
+    
+    
+    path('blogs/',views.AllBlogs,name='blogs'),
+    path('ReadBlog/',views.ReadBlog,name='blogsinglepage'),
+    
+    
+    path('adminBlogs/',views.AdminBlogs,name='adminBlogs'),
+    path('EditBlog/',views.EditBlog,name='editBlog'),
+    path('addBlog/',views.AddBlog,name='addBlog'),
     
     
     path('getReviews/',views.getReviews,name='getReviews'),

@@ -7,7 +7,7 @@
                 <p for="worker_name" class="bold_text_2">Project Title:</p>
                 <p class="card_text" id="project_title">Joseph</p>
             </div>
-            <button class="main_btn" id="openModalBtn">Bidding</button>
+            <button class="main_btn" id="openModalBtn">Send Quotation</button>
             <div id="AllModal" class="modal">        
                 <form class="vertical justify-start align-start gap-10 padding-10" action="{% url 'send_bid'%}" method="POST">
                     {% csrf_token %} 

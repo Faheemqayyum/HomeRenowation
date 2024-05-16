@@ -16,5 +16,6 @@ admin.site.register(User_Message)
 admin.site.register(ChatRoom_Model)
 admin.site.register(Order)
 admin.site.register(Feedback)
-admin.site.register(Prices)
 
+admin.site.register(Prices)
+admin.site.register(Blog)
