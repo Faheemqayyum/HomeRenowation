@@ -36,30 +36,23 @@
                     <table class="dash_table">
                         <tr>
                             <th>Project Title</th>
-                            <th>Project Description</th>
-                            <th>Category</th>
+                            <th>Client</th>
+                            <th>Worker</th>
                             <th>Budget</th>
-                            <th>Remianing Days</th>
-                            <th>Status</th>
+                            <th>Category</th>
+                            <th>Date Started</th>
+                            
                         </tr>
-                        {% for worker in workers %}
+                        {% for project in projects %}
                         <tr>
-                            <td><img src ="{{worker.get_profile_pic}}" class="profile_pic"></td>
-                            <td>{{worker.first_name}} {{worker.last_name}}</td>
-                            <td>{{worker.email}}</td>
-                            <td>{{worker.worker_profile.all.0.profession}}</td>
-                            <td>{{worker.cnic}}</td>
-                            <td>{{worker.phone}}</td>
-                            <td class="horizontal gap-10 justify-center align-center">
-                                {% if worker.is_declined %}
-                                <button class="small_btn">Declined</button>
-                            {% elif worker.is_approved %}
-                                <button class="small_btn">Approved</button>
-                            {% else %}
-                                <button class="small_btn">Pending</button>
-                            {% endif %}
+                            
+                            <td>{{project.bid.quote.project_name}} </td>
+                            <td>{{project.client.name}} </td>
+                            <td>{{project.bid.user.name}} </td>
 
-                            </td>
+                            <td>{{project.bid.bid_amount}}</td>
+                            <td>{{project.bid.quote.category}}</td>
+                            <td>{{project.date|date}}</td>
                         </tr>
                         {% endfor %}
                     </table>

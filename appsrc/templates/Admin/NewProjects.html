@@ -39,26 +39,19 @@
                             <th>Project Description</th>
                             <th>Category</th>
                             <th>Budget</th>
-                            <th>Deadline</th>
-                            <th>Status</th>
+                            <th>Date</th>
+                            <th>Bids</th>
                         </tr>
-                        {% for worker in workers %}
+                        {% for project in projects %}
                         <tr>
-                            <td><img src ="{{worker.get_profile_pic}}" class="profile_pic"></td>
-                            <td>{{worker.first_name}} {{worker.last_name}}</td>
-                            <td>{{worker.email}}</td>
-                            <td>{{worker.worker_profile.all.0.profession}}</td>
-                            <td>{{worker.cnic}}</td>
-                            <td>{{worker.phone}}</td>
+                            
+                            <td>{{project.project_name}} </td>
+                            <td>{{project.description}}</td>
+                            <td>{{project.category}}</td>
+                            <td>{{project.budget}}</td>
+                            <td>{{project.date_placed|date}}</td>
                             <td class="horizontal gap-10 justify-center align-center">
-                                {% if worker.is_declined %}
-                                <button class="small_btn">Declined</button>
-                            {% elif worker.is_approved %}
-                                <button class="small_btn">Approved</button>
-                            {% else %}
-                                <button class="small_btn">Pending</button>
-                            {% endif %}
-
+                                {{project.quotes}}
                             </td>
                         </tr>
                         {% endfor %}
