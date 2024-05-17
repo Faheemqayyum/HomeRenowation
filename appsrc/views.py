@@ -314,8 +314,12 @@ def MemberDetail(request, id):
     return redirect("homepage")
   
   return  render(request, 'Admin/RecentMemberDetail.html', {"user":user})
+
+
 def NewProjects(request):
-  return  render(request, 'Admin/NewProjects.html')
+  projects = NewQuote.objects.filter(~Q(bids__order__isnull=False))
+  
+  return  render(request, 'Admin/NewProjects.html',{'projects':projects})
 def PaymentApprove(request):
   
   
@@ -332,8 +336,13 @@ def PaymentApprove(request):
   approved =  Order.objects.filter(paid = True, payment_verified=True).order_by('-id')
   
   return  render(request, 'Admin/PaymentApproval.html',{"approvals":approvals, 'approved':approved})
+
+
+
 def ActiveProject(request):
-  return  render(request, 'Admin/ActiveProjects.html')
+  projects = Order.objects.filter(completed = False)
+  
+  return  render(request, 'Admin/ActiveProjects.html',{'projects':projects})
 
 # Worker
 @login_required(login_url='login')
@@ -489,10 +498,12 @@ def EditWorkerProfile(request):
 @login_required(login_url='login')
 def ClientDashboard(request):
   
+  uploaded = request.user.order.all().count()
+  completed = request.user.order.filter(completed = True).count()
   # recent bids
   bids = Bid.objects.filter(quote__email = request.user.email, status__iexact = 'Sent').order_by('-id')[:10]
   
-  return  render(request, 'Client/Dashboard.html',{'bids':bids})
+  return  render(request, 'Client/Dashboard.html',{'bids':bids,'uploaded':uploaded,'completed':completed})
 
 
 @login_required(login_url='login')
@@ -654,6 +665,10 @@ def AcceptOrder(request, id):
       bid.accepted = True
       bid.status = "accepted"
       bid.save()
+      quote = NewQuote.objects.get(id = bid.quote.id)
+      quote.order_placed = True
+      quote.save()
+      
       order = Order.objects.create(
         bid = bid,
         client = User.objects.get(id = request.user.id),
