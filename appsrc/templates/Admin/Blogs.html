@@ -20,54 +20,55 @@
     <div class="main_wrapper">
         {% include 'components/adminsidebar.html'%}
         <div class="right_container">
-            <p class="sub_head imptext">Blogs</p>
-            <a href="{% url 'addBlog' %}"> 
-            <button type='button' class="small_btn">Add Blogs</button>
-            </a>
-            <div class="content_wrapper">
-                <div class="horizontal justify-between align-start fullwidth paddingX gap-10">
-                    <div class="vertical gap-10 scroll_div">
+            <div class="horizontal justify-between align-center">
+                <p class="sub_head_2  imptext">Blogs</p>
+                <a href="{% url 'addBlog' %}">
+                    <button type='button' class="main_btn">Add Blogs</button>
+                </a>
+            </div>
+            <div class="fullwidth">
+                <div class="horizontal justify-between align-start fullwidth paddingX gap-10 fullwidth">
+                    <div class="vertical gap-20 justify-between align-start fullwidth">
                         {% for blog in blogs %}
-                            <div class="horizontal gap-10 align-center card_border worker_card padding-10 fullwidth">
-                                <div class="vertical">
-                                    <img src="{{blog.get_image}}" alt="" class="blog_image" />
-                                </div>
-                                <div class="vertical">
-                                    <div class="horizontal justify-between align-center fullwidth gap-10">
-                                        <div class="vertical gap-5 fullwidth">
-                                            <p class="card_text service">{{blog.title}}</p>
-                                            <div class="vertical gap-5 margin-bottom">
-                                                <div class="Rating">
-                                                    <i class="fa-solid fa-star"></i> {{blog.subtitle}} 
-                                                </div>
-                                                <p class="card_text Rating">
-                                                    <i class="fa-solid fa-location-dot "></i> <p class="city"> </p>  
-                                                </p>
+                        <div class="horizontal gap-10 align-start bx-shadow padding-10 fullwidth">
+                            <div class="vertical fullwidth">
+                                <img src="{{blog.get_image}}" alt="" class="blog_img" />
+                            </div>
+                            <div class="vertical gap-10 justify-start align-start fullwidth">
+                                <div class="horizontal justify-between align-center fullwidth gap-10">
+                                    <div class="vertical gap-5 fullwidth padding-20">
+                                        <p class="blog_title">{{blog.title}}</p>
+                                        <div class="vertical gap-5 margin-bottom">
+                                            <div class="Rating"> <i class="fa-solid fa-star"></i>1
+                                                <p class="blog_subtitle"> {{blog.subtitle}} </p>
                                             </div>
                                         </div>
-                                        <div>
-                                            <a class="main_btn" href="{% url 'editBlog' %}?blog_id={{blog.id}}">Edit Blog</a>
-                                            <form method = "POST">
-                                                {% csrf_token %}
-                                                <input name="blog_id" value="{{blog.id}}" hidden>
-                                                <input name="action" value="delete_blog" hidden>
-                                                <button class="main_btn" type='submit'>Delete Blog</button>
-                                            </form>
-                                        </div>
                                     </div>
-                                    <div class="padding-10">
-                                        <div class="card_title ">
-                                            {{pro.worker_profile.all.0.profession}}
-                                        </div>
+
+                                </div>
+                                <div class="padding-10">
+                                    <div class="card_title ">
+                                        {{pro.worker_profile.all.0.profession}}
                                     </div>
                                 </div>
                             </div>
+                            <div class="horizontal justify-end gap-20 align-center fullwidth">
+                                <a class="main_btn" href="{% url 'editBlog' %}?blog_id={{blog.id}}">Edit
+                                    Blog</a>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <input name="blog_id" value="{{blog.id}}" hidden>
+                                    <input name="action" value="delete_blog" hidden>
+                                    <button class="main_btn" type='submit'>Delete Blog</button>
+                                </form>
+                            </div>
+                        </div>
                         {% endfor %}
-                       
-                
+
+
+                    </div>
                 </div>
-            </div>
-                
+
 
             </div>
         </div>

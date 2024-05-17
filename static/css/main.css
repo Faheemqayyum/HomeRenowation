@@ -94,6 +94,9 @@ a {
 .padding-10 {
   padding: 10px;
 }
+.padding-20 {
+  padding: 20px;
+}
 .margin-bottom {
   margin-bottom: 10px;
 }
@@ -271,9 +274,6 @@ a {
   background-color: white;
   color: var(--primarycl);
   border: 1px solid var(--primarycl);
-}
-.web_inputs{
-  align-items: center;
 }
 .web_inputs label {
   width: 100%;

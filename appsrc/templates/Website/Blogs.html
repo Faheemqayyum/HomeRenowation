@@ -20,36 +20,32 @@
   {% include 'components/header.html'%}
 
   <main>
-    <section class="Campaignbg">
-      <div class="horizontal_flex space-between  align-center fullwidth" style="margin-top: 20px;">
-        <div class="Campaigntext">
-          <h1>
-            <!-- You can help lots of <span>people</span> by donating little..​ -->
-            News
-          </h1>
-        </div>
+    <section class="paddingY fullwidth">
+      <div class="horizontal justify-between  align-center fullwidth paddingX">
+        <h1 class="Campaigntext">
+          Blogs
+        </h1>
       </div>
-
     </section>
 
 
-    <section class="blogs_cards_sect">
-      <div class="blog_main_wrapper">
+    <section class="fullwidth paddingX margin-bottom">
+      <div class="vertical justify-between align-start gap-20">
         {% for blog in blogs %}
-        <div class="blogs_card">
-          <div class="blog_img_div">
-            <img src="{% if blog.image %} {{blog.image.url}} {% endif %}" alt="" />
+        <div class="bx-shadow fullwidth horizontal justify-between align-start">
+          <div class="fullwidth">
+            <img src="{% if blog.image %} {{blog.image.url}} {% endif %}" alt=""  class="blog_img"/>
           </div>
-          <div class="blog_content_div" style='width:100%'>
-            <p class="main_para">{{blog.date}} | {{blog.author}}</p>
-            <h2 class="main_blog_head">
+          <div class="vertical gap-10 justify-start align-start fullwidth padding-20">
+            <p class="blog_date">{{blog.date}} | {{blog.author}}</p>
+            <h2 class="blog_title">
               {{blog.title}}
             </h2>
-            <p class="small_text">
+            <p class="blog_subtitle">
               {{blog.subtitle}}
             </p>
-            <div class="blog_cardbtn">
-              <a href="{% url 'blogsinglepage' %}?blog={{blog.id}}"><button class="mainbtn">Read More</button></a>
+            <div class="">
+              <a href="{% url 'blogsinglepage' %}?blog={{blog.id}}"><button class="main_btn">Read More</button></a>
             </div>
           </div>
         </div>

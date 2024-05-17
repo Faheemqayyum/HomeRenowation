@@ -23,19 +23,10 @@
     <div class="right_container">
       <p class="sub_head_2 imptext">Add Blog</p>
       <div class="content_wrapper">
-
         <div class="">
-          <p class="sub_head_2 imptext">Blogs</p>
-          
               <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="dialog_header">
-                  <h1>Add Blog</h1>
-                  <button type='button' class="close-button">
-                    <i class="fa-solid fa-close"></i>
-                  </button>
-                </div>
-                <div class="dialog_content">
+                <div class="vertical fullwidth gap-10 justify-start ">
                   <div class="web_inputs">
                     <label for="addtitle">Add Title</label>
                     <input type="text" name="addtitle" />
@@ -48,7 +39,7 @@
                     <label for="AuthorName">Add Author Name</label>
                     <input type="text" name="AuthorName" />
                   </div>
-                  <div class="date_flex" >
+                  <div class="web_inputs" >
                     <label for="Date">Add Date</label>
                     <input type="date" name="Date" />
                   </div>
@@ -91,56 +82,14 @@
  -->
 
 
-                  <div class="addImage_flex">
+                  <div class="web_inputs">
                     <label for="addamount">Thumbnail/Cover Image</label>
-                    <div class="uploadimg_div">
-                      <input type="file" id="upload2" name='blog_image' accept='image/*'>
-                      <label for="upload2" class="upload2_img_label">Upload Image</label>
-                      <div id="imageList2"></div>
-                    </div>
+                    <input type="file" id="upload2" name='blog_image' accept='image/*'>
                   </div>
 
 
 
-                  <script>
-
-                    document.getElementById('upload2').addEventListener('change', handleFileSelect);
-
-                    function handleFileSelect(event) {
-                      const files = event.target.files;
-
-                      for (let i = 0; i < 1; i++) {
-                        const file = files[i];
-
-                        // Create image container
-                        const imageContainer = document.createElement('div');
-                        imageContainer.className = 'image-container';
-
-                        // Create close button
-                        const closeButton = document.createElement('button');
-                        closeButton.className = 'img_close-btn';
-                        closeButton.innerHTML = '&times;';
-                        closeButton.addEventListener('click', () => {
-                          imageContainer.remove();
-                        });
-
-                        // Create image element
-                        const img = document.createElement('img');
-                        img.src = URL.createObjectURL(file);
-
-                        // Append elements to the container
-                        imageContainer.appendChild(closeButton);
-                        imageContainer.appendChild(img);
-
-                        // Append container to the image list
-                        document.getElementById('imageList2').appendChild(imageContainer);
-                      }
-                    }
-
-                   </script>
-<!-- 
-
-                  <div class="addImage_flex"   style="display: none;">
+                  <!-- <div class="addImage_flex"   style="display: none;">
                     <label for="addamount">Add Cover Image</label>
                     <div class="uploadimg_div">
                       <input type="file" id="upload" name='blog_image2' accept='image/*'>
@@ -155,7 +104,7 @@
                   <div class="checkbox_flex">
                     <label for="uploadCheckbox1" class="uploadvideo">Upload Video</label>
                     <input type="checkbox" id="uploadCheckbox1" onchange="toggleUploadSection(1)">
-                  </div> -->
+                  </div> --> 
 
                   <!-- <div class="upload-section full width" id="uploadSection1">
                     <label for="uploadVideo1" class="uploadvideo">Upload Video File</label>
@@ -181,9 +130,8 @@
                     }
                   </script>
 
- -->
 
-                  <!-- <div class="addImage_flex">
+                  <div class="addImage_flex">
                     <label for="addamount">Add Small Images</label>
                     <div class="uploadimg_div">
                       <div class="vertical product_input gap-10 fullwidth fullheight">
@@ -234,10 +182,9 @@
                     });
 
 
-                  </script>
- -->
+                  </script> -->
                   <div class="addbtndiv">
-                    <button type='submit' class="mainbtn">Add News</button>
+                    <button type='submit' class="main_btn">Add Blog</button>
                   </div>
                 </div>
               </form>

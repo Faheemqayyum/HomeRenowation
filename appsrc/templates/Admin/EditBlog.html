@@ -13,287 +13,290 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="fontawesomefree/js/all.min.js"></script>
 
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" />
   <link rel="stylesheet" href="{% static '/css/dashboard.css' %}" />
-  <link rel="stylesheet" href="{% static '/css/news.css' %}" />
 
 </head>
 
 <body>
   <main>
-    <section class="vertical gap-20">
+
+    <div class="main_wrapper">
       {% include 'components/adminsidebar.html'%}
-      <div class="vertical gap-20">
-        <div>
-          <form id="edit_blog_form" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="horizontal">
-              <h1>Edit Blogs</h1>
-            </div>
-            <div>
-              <div class="web_inputs">
-                <input type="text" value="{{blog.id}}" name="id" hidden />
+      <div class="right_container">
+        <p class="sub_head_2 imptext">Add Blog</p>
+        <div class="fullwidth">
+          <div class="fullwidth">
+            <form id="edit_blog_form" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="horizontal">
+                <h1>Edit Blogs</h1>
               </div>
-              <div class="web_inputs">
-                <label for="addtitle">Add Title</label>
-                <input type="text" value="{{blog.title}}" name="addtitle" />
-              </div>
-              <div class="web_inputs">
-                <label for="subtitle">Add Subtitle</label>
-                <input type="text" value="{{blog.subtitle}}" name="subtitle" />
-              </div>
-              <div class="web_inputs" style="display: none;">
-                <label for="AuthorName">Add Author Name</label>
-                <input type="text" value="{{blog.author}}" name="AuthorName" />
-              </div>
-              <div class="date_flex" style="display: none;">
-                <label for="Date">Add Date</label>
-                <input type="date" value="{{ blog.date|date:'Y-m-d' }}" name="Date" />
-              </div>
+              <div class="vertical justify-start align-start gap-20 fullwidth">
+                <div class="web_inputs">
+                  <input type="text" value="{{blog.id}}" name="id" hidden />
+                </div>
+                <div class="web_inputs">
+                  <label for="addtitle">Add Title</label>
+                  <input type="text" value="{{blog.title}}" name="addtitle" />
+                </div>
+                <div class="web_inputs">
+                  <label for="subtitle">Add Subtitle</label>
+                  <input type="text" value="{{blog.subtitle}}" name="subtitle" />
+                </div>
+                <div class="web_inputs" style="display: none;">
+                  <label for="AuthorName">Add Author Name</label>
+                  <input type="text" value="{{blog.author}}" name="AuthorName" />
+                </div>
+                <div class="date_flex" style="display: none;">
+                  <label for="Date">Add Date</label>
+                  <input type="date" value="{{ blog.date|date:'Y-m-d' }}" name="Date" />
+                </div>
 
-              <!-- <div class="web_inputs">
-                <label for="adddesc">Add Description</label>
-                <textarea name="adddesc" id="adddesc" cols="30" rows="10"></textarea>
-              </div> -->
+                <!-- <div class="web_inputs">
+                  <label for="adddesc">Add Description</label>
+                  <textarea name="adddesc" id="adddesc" cols="30" rows="10"></textarea>
+                </div> -->
 
-              <div class="web_inputs">
-                <label for="adddesc">Add Description</label>
-                <textarea value="{{blog.first_para}}" name="first_para" id="first_para" cols="30"
-                  rows="10">{{blog.first_para}}</textarea>
-              </div>
-              <!-- <div class="web_inputs">
-                <label for="subtitle">Heading </label>
-                <input type="text" value="{{blog.heading1}}" name="heading1" />
-              </div>
-              <div class="web_inputs">
-                <label for="adddesc">Paragraph </label>
-                <textarea value="" name="second_para" id="second_para" cols="30"
-                  rows="10">
-                  {{blog.second_para}}
-                </textarea>
-              </div>
+                <div class="web_inputs">
+                  <label for="adddesc">Add Description</label>
+                  <textarea value="{{blog.first_para}}" name="first_para" id="first_para" cols="30"
+                    rows="10">{{blog.first_para}}</textarea>
+                </div>
+                <!-- <div class="web_inputs">
+                  <label for="subtitle">Heading </label>
+                  <input type="text" value="{{blog.heading1}}" name="heading1" />
+                </div>
+                <div class="web_inputs">
+                  <label for="adddesc">Paragraph </label>
+                  <textarea value="" name="second_para" id="second_para" cols="30"
+                    rows="10">
+                    {{blog.second_para}}
+                  </textarea>
+                </div>
+  
+  
+                <div class="web_inputs"  style="display: none;">
+                  <label for="subtitle">Heading 2</label>
+                  <input type="text" value="{{blog.heading2}}" name="heading2" />
+                </div>
+  
+                <div class="web_inputs"  style="display: none;">
+                  <label for="adddesc">Paragraph</label>
+                  <textarea value="{{blog.third_para}}" name="third_para" id="third_para" cols="30" rows="10">{{blog.third_para}}</textarea>
+                </div>
+                <div class="web_inputs">
+                  <label for="adddesc">List </label>
+                  <textarea value="{{blog.list1}}" name="list1" id="list1" cols="30" rows="10">{{blog.list1}}</textarea>
+                </div>
+                <div class="web_inputs"  style="display: none;">
+                  <label for="adddesc">List 2</label>
+                  <textarea value="{{blog.list2}}" name="list2" id="list2" cols="30" rows="10">{{blog.list2}}</textarea>
+                </div>
+                {% comment %} <div class="web_inputs">
+                  <label for="AuthorName">Reviewer</label>
+                  <input type="text" value="{{blog.reviewer}}" name="reviewer" />
+                </div>
+                <div class="web_inputs">
+                  <label for="adddesc">Review </label>
+                  <textarea value="{{blog.review}}" name="review" id="review" cols="30" rows="10"></textarea>
+                </div> {% endcomment %} -->
 
-
-              <div class="web_inputs"  style="display: none;">
-                <label for="subtitle">Heading 2</label>
-                <input type="text" value="{{blog.heading2}}" name="heading2" />
-              </div>
-
-              <div class="web_inputs"  style="display: none;">
-                <label for="adddesc">Paragraph</label>
-                <textarea value="{{blog.third_para}}" name="third_para" id="third_para" cols="30" rows="10">{{blog.third_para}}</textarea>
-              </div>
-              <div class="web_inputs">
-                <label for="adddesc">List </label>
-                <textarea value="{{blog.list1}}" name="list1" id="list1" cols="30" rows="10">{{blog.list1}}</textarea>
-              </div>
-              <div class="web_inputs"  style="display: none;">
-                <label for="adddesc">List 2</label>
-                <textarea value="{{blog.list2}}" name="list2" id="list2" cols="30" rows="10">{{blog.list2}}</textarea>
-              </div>
-              {% comment %} <div class="web_inputs">
-                <label for="AuthorName">Reviewer</label>
-                <input type="text" value="{{blog.reviewer}}" name="reviewer" />
-              </div>
-              <div class="web_inputs">
-                <label for="adddesc">Review </label>
-                <textarea value="{{blog.review}}" name="review" id="review" cols="30" rows="10"></textarea>
-              </div> {% endcomment %} -->
-
-              <div class="addImage_flex">
-                <label for="addamount">Cover/Thumbnail</label>
-                <div class="uploadimg_div">
-                  <input type="file" id="upload" name='image' accept='image/*'>
-                  <label for="upload" class="upload_img_label">Upload Image</label>
-                  <div id="imageList">
-                    <div class="image-container">
-                      <img src="{% if blog.image %} {{ blog.image.url }} {% endif %}">
+                <div class="addImage_flex">
+                  <label for="addamount">Cover/Thumbnail</label>
+                  <div class="uploadimg_div">
+                    <input type="file" id="upload" name='image' accept='image/*'>
+                    <label for="upload" class="upload_img_label">Upload Image</label>
+                    <div id="imageList">
+                      <div class="image-container">
+                        <img src="{% if blog.image %} {{ blog.image.url }} {% endif %}">
+                      </div>
                     </div>
                   </div>
+
                 </div>
 
-              </div>
-
-              <!-- <div class="web_inputs">
-                <label for="youtubeurl">Enter Video Url</label>
-                <input type="text" name="youtubeurl">
-              </div>
-
-              <div class="horizontal_flex gap-10 fullwidth" >
-                <label for="uploadCheckbox1" class="uploadvideo">Upload Video</label>
-                <input type="checkbox" id="uploadCheckbox1" onchange="toggleUploadSection(1)">
-              </div>
-              <div class="upload-section" id="uploadSection1" style="display: none;">
-                  <label for="uploadVideo1" class="uploadvideo">Upload Video File</label>
-    
-                  {% comment %} <input type="file" id="uploadVideo1" name="uploadVideo1"> {% endcomment %}
-                  <input type='file' name='video' accept="video/mp4,video/x-m4v,video/*" class="settings_btn"/>
-              </div>
+                <!-- <div class="web_inputs">
+                  <label for="youtubeurl">Enter Video Url</label>
+                  <input type="text" name="youtubeurl">
+                </div>
   
-              <script>
-                function toggleUploadSection(videoNumber) {
-                  var checkbox = document.getElementById('uploadCheckbox' + videoNumber);
-                  var uploadSection = document.getElementById('uploadSection' + videoNumber);
-
-                  if (checkbox.checked) {
-                    uploadSection.style.display = 'flex';
-                   } else {
-                    uploadSection.style.display = 'none';
+                <div class="horizontal_flex gap-10 fullwidth" >
+                  <label for="uploadCheckbox1" class="uploadvideo">Upload Video</label>
+                  <input type="checkbox" id="uploadCheckbox1" onchange="toggleUploadSection(1)">
+                </div>
+                <div class="upload-section" id="uploadSection1" style="display: none;">
+                    <label for="uploadVideo1" class="uploadvideo">Upload Video File</label>
+      
+                    {% comment %} <input type="file" id="uploadVideo1" name="uploadVideo1"> {% endcomment %}
+                    <input type='file' name='video' accept="video/mp4,video/x-m4v,video/*" class="settings_btn"/>
+                </div>
+    
+                <script>
+                  function toggleUploadSection(videoNumber) {
+                    var checkbox = document.getElementById('uploadCheckbox' + videoNumber);
+                    var uploadSection = document.getElementById('uploadSection' + videoNumber);
+  
+                    if (checkbox.checked) {
+                      uploadSection.style.display = 'flex';
+                     } else {
+                      uploadSection.style.display = 'none';
+                    }
                   }
-                }
-
-                $(document).ready(function(){
-                  $('#edit_blog_form').keydown(function(event){
-                  if(event.keyCode == 13) {
-                      event.preventDefault();
-                      return false;
-                     }
-                  });
-
-                  $('#list1').keydown(function(event){
+  
+                  $(document).ready(function(){
+                    $('#edit_blog_form').keydown(function(event){
                     if(event.keyCode == 13) {
-                      f = $('#list1').prop("selectionStart");
-                      document.getElementById("list1").value = document.getElementById("list1").value.substring(0,f) + "\n" + document.getElementById("list1").value.substring(f,document.getElementById("list1").value.length)
-
-                      $('#list1').prop("selectionStart").value = f + 1;
-                        return true;
+                        event.preventDefault();
+                        return false;
                        }
                     });
-               });
-              </script>
-
-
-              <div class="addImage_flex">
-                <label for="addamount">Add Small Images</label>
-                <div class="uploadimg_div">
-                  <div class="vertical product_input gap-10 fullwidth fullheight">
-                    <div class="image_upload vertical">
-                        <div class="vertical settingsinputs">
-                            <label for="upload_multiple" class="">Choose Images</label>
-                            <input name="small_images" type="file" id="upload_multiple" class="file-input" accept="image/*" multiple>
-                        </div>
-                        <div id="grid-layout" class="grid-layout">
-                            Thumbnails will be dynamically added here
-                        </div>
-                    </div>
+  
+                    $('#list1').keydown(function(event){
+                      if(event.keyCode == 13) {
+                        f = $('#list1').prop("selectionStart");
+                        document.getElementById("list1").value = document.getElementById("list1").value.substring(0,f) + "\n" + document.getElementById("list1").value.substring(f,document.getElementById("list1").value.length)
+  
+                        $('#list1').prop("selectionStart").value = f + 1;
+                          return true;
+                         }
+                      });
+                 });
+                </script>
+  
+  
+                <div class="addImage_flex">
+                  <label for="addamount">Add Small Images</label>
+                  <div class="uploadimg_div">
+                    <div class="vertical product_input gap-10 fullwidth fullheight">
+                      <div class="image_upload vertical">
+                          <div class="vertical settingsinputs">
+                              <label for="upload_multiple" class="">Choose Images</label>
+                              <input name="small_images" type="file" id="upload_multiple" class="file-input" accept="image/*" multiple>
+                          </div>
+                          <div id="grid-layout" class="grid-layout">
+                              Thumbnails will be dynamically added here
+                          </div>
+                      </div>
+                  </div>
+  
+  
+                  </div>
                 </div>
-
-
-                </div>
-              </div>
-              <script>
-                
-
-                document.getElementById('upload_multiple').addEventListener('change', function () {
-                const gridLayout = document.getElementById('grid-layout');
-
-                const files = Array.from(this.files);
-                files.forEach(file => {
-                    const reader = new FileReader();
-                    reader.onload = function (event) {
-                        const thumbnail = document.createElement('div');
-                        const img = document.createElement('img');
-                        const closeIcon = document.createElement('span');
-
-                        img.src = event.target.result;
-                        thumbnail.classList.add('thumbnail');
-                        closeIcon.classList.add('close-icon');
-
-                        closeIcon.innerHTML = '&times;';
-                        thumbnail.appendChild(img);
-                        thumbnail.appendChild(closeIcon);
-                        gridLayout.appendChild(thumbnail);
-
-                        closeIcon.addEventListener('click', function () {
-                            thumbnail.remove();
-                        });
-                    };
-                    reader.readAsDataURL(file);
+                <script>
+                  
+  
+                  document.getElementById('upload_multiple').addEventListener('change', function () {
+                  const gridLayout = document.getElementById('grid-layout');
+  
+                  const files = Array.from(this.files);
+                  files.forEach(file => {
+                      const reader = new FileReader();
+                      reader.onload = function (event) {
+                          const thumbnail = document.createElement('div');
+                          const img = document.createElement('img');
+                          const closeIcon = document.createElement('span');
+  
+                          img.src = event.target.result;
+                          thumbnail.classList.add('thumbnail');
+                          closeIcon.classList.add('close-icon');
+  
+                          closeIcon.innerHTML = '&times;';
+                          thumbnail.appendChild(img);
+                          thumbnail.appendChild(closeIcon);
+                          gridLayout.appendChild(thumbnail);
+  
+                          closeIcon.addEventListener('click', function () {
+                              thumbnail.remove();
+                          });
+                      };
+                      reader.readAsDataURL(file);
+                  });
                 });
-              });
-
-
-              </script>
-
-
- -->
-              <div class="addbtndiv">
-                <button type='submit' class="mainbtn">Save Changes</button>
+  
+  
+                </script>
+  
+  
+   -->
+                <div class="addbtndiv">
+                  <button type='submit' class="main_btn">Save Changes</button>
+                </div>
               </div>
+
+
+            </form>
+
+            <div class="settings_grid fullwidth">
+
+              {% for img in images %}
+
+              <div class="vertical slideimg align-center justify-center brcontent-light marginbottom a ourappeal">
+                {% if img.image %}
+                <img src="{{ img.image.url }}">
+                </img>
+
+                <form method="POST" class="bnbuttons">
+                  {% csrf_token %}
+                  <input name='img_id' value="{{img.id}}" hidden>
+                  <input name='action' value="deleteImage" hidden>
+                  <button type='submit'><i class="fa-solid fa-trash"></i></button>
+                </form>
+                {% endif %}
+              </div>
+
+              {% endfor %}
             </div>
 
-
-          </form>
-
-          <div class="settings_grid fullwidth">
-
-            {% for img in images %}
-
-            <div class="vertical slideimg align-center justify-center brcontent-light marginbottom a ourappeal">
-              {% if img.image %}
-              <img src="{{ img.image.url }}">
-              </img>
+            <div class="vertical slideimg align-center justify-center brcontent-light marginbottom  ">
+              {% if blog.video %}
+              <video controls>
+                <source src="{{ blog.video.url }}" type='video/mp4'>
+                Your browser does not support the video tag.
+              </video>
+              {% else %}
+              <iframe title="VIDEO" width="400" frameborder="0" allowfullscreen="" ng-show="showvideo"
+                src="{{blog.video_url.embedUrl}}">
+              </iframe>
+              {% endif %}
 
               <form method="POST" class="bnbuttons">
                 {% csrf_token %}
-                <input name='img_id' value="{{img.id}}" hidden>
-                <input name='action' value="deleteImage" hidden>
+                <input name='blog_id' value="{{blog.id}}" hidden>
+                <input name='action' value="deleteVideo" hidden>
                 <button type='submit'><i class="fa-solid fa-trash"></i></button>
               </form>
-              {% endif %}
             </div>
 
-            {% endfor %}
           </div>
-
-          <div class="vertical slideimg align-center justify-center brcontent-light marginbottom  ">
-            {% if blog.video %}
-            <video controls>
-              <source src="{{ blog.video.url }}" type='video/mp4'>
-              Your browser does not support the video tag.
-            </video>
-            {% else %}
-            <iframe title="VIDEO" width="400" frameborder="0" allowfullscreen="" ng-show="showvideo"
-              src="{{blog.video_url.embedUrl}}">
-            </iframe>
-            {% endif %}
-
-            <form method="POST" class="bnbuttons">
-              {% csrf_token %}
-              <input name='blog_id' value="{{blog.id}}" hidden>
-              <input name='action' value="deleteVideo" hidden>
-              <button type='submit'><i class="fa-solid fa-trash"></i></button>
-            </form>
-          </div>
-
         </div>
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+      </div>
+    </div>
+    >
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-        <script>
+    <script>
 
-          console.log(">>>>>>>>>>>>>");
-          var blog = {
-            description: "{{ blog.description|escapejs }}",
-            first_para: "{{ blog.first_para|escapejs }}",
-            second_para: "{{ blog.second_para|escapejs }}",
-            third_para: "{{ blog.third_para|escapejs }}",
-            list1: "{{ blog.list1|escapejs }}",
-            list2: "{{ blog.list2|escapejs }}",
-            review: "{{ blog.review|escapejs }}",
-          };
-          console.log(blog);
-          document.getElementById("adddesc").value = blog.description;
-          document.getElementById("first_para").value = blog.first_para;
-          document.getElementById("second_para").value = blog.second_para;
-          document.getElementById("third_para").value = blog.third_para;
-          document.getElementById("list1").value = blog.list1;
-          document.getElementById("list1").value = blog.list1;
-          document.getElementById("review").value = blog.review;
+      console.log(">>>>>>>>>>>>>");
+      var blog = {
+        description: "{{ blog.description|escapejs }}",
+        first_para: "{{ blog.first_para|escapejs }}",
+        second_para: "{{ blog.second_para|escapejs }}",
+        third_para: "{{ blog.third_para|escapejs }}",
+        list1: "{{ blog.list1|escapejs }}",
+        list2: "{{ blog.list2|escapejs }}",
+        review: "{{ blog.review|escapejs }}",
+      };
+      console.log(blog);
+      document.getElementById("adddesc").value = blog.description;
+      document.getElementById("first_para").value = blog.first_para;
+      document.getElementById("second_para").value = blog.second_para;
+      document.getElementById("third_para").value = blog.third_para;
+      document.getElementById("list1").value = blog.list1;
+      document.getElementById("list1").value = blog.list1;
+      document.getElementById("review").value = blog.review;
 
-        </script>
-
-
-
-    </section>
+    </script>
   </main>
   <script>
     document.getElementById('upload').addEventListener('change', handleFileSelect);
