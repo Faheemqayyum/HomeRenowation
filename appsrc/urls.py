@@ -16,6 +16,8 @@ urlpatterns = [
     
     
     path('login/',views.LoginPage,name='login'),
+    path('meetteam/',views.MeetTeam,name='meetteam'),
+    path('faqss/',views.FAQS,name='faqss'),
     path('logout/',views.logout,name='logout'),
     path('register/',views.SignUpPage,name='register'),
     path('resetpassword/',views.ResetPassword,name='resetpassword'),

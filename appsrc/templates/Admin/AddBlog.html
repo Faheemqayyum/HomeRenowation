@@ -3,300 +3,254 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recent Workers</title>
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <!-- <link rel="stylesheet" href="{% static 'css/index.css' %}"> -->
-    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recent Workers</title>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <!-- <link rel="stylesheet" href="{% static 'css/index.css' %}"> -->
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 
-    <link href="fontawesomefree/css/all.min.css" rel="stylesheet" type="text/css" />
+  <link href="fontawesomefree/css/all.min.css" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-    <div class="main_wrapper">
-        {% include 'components/adminsidebar.html'%}
-        <div class="right_container">
-            <p class="sub_head_2 imptext">Add Blog</p>
-            <div class="content_wrapper">
-                {% load static %}
-                <!DOCTYPE html>
-                <html lang="en">
-                
-                <head>
-                    <meta charset="UTF-8">
-                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Add Blog</title>
-                    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-                    <!-- <link rel="stylesheet" href="{% static 'css/index.css' %}"> -->
-                    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
-                
-                    <link href="fontawesomefree/css/all.min.css" rel="stylesheet" type="text/css" />
-                
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-                        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-                        crossorigin="anonymous" referrerpolicy="no-referrer" />
-                
-                    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-                    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-                
-                    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-                
-                
-                </head>
-                
-                <body>
-                    <div class="main_wrapper">
-                        <div class="right_container">
-                            <p class="sub_head_2 imptext">Blogs</p>
-                            
-                                <form method="POST" enctype="multipart/form-data">
-                                  {% csrf_token %}
-                                  <div class="dialog_header">
-                                    <h1>Add News</h1>
-                                    <button type='button' class="close-button">
-                                      <i class="fa-solid fa-close"></i>
-                                    </button>
-                                  </div>
-                                  <div class="dialog_content">
-                                    <div class="input_flex">
-                                      <label for="addtitle">Add Title</label>
-                                      <input type="text" name="addtitle" />
-                                    </div>
-                                    <div class="input_flex">
-                                      <label for="subtitle">Add Subtitle</label>
-                                      <input type="text" name="subtitle" />
-                                    </div>
-                                    <div class="input_flex" style="display: none;">
-                                      <label for="AuthorName">Add Author Name</label>
-                                      <input type="text" name="AuthorName" />
-                                    </div>
-                                    <div class="date_flex" >
-                                      <label for="Date">Add Date</label>
-                                      <input type="date" name="Date" />
-                                    </div>
-                                    <!-- 
-                                    <div class="input_flex">
-                                      <label for="adddesc">Add Description</label>
-                                      <textarea name="adddesc" id="" cols="30" rows="10"></textarea>
-                                    </div> -->
-                  
-                                    <div class="input_flex">
-                                      <label for="adddesc">Add Description</label>
-                                      <textarea name="first_para" id="" cols="30" rows="10"></textarea>
-                                    </div>
-                                    <div class="input_flex">
-                                      <label for="subtitle">Heading 1</label>
-                                      <input type="text" name="heading1" />
-                                    </div>
-                                    <div class="input_flex">
-                                      <label for="adddesc">Paragraph 1</label>
-                                      <textarea name="second_para" id="" cols="30" rows="10"></textarea>
-                                    </div>
-                  
-                  
-                                    <div class="input_flex">
-                                      <label for="adddesc">List 1</label>
-                                      <textarea name="list1" id="" cols="30" rows="10"></textarea>
-                                    </div>
-                  
-                                    <div class="input_flex" style="display: none;">
-                                      <label for="subtitle">Heading 2</label>
-                                      <input type="text" name="heading2" />
-                                    </div>
-                  
-                  
-                                    <div class="input_flex"  style="display: none;">
-                                      <label for="adddesc">Paragraph 2</label>
-                                      <textarea name="third_para" id="" cols="30" rows="10"></textarea>
-                                    </div>
-                  
-                  
-                                    <div class="input_flex" style="display: none;">
-                                      <label for="adddesc">List 2</label>
-                                      <textarea name="list2" id="" cols="30" rows="10"></textarea>
-                                    </div>
-                  
-                  
-                  
-                                    <div class="addImage_flex">
-                                      <label for="addamount">Thumbnail/Cover Image</label>
-                                      <div class="uploadimg_div">
-                                        <input type="file" id="upload2" name='blog_image' accept='image/*'>
-                                        <label for="upload2" class="upload2_img_label">Upload Image</label>
-                                        <div id="imageList2"></div>
-                                      </div>
-                                    </div>
-                  
-                  
-                  
-                                    <script>
-                  
-                                      document.getElementById('upload2').addEventListener('change', handleFileSelect);
-                  
-                                      function handleFileSelect(event) {
-                                        const files = event.target.files;
-                  
-                                        for (let i = 0; i < 1; i++) {
-                                          const file = files[i];
-                  
-                                          // Create image container
-                                          const imageContainer = document.createElement('div');
-                                          imageContainer.className = 'image-container';
-                  
-                                          // Create close button
-                                          const closeButton = document.createElement('button');
-                                          closeButton.className = 'img_close-btn';
-                                          closeButton.innerHTML = '&times;';
-                                          closeButton.addEventListener('click', () => {
-                                            imageContainer.remove();
-                                          });
-                  
-                                          // Create image element
-                                          const img = document.createElement('img');
-                                          img.src = URL.createObjectURL(file);
-                  
-                                          // Append elements to the container
-                                          imageContainer.appendChild(closeButton);
-                                          imageContainer.appendChild(img);
-                  
-                                          // Append container to the image list
-                                          document.getElementById('imageList2').appendChild(imageContainer);
-                                        }
-                                      }
-                  
-                                     </script>
-                  
-                  
-                                    <div class="addImage_flex"   style="display: none;">
-                                      <label for="addamount">Add Cover Image</label>
-                                      <div class="uploadimg_div">
-                                        <input type="file" id="upload" name='blog_image2' accept='image/*'>
-                                        <label for="upload" class="upload_img_label">Upload Image</label>
-                                        <div id="imageList"></div>
-                                      </div>
-                                    </div>
-                                    <div class="input_flex" id="video_url_div">
-                                      <label for="youtubeurl">Enter Video Url</label>
-                                      <input type="text" name="youtubeurl">
-                                    </div>
-                                    <div class="checkbox_flex">
-                                      <label for="uploadCheckbox1" class="uploadvideo">Upload Video</label>
-                                      <input type="checkbox" id="uploadCheckbox1" onchange="toggleUploadSection(1)">
-                                    </div>
-                  
-                                    <div class="upload-section full width" id="uploadSection1">
-                                      <label for="uploadVideo1" class="uploadvideo">Upload Video File</label>
-                  
-                                      {% comment %} <input type="file" id="uploadVideo1" name="uploadVideo1"> {% endcomment %}
-                                      <input type='file' width="70%" name='video' accept="video/mp4,video/x-m4v,video/*" class="" />
-                                    </div>
-                  
-                                    <script>
-                                      function toggleUploadSection(videoNumber) {
-                                        var checkbox = document.getElementById('uploadCheckbox' + videoNumber);
-                                        var uploadSection = document.getElementById('uploadSection' + videoNumber);
-                                        var videoUrlDiv = document.getElementById('video_url_div');
-                  
-                                        if (checkbox.checked) {
-                                          uploadSection.style.display = 'flex';
-                                          videoUrlDiv.style.display = 'none';
-                                          
-                                        } else {
-                                          uploadSection.style.display = 'none';
-                                          videoUrlDiv.style.display = 'flex';
-                                        }
-                                      }
-                                    </script>
-                  
-                  
-                  
-                                    <div class="addImage_flex">
-                                      <label for="addamount">Add Small Images</label>
-                                      <div class="uploadimg_div">
-                                        <div class="vertical product_input gap-10 fullwidth fullheight">
-                                          <div class="image_upload vertical">
-                                            <div class="vertical settingsinputs">
-                                              <label for="upload_multiple" class="">Choose Images</label>
-                                              <input name="small_images" type="file" id="upload_multiple" class="file-input"
-                                                accept="image/*" multiple>
-                                            </div>
-                                            <div id="grid-layout" class="grid-layout">
-                                              <!-- Thumbnails will be dynamically added here -->
-                                            </div>
-                                          </div>
-                                        </div>
-                  
-                  
-                                      </div>
-                                    </div>
-                                    <script>
-                  
-                  
-                                      document.getElementById('upload_multiple').addEventListener('change', function () {
-                                        const gridLayout = document.getElementById('grid-layout');
-                  
-                                        const files = Array.from(this.files);
-                                        files.forEach(file => {
-                                          const reader = new FileReader();
-                                          reader.onload = function (event) {
-                                            const thumbnail = document.createElement('div');
-                                            const img = document.createElement('img');
-                                            const closeIcon = document.createElement('span');
-                  
-                                            img.src = event.target.result;
-                                            thumbnail.classList.add('thumbnail');
-                                            closeIcon.classList.add('close-icon');
-                  
-                                            closeIcon.innerHTML = '&times;';
-                                            thumbnail.appendChild(img);
-                                            thumbnail.appendChild(closeIcon);
-                                            gridLayout.appendChild(thumbnail);
-                  
-                                            closeIcon.addEventListener('click', function () {
-                                              thumbnail.remove();
-                                            });
-                                          };
-                                          reader.readAsDataURL(file);
-                                        });
-                                      });
-                  
-                  
-                                    </script>
-                  
-                                    <div class="addbtndiv">
-                                      <button type='submit' class="mainbtn">Add News</button>
-                                    </div>
-                                  </div>
-                                </form>
-                            </div>
-                        </div>
-                
-                    </div>
-                
-             </html>
-            </div>
-                
+  <div class="main_wrapper">
+    {% include 'components/adminsidebar.html'%}
+    <div class="right_container">
+      <p class="sub_head_2 imptext">Add Blog</p>
+      <div class="content_wrapper">
 
-            </div>
-        </div>
+        <div class="">
+          <p class="sub_head_2 imptext">Blogs</p>
+          
+              <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="dialog_header">
+                  <h1>Add Blog</h1>
+                  <button type='button' class="close-button">
+                    <i class="fa-solid fa-close"></i>
+                  </button>
+                </div>
+                <div class="dialog_content">
+                  <div class="web_inputs">
+                    <label for="addtitle">Add Title</label>
+                    <input type="text" name="addtitle" />
+                  </div>
+                  <div class="web_inputs">
+                    <label for="subtitle">Add Subtitle</label>
+                    <input type="text" name="subtitle" />
+                  </div>
+                  <div class="web_inputs" style="display: none;">
+                    <label for="AuthorName">Add Author Name</label>
+                    <input type="text" name="AuthorName" />
+                  </div>
+                  <div class="date_flex" >
+                    <label for="Date">Add Date</label>
+                    <input type="date" name="Date" />
+                  </div>
+
+                  <div class="web_inputs">
+                    <label for="adddesc">Add Description</label>
+                    <textarea name="first_para" id="" cols="30" rows="10"></textarea>
+                  </div>
+                  <!-- <div class="web_inputs">
+                    <label for="subtitle">Heading 1</label>
+                    <input type="text" name="heading1" />
+                  </div>
+                  <div class="web_inputs">
+                    <label for="adddesc">Paragraph 1</label>
+                    <textarea name="second_para" id="" cols="30" rows="10"></textarea>
+                  </div>
+
+
+                  <div class="web_inputs">
+                    <label for="adddesc">List 1</label>
+                    <textarea name="list1" id="" cols="30" rows="10"></textarea>
+                  </div>
+
+                  <div class="web_inputs" style="display: none;">
+                    <label for="subtitle">Heading 2</label>
+                    <input type="text" name="heading2" />
+                  </div>
+
+
+                  <div class="web_inputs"  style="display: none;">
+                    <label for="adddesc">Paragraph 2</label>
+                    <textarea name="third_para" id="" cols="30" rows="10"></textarea>
+                  </div>
+
+
+                  <div class="web_inputs" style="display: none;">
+                    <label for="adddesc">List 2</label>
+                    <textarea name="list2" id="" cols="30" rows="10"></textarea>
+                  </div>
+ -->
+
+
+                  <div class="addImage_flex">
+                    <label for="addamount">Thumbnail/Cover Image</label>
+                    <div class="uploadimg_div">
+                      <input type="file" id="upload2" name='blog_image' accept='image/*'>
+                      <label for="upload2" class="upload2_img_label">Upload Image</label>
+                      <div id="imageList2"></div>
+                    </div>
+                  </div>
+
+
+
+                  <script>
+
+                    document.getElementById('upload2').addEventListener('change', handleFileSelect);
+
+                    function handleFileSelect(event) {
+                      const files = event.target.files;
+
+                      for (let i = 0; i < 1; i++) {
+                        const file = files[i];
+
+                        // Create image container
+                        const imageContainer = document.createElement('div');
+                        imageContainer.className = 'image-container';
+
+                        // Create close button
+                        const closeButton = document.createElement('button');
+                        closeButton.className = 'img_close-btn';
+                        closeButton.innerHTML = '&times;';
+                        closeButton.addEventListener('click', () => {
+                          imageContainer.remove();
+                        });
+
+                        // Create image element
+                        const img = document.createElement('img');
+                        img.src = URL.createObjectURL(file);
+
+                        // Append elements to the container
+                        imageContainer.appendChild(closeButton);
+                        imageContainer.appendChild(img);
+
+                        // Append container to the image list
+                        document.getElementById('imageList2').appendChild(imageContainer);
+                      }
+                    }
+
+                   </script>
+<!-- 
+
+                  <div class="addImage_flex"   style="display: none;">
+                    <label for="addamount">Add Cover Image</label>
+                    <div class="uploadimg_div">
+                      <input type="file" id="upload" name='blog_image2' accept='image/*'>
+                      <label for="upload" class="upload_img_label">Upload Image</label>
+                      <div id="imageList"></div>
+                    </div>
+                  </div>
+                  <div class="web_inputs" id="video_url_div">
+                    <label for="youtubeurl">Enter Video Url</label>
+                    <input type="text" name="youtubeurl">
+                  </div>
+                  <div class="checkbox_flex">
+                    <label for="uploadCheckbox1" class="uploadvideo">Upload Video</label>
+                    <input type="checkbox" id="uploadCheckbox1" onchange="toggleUploadSection(1)">
+                  </div> -->
+
+                  <!-- <div class="upload-section full width" id="uploadSection1">
+                    <label for="uploadVideo1" class="uploadvideo">Upload Video File</label>
+
+                    {% comment %} <input type="file" id="uploadVideo1" name="uploadVideo1"> {% endcomment %}
+                    <input type='file' width="70%" name='video' accept="video/mp4,video/x-m4v,video/*" class="" />
+                  </div> -->
+
+                  <!-- <script>
+                    function toggleUploadSection(videoNumber) {
+                      var checkbox = document.getElementById('uploadCheckbox' + videoNumber);
+                      var uploadSection = document.getElementById('uploadSection' + videoNumber);
+                      var videoUrlDiv = document.getElementById('video_url_div');
+
+                      if (checkbox.checked) {
+                        uploadSection.style.display = 'flex';
+                        videoUrlDiv.style.display = 'none';
+                        
+                      } else {
+                        uploadSection.style.display = 'none';
+                        videoUrlDiv.style.display = 'flex';
+                      }
+                    }
+                  </script>
+
+ -->
+
+                  <!-- <div class="addImage_flex">
+                    <label for="addamount">Add Small Images</label>
+                    <div class="uploadimg_div">
+                      <div class="vertical product_input gap-10 fullwidth fullheight">
+                        <div class="image_upload vertical">
+                          <div class="vertical settingsinputs">
+                            <label for="upload_multiple" class="">Choose Images</label>
+                            <input name="small_images" type="file" id="upload_multiple" class="file-input"
+                              accept="image/*" multiple>
+                          </div>
+                          <div id="grid-layout" class="grid-layout">
+                            Thumbnails will be dynamically added here
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                  </div>
+                  <script>
+
+
+                    document.getElementById('upload_multiple').addEventListener('change', function () {
+                      const gridLayout = document.getElementById('grid-layout');
+
+                      const files = Array.from(this.files);
+                      files.forEach(file => {
+                        const reader = new FileReader();
+                        reader.onload = function (event) {
+                          const thumbnail = document.createElement('div');
+                          const img = document.createElement('img');
+                          const closeIcon = document.createElement('span');
+
+                          img.src = event.target.result;
+                          thumbnail.classList.add('thumbnail');
+                          closeIcon.classList.add('close-icon');
+
+                          closeIcon.innerHTML = '&times;';
+                          thumbnail.appendChild(img);
+                          thumbnail.appendChild(closeIcon);
+                          gridLayout.appendChild(thumbnail);
+
+                          closeIcon.addEventListener('click', function () {
+                            thumbnail.remove();
+                          });
+                        };
+                        reader.readAsDataURL(file);
+                      });
+                    });
+
+
+                  </script>
+ -->
+                  <div class="addbtndiv">
+                    <button type='submit' class="mainbtn">Add News</button>
+                  </div>
+                </div>
+              </form>
+          </div>
+      </div>
+
 
     </div>
 
-    <script src="{% static 'js/script.js' %}"></script>
+
+  </div>
+ 
+  <script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>

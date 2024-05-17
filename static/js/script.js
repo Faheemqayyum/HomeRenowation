@@ -32,11 +32,15 @@ function toggleOffCanvas() {
     var section1 = document.getElementById(section1Id);
     var section2 = document.getElementById(section2Id);
 
-    if (section1.classList.contains("hidden_sect")) {
-        section1.classList.remove("hidden_sect");
-        section2.classList.add("hidden_sect");
-    } else {
+    if (section1.classList.contains("other_div")) {
+        section1.classList.remove("other_div");
         section1.classList.add("hidden_sect");
         section2.classList.remove("hidden_sect");
+        section2.classList.add("other_div");
+    } else {
+        section1.classList.add("other_div");
+        section1.classList.remove("hidden_sect");
+        section2.classList.add("hidden_sect");
+        section2.classList.remove("other_div");
     }
 }

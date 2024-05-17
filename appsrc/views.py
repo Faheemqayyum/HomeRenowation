@@ -115,7 +115,13 @@ def QuoteProject(request):
   return  render(request, 'Website/Quotepage.html', {'uploaded':uploaded,'prices':prices})
 
 
+def MeetTeam(request):
 
+  return  render(request, 'Website/meetourteam.html')
+
+
+def FAQS(request):
+  return  render(request, 'Website/faqs.html')
 
 def SendBid(request):
   if request.user.is_authenticated:

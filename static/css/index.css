@@ -285,8 +285,9 @@ main {
   border-top-right-radius: 10px;
   width: 100%;
   max-height: 200px;
-  object-fit: contain;
+  object-fit: cover;
 }
+
 .sep_div {
   background-color: #dbfaff;
   border-radius: 10px;
@@ -397,6 +398,7 @@ main {
   width: 100px;
   height: 100px;
   object-fit: contain;
+  border-radius: 50%;
 }
 .scroll_div {
   position: relative;
@@ -408,6 +410,7 @@ main {
   /* overflow-x: hidden; */
 }
 .other_div {
+  display: block;
   width: 100%;
 }
 
@@ -454,6 +457,93 @@ main {
   border: 1px solid var(--border-cl);
   object-fit: contain;
 }
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+  width: 300px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-img {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.card h2 {
+  margin: 10px 0;
+  font-size: 24px;
+  color: var(--primarycl);
+  font-weight: 700;
+}
+
+.card p {
+  color: var(--secondarycl);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.social-links {
+  margin-top: 15px;
+}
+
+.social-links a {
+  color: #333;
+  font-size: 20px;
+  margin: 0 10px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #0073b1; /* Example color for hover state */
+}
+.accordion {
+  width: 80%;
+  /* margin: 100px auto; */
+  margin: 20px auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.accordion-header {
+  padding: 15px;
+  cursor: pointer;
+  background-color: white;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.accordion-header:hover {
+  background-color: #f0f0f0;
+}
+
+.accordion-header.active {
+  background-color: #0073b1;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-content {
+  display: none;
+  padding: 15px;
+  background-color: #f9f9f9;
+}
+
 @media screen and (max-width: 768px) {
   /* Navbar */
   .navlinks {

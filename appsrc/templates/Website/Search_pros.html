@@ -10,12 +10,13 @@
 
     <link href="fontawesomefree/css/all.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCglAd31kLlXxO4KW_Dvr8u-TrO5a9Lrd0"></script>
-     
+    <script
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyCglAd31kLlXxO4KW_Dvr8u-TrO5a9Lrd0"></script>
+
 </head>
 
 <body>
@@ -37,64 +38,64 @@
             </div>
         </div>
         <div class="main_border"></div>
-        <div class="horizontal justify-between align-start fullwidth paddingX gap-10">
+        <div class="horizontal paddingX gap-20">
             <div class="vertical gap-10 scroll_div">
                 <div class="fixed_para">
                     <p class="card_text padding-5"></p>
                 </div>
                 {% for pro in pros %}
-                    <div class="horizontal gap-10 align-center card_border worker_card padding-10 fullwidth">
-                        <div class="vertical">
-                            <img src="{{pro.get_profile_pic}}" alt="" class="loccard_img" />
-                        </div>
-                        <div class="vertical">
-                            <div class="horizontal justify-between align-center fullwidth gap-10">
-                                <div class="vertical gap-5 fullwidth">
-                                    <p class="card_text service">{{pro.worker_profile.all.0.profession}}</p>
-                                    <div class="vertical gap-5 margin-bottom">
-                                        <div class="Rating">
-                                            <i class="fa-solid fa-star"></i> {{pro.worker_profile.all.0.rating}} ({{pro.worker_profile.count_projects}} Jobs)
-                                        </div>
-                                        <p class="card_text Rating">
-                                            <i class="fa-solid fa-location-dot "></i> <p class="city"> {{pro.address}}</p>  
-                                        </p>
+                <div class="horizontal gap-10 align-center card_border worker_card padding-10 fullwidth">
+                    <div class="vertical">
+                        <img src="{{pro.get_profile_pic}}" alt="" class="loccard_img" />
+                    </div>
+                    <div class="vertical">
+                        <div class="horizontal justify-between align-center fullwidth gap-10">
+                            <div class="vertical gap-5 fullwidth">
+                                <p class="card_text service">{{pro.worker_profile.all.0.profession}}</p>
+                                <div class="vertical gap-5 margin-bottom">
+                                    <div class="Rating">
+                                        <i class="fa-solid fa-star"></i> {{pro.worker_profile.all.0.rating}}
+                                        ({{pro.worker_profile.count_projects}} Jobs)
+                                    </div>
+                                    <div class="card_text Rating horizontal_2 gap-5">
+                                        <i class="fa-solid fa-location-dot "></i>
+                                        <p class="city"> {{pro.address}}</p>
                                     </div>
                                 </div>
-                                <div>
-                                    <button class="main_btn" onclick="toggleSections('section1', 'section2'); update_worker('{{pro.name}}', '{{pro.worker_profile.all.0.profession}}',' {{pro.worker_profile.all.0.about}}', '{{pro.address}}', '{{pro.worker_profile.all.0.count_projects}}', '{{pro.worker_profile.all.0.rating}}', '{{pro.id}}'); console.log('ac');codeAddress('{{pro.address}}');">Select</button>
-                                </div>
                             </div>
-                            <hr class="hr_line">
-                            <div class="padding-10">
-                                <div class="card_title ">
-                                    {{pro.worker_profile.all.0.profession}}
-                                </div>
+                            <div>
+                                
+                                <button class="main_btn"
+                                    onclick="toggleSections('section1', 'section2'); update_worker('{{pro.name}}', '{{pro.worker_profile.all.0.profession}}',' {{pro.worker_profile.all.0.about}}', '{{pro.address}}', '{{pro.worker_profile.all.0.count_projects}}', '{{pro.worker_profile.all.0.rating}}', '{{pro.id}}'); console.log('ac');codeAddress('{{pro.address}}');">Select</button>
+                            </div>
+                        </div>
+                        <hr class="hr_line">
+                        <div class="padding-10">
+                            <div class="card_title ">
+                                {{pro.worker_profile.all.0.profession}}
                             </div>
                         </div>
                     </div>
+                </div>
                 {% endfor %}
-               
+
                 <!-- More card elements -->
             </div>
-            <div class="other_div">
-                <div class="bx-shadow vertical justify-center align-center padding-10" id="section1"  style="
+                <div class="bx-shadow other_div vertical justify-center align-center padding-10 fullwidth" id="section1" style="
                 margin: 20px auto;">
                     <h2 class="main_head_2">Note</h2>
-                    <p class="bold_text margin-bottom">You can Select any of the Professionals from this list on the left side.</p>
+                        left side.</p>
 
-                    <div id="map_div" class="" style="border: 1px solid black; height: 300px; width:300px ">
-                        <p>Google Map</p>
-                    <!--Google Map -->
+                    <div id="map_div" class="" style="border: 1px solid black; height:400px; width:100% ">
+                        <!--Google Map -->
                     </div>
 
-                    </div>
                 </div>
-                <div class="bx-shadow padding-10 hidden_sect" id="section2" style="
-                margin: 20px auto;">
-                    {% include 'components/worker_detail.html'%}
-                </div>
+            <div class="bx-shadow padding-10 hidden_sect fullwidth " id="section2" style="margin: 15px 0px;">
+                {% include 'components/worker_detail.html'%}
             </div>
         </div>
+        
     </main>
     {% include 'components/footer.html'%}
 
@@ -113,7 +114,7 @@
         function initMap() {
             geocoder = new google.maps.Geocoder();
 
-            var uluru = { lat: 33.7715, lng: 72.7511};
+            var uluru = { lat: 33.7715, lng: 72.7511 };
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 12,
                 center: uluru
@@ -131,111 +132,108 @@
         }
         var infowindow = new google.maps.InfoWindow();
 
-        function createMarker(adrs, html){
+        function createMarker(adrs, html) {
 
-            try{
-                    geocoder.geocode({ 'address': adrs }, function (results, status) {
+            try {
+                geocoder.geocode({ 'address': adrs }, function (results, status) {
                     console.log(results);
-                    var latLng = {lat: results[0].geometry.location.lat (), lng: results[0].geometry.location.lng ()};
-                    console.log (latLng);
+                    var latLng = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() };
+                    console.log(latLng);
                     if (status == 'OK') {
-                        
+
                         var marker = new google.maps.Marker({
                             position: latLng,
                             map: map2
                         });
-                        google.maps.event.addListener(marker, 'click', function(){
+                        google.maps.event.addListener(marker, 'click', function () {
                             infowindow.setContent(html);
                             infowindow.open(map2, marker);
                         });
-                        
+
                         return marker;
-            
-                        
+
+
                     } else {
                         return null;
                     }
                 });
             }
-            catch(err){
+            catch (err) {
                 return null;
             }
 
             return null;
 
-}
+        }
         function codeAddress(addres) {
-    
-                    geocoder.geocode({ 'address': addres }, function (results, status) {
-                    console.log(results);
-                    var latLng = {lat: results[0].geometry.location.lat (), lng: results[0].geometry.location.lng ()};
-                    console.log (latLng);
-                    if (status == 'OK') {
-                        console.log("map",status);
-                        map = new google.maps.Map(document.getElementById('map'), {
-                            zoom: 12,
-                            center: latLng
-                        });
-                        var marker = new google.maps.Marker({
-                            position: latLng,
-                            map: map
-                        });
-                    } else {
-                        alert('Geocode was not successful for the following reason: ' + status);
-                    }
-                });
-            
+
+            geocoder.geocode({ 'address': addres }, function (results, status) {
+                console.log(results);
+                var latLng = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() };
+                console.log(latLng);
+                if (status == 'OK') {
+                    console.log("map", status);
+                    map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 12,
+                        center: latLng
+                    });
+                    var marker = new google.maps.Marker({
+                        position: latLng,
+                        map: map
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+
         }
 
 
         initMap();
-       
-        
 
-        function filter(){
-            city  = document.getElementById("city").value;
-            service  = document.getElementById("service").value;
+
+
+        function filter() {
+            city = document.getElementById("city").value;
+            service = document.getElementById("service").value;
             const workerCards = document.querySelectorAll(".worker_card");
 
-            if (service == "")
-            {
+            if (service == "") {
                 workerCards.forEach(card => {
                     card.style.display = "block";
                 });
             }
-            else if (service != "")
-            {  
-                 workerCards.forEach(card => {
+            else if (service != "") {
+                workerCards.forEach(card => {
                     const serviceText = card.querySelector(".service").innerText.toLowerCase();
                     console.log(serviceText)
-                    if (serviceText.includes(service) ) {
-                    card.style.display = "block";
+                    if (serviceText.includes(service)) {
+                        card.style.display = "block";
                     } else {
-                    card.style.display = "none";
-                    }
-                });
-            }
-
-            if (city != "")
-            {
-                workerCards.forEach(card => {
-                const cityText = card.querySelector(".city").innerText.toLowerCase();
-                console.log(cityText)
-
-                if (cityText.includes(city) ) {
-                    console.log("contains")
-                }
-                else{
-                    if (card.style.display == "block")
                         card.style.display = "none";
                     }
                 });
             }
-                else{
-                    console.log(city);
-                }
+
+            if (city != "") {
+                workerCards.forEach(card => {
+                    const cityText = card.querySelector(".city").innerText.toLowerCase();
+                    console.log(cityText)
+
+                    if (cityText.includes(city)) {
+                        console.log("contains")
+                    }
+                    else {
+                        if (card.style.display == "block")
+                            card.style.display = "none";
+                    }
+                });
+            }
+            else {
+                console.log(city);
+            }
         }
-        function clearFilter(){
+        function clearFilter() {
             document.getElementById("city").value = "";
             document.getElementById("service").value = "";
             filter();
@@ -243,18 +241,18 @@
 
         var addresses = []
         {% for pro in pros %}
-            addresses.push({'address':'{{pro.address}}','name':"{{pro.first_name}} {{pro.last_name}}"})
+        addresses.push({ 'address': '{{pro.address}}', 'name': "{{pro.first_name}} {{pro.last_name}}" })
         {% endfor %}
 
 
 
-        function MarkWorkersOnMap(){
+        function MarkWorkersOnMap() {
             map2 = new google.maps.Map(document.getElementById('map_div'), {
                 zoom: 8,
-                center: { lat: 33.7715, lng: 72.7511}
+                center: { lat: 33.7715, lng: 72.7511 }
             });
 
-            for(var v = 0; v<addresses.length; v++){
+            for (var v = 0; v < addresses.length; v++) {
                 createMarker(addresses[v]['address'], addresses[v]['name'])
             }
         }

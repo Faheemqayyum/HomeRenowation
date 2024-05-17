@@ -19,29 +19,29 @@
 </head>
 
 <body>
-  <main> 
+  <main>
     <section class="vertical gap-20">
       {% include 'components/adminsidebar.html'%}
       <div class="vertical gap-20">
         <div>
           <form id="edit_blog_form" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="Program_flex">
+            <div class="horizontal">
               <h1>Edit Blogs</h1>
             </div>
             <div>
-              <div class="input_flex">
-                <input type="text" value="{{blog.id}}" name="id" hidden   />
+              <div class="web_inputs">
+                <input type="text" value="{{blog.id}}" name="id" hidden />
               </div>
-              <div class="input_flex">
+              <div class="web_inputs">
                 <label for="addtitle">Add Title</label>
                 <input type="text" value="{{blog.title}}" name="addtitle" />
               </div>
-              <div class="input_flex">
+              <div class="web_inputs">
                 <label for="subtitle">Add Subtitle</label>
                 <input type="text" value="{{blog.subtitle}}" name="subtitle" />
               </div>
-              <div class="input_flex" style="display: none;">
+              <div class="web_inputs" style="display: none;">
                 <label for="AuthorName">Add Author Name</label>
                 <input type="text" value="{{blog.author}}" name="AuthorName" />
               </div>
@@ -50,20 +50,21 @@
                 <input type="date" value="{{ blog.date|date:'Y-m-d' }}" name="Date" />
               </div>
 
-              <!-- <div class="input_flex">
+              <!-- <div class="web_inputs">
                 <label for="adddesc">Add Description</label>
                 <textarea name="adddesc" id="adddesc" cols="30" rows="10"></textarea>
               </div> -->
 
-              <div class="input_flex">
+              <div class="web_inputs">
                 <label for="adddesc">Add Description</label>
-                <textarea value="{{blog.first_para}}" name="first_para" id="first_para" cols="30" rows="10">{{blog.first_para}}</textarea>
+                <textarea value="{{blog.first_para}}" name="first_para" id="first_para" cols="30"
+                  rows="10">{{blog.first_para}}</textarea>
               </div>
-              <div class="input_flex">
+              <!-- <div class="web_inputs">
                 <label for="subtitle">Heading </label>
                 <input type="text" value="{{blog.heading1}}" name="heading1" />
               </div>
-              <div class="input_flex">
+              <div class="web_inputs">
                 <label for="adddesc">Paragraph </label>
                 <textarea value="" name="second_para" id="second_para" cols="30"
                   rows="10">
@@ -72,31 +73,31 @@
               </div>
 
 
-              <div class="input_flex"  style="display: none;">
+              <div class="web_inputs"  style="display: none;">
                 <label for="subtitle">Heading 2</label>
                 <input type="text" value="{{blog.heading2}}" name="heading2" />
               </div>
 
-              <div class="input_flex"  style="display: none;">
+              <div class="web_inputs"  style="display: none;">
                 <label for="adddesc">Paragraph</label>
                 <textarea value="{{blog.third_para}}" name="third_para" id="third_para" cols="30" rows="10">{{blog.third_para}}</textarea>
               </div>
-              <div class="input_flex">
+              <div class="web_inputs">
                 <label for="adddesc">List </label>
                 <textarea value="{{blog.list1}}" name="list1" id="list1" cols="30" rows="10">{{blog.list1}}</textarea>
               </div>
-              <div class="input_flex"  style="display: none;">
+              <div class="web_inputs"  style="display: none;">
                 <label for="adddesc">List 2</label>
                 <textarea value="{{blog.list2}}" name="list2" id="list2" cols="30" rows="10">{{blog.list2}}</textarea>
               </div>
-              {% comment %} <div class="input_flex">
+              {% comment %} <div class="web_inputs">
                 <label for="AuthorName">Reviewer</label>
                 <input type="text" value="{{blog.reviewer}}" name="reviewer" />
               </div>
-              <div class="input_flex">
+              <div class="web_inputs">
                 <label for="adddesc">Review </label>
                 <textarea value="{{blog.review}}" name="review" id="review" cols="30" rows="10"></textarea>
-              </div> {% endcomment %}
+              </div> {% endcomment %} -->
 
               <div class="addImage_flex">
                 <label for="addamount">Cover/Thumbnail</label>
@@ -112,7 +113,7 @@
 
               </div>
 
-              <div class="input_flex">
+              <!-- <div class="web_inputs">
                 <label for="youtubeurl">Enter Video Url</label>
                 <input type="text" name="youtubeurl">
               </div>
@@ -171,7 +172,7 @@
                             <input name="small_images" type="file" id="upload_multiple" class="file-input" accept="image/*" multiple>
                         </div>
                         <div id="grid-layout" class="grid-layout">
-                            <!-- Thumbnails will be dynamically added here -->
+                            Thumbnails will be dynamically added here
                         </div>
                     </div>
                 </div>
@@ -214,7 +215,7 @@
               </script>
 
 
-
+ -->
               <div class="addbtndiv">
                 <button type='submit' class="mainbtn">Save Changes</button>
               </div>
@@ -223,16 +224,15 @@
 
           </form>
 
-          <div class = "settings_grid fullwidth">
-                
+          <div class="settings_grid fullwidth">
+
             {% for img in images %}
-    
+
             <div class="vertical slideimg align-center justify-center brcontent-light marginbottom a ourappeal">
               {% if img.image %}
-              <img
-               src="{{ img.image.url }}">
-            </img>
-    
+              <img src="{{ img.image.url }}">
+              </img>
+
               <form method="POST" class="bnbuttons">
                 {% csrf_token %}
                 <input name='img_id' value="{{img.id}}" hidden>
@@ -241,7 +241,7 @@
               </form>
               {% endif %}
             </div>
-  
+
             {% endfor %}
           </div>
 
@@ -252,15 +252,11 @@
               Your browser does not support the video tag.
             </video>
             {% else %}
-                <iframe title="VIDEO"  
-                  width="400" 
-                  frameborder="0"
-                  allowfullscreen="" 
-                  ng-show="showvideo"
-                  src="{{blog.video_url.embedUrl}}">
-                </iframe>
+            <iframe title="VIDEO" width="400" frameborder="0" allowfullscreen="" ng-show="showvideo"
+              src="{{blog.video_url.embedUrl}}">
+            </iframe>
             {% endif %}
-  
+
             <form method="POST" class="bnbuttons">
               {% csrf_token %}
               <input name='blog_id' value="{{blog.id}}" hidden>

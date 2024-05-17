@@ -76,7 +76,7 @@ a {
 .halfwidth {
   width: 50%;
 }
-.fullheight{
+.fullheight {
   height: 100%;
 }
 .padding {
@@ -94,7 +94,7 @@ a {
 .padding-10 {
   padding: 10px;
 }
-.margin-bottom{
+.margin-bottom {
   margin-bottom: 10px;
 }
 .gap-10 {
@@ -170,16 +170,15 @@ a {
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
-  color: var(--textcl)
+  color: var(--textcl);
 }
-.workerhead{
+.workerhead {
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;
   letter-spacing: 0em;
   text-align: left;
-  color: var(--textcl)
-
+  color: var(--textcl);
 }
 .hero_text {
   font-size: 20px;
@@ -262,9 +261,9 @@ a {
   box-sizing: border-box;
   transition: all 0.5ms ease-in;
 }
-.small_btn:hover{
+.small_btn:hover {
   background: none;
-  background-color: #F5FAFB;
+  background-color: #f5fafb;
   color: var(--primarycl);
 }
 .main_btn:hover {
@@ -273,22 +272,27 @@ a {
   color: var(--primarycl);
   border: 1px solid var(--primarycl);
 }
+.web_inputs{
+  align-items: center;
+}
 .web_inputs label {
   width: 100%;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
   line-height: 18px;
   letter-spacing: 0em;
   text-align: left;
   color: var(--textcl);
   max-width: 200px;
 }
-.web_inputs input,.web_inputs textarea,.web_inputs select {
+.web_inputs input,
+.web_inputs textarea,
+.web_inputs select {
   width: 100%;
-  background-color: #fbfbfb;
-  padding: 5px 10px;
-  border: 1px solid var(--border-cl);
-  border-radius: 2px;
+  background-color: #def7fb;
+  padding: 15px 20px;
+  border: 1px solid var(--tablehead);
+  border-radius: 5px;
 }
 .modal {
   display: none;
@@ -300,16 +304,16 @@ a {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
-.modal-header{
+.modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: var(--primarycl);
-  color:white;
-  padding:0px 10px;
+  color: white;
+  padding: 0px 10px;
   border-radius: 10px 10px 0px 0px;
 }
-.modal-header p{
+.modal-header p {
   font-size: 14px;
   font-weight: 500;
   text-transform: capitalize;
