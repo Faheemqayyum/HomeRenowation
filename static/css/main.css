@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
 
 :root {
-  --primarycl: #757fef;
+  --primarycl: #0096FF;
   --secondarycl: #919af2;
   --grey: #efefef;
   --grey-hover: #b3b3b3;
@@ -141,6 +141,15 @@ a {
   text-transform: uppercase;
   color: var(--textcl);
 }
+.hero_head {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 32px;
+  letter-spacing: 0em;
+  text-align: left;
+  text-transform: uppercase;
+  color: white;
+}
 .main_head_3 {
   font-size: 36px;
   font-weight: 600;
@@ -248,6 +257,19 @@ a {
   border-radius: 5px;
   font-size: 14px;
   font-weight: 500;
+  box-sizing: border-box;
+  transition: all 0.5ms ease-in;
+}
+.sm_btn {
+  height: 40px;
+  background-color: var(--primarycl);
+  color: white;
+  border: 1px solid var(--primarycl);
+  padding: 10px 15px;
+  /* border: none; */
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 400;
   box-sizing: border-box;
   transition: all 0.5ms ease-in;
 }

@@ -33,42 +33,45 @@
             <div class="content_wrapper">
                 <div class="recentmembers box bg-white">
                     <div style="overflow-x: auto; width: 100%;">
-                    <table class="dash_table">
-                        <tr>
-                            <th>Project Title</th>
-                            <th>Project Description</th>
-                            <th>Category</th>
-                            <th>Project Budget</th>
-                            <th>Location</th>
-                            <!-- <th></th> -->
-                            <th>Status</th>
-                            <th>View Bids</th>
-                        </tr>
-                        {% for quote in quotes %}
-                        <tr>
-                            <td>{{quote.project_name}} </td>
-                                <td>{{quote.description}}</td>
-                            <td>{{quote.category}}</td>
-                            <td>{{quote.budget}}</td>
+                        <table class="dash_table">
+                            <tr>
+                                <th>Project Title</th>
+                                <th>Project Description</th>
+                                <th>Category</th>
+                                <th>Project Budget</th>
+                                <th>Location</th>
+                                <!-- <th></th> -->
+                                <th>Status</th>
+                                <th>View Bids</th>
+                            </tr>
+                            {% for quote in quotes %}
+                            <tr>
+                                <td>{{quote.project_name}} </td>
+                                <td>
+                                    <p class="project_desc"> {{quote.description}}
+                                </td>
+                                </p>
+                                <td>{{quote.category}}</td>
+                                <td>{{quote.budget}}</td>
                                 <td>{{quote.location}}</td>
                                 <td>
                                     {% if quote.order_placed %}
-                                        <button class="small_btn">Order Placed</button>
+                                    <button class="small_btn">Order Placed</button>
                                     {% else %}
-                                        <button class="small_btn">Pending</button>
-                                        {% endif %}
-                                        
-                                    </td>
-                            <td>
-                                <a href="{% url 'workerquotes' id=quote.id %}" class="main_btn">View Bids</a>
-                            </td>
-                        </tr>
+                                    <button class="small_btn">Pending</button>
+                                    {% endif %}
 
-                        {% endfor %}
-                    </table>
+                                </td>
+                                <td>
+                                    <a href="{% url 'workerquotes' id=quote.id %}" class="main_btn">View Bids</a>
+                                </td>
+                            </tr>
+
+                            {% endfor %}
+                        </table>
+                    </div>
                 </div>
-                </div>
-                
+
 
             </div>
         </div>

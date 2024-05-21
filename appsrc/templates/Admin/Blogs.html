@@ -27,14 +27,23 @@
                 </a>
             </div>
             <div class="fullwidth">
-                <div class="horizontal justify-between align-start fullwidth paddingX gap-10 fullwidth">
-                    <div class="vertical gap-20 justify-between align-start fullwidth">
+                <div class="horizontal justify-between align-startpaddingX gap-10 fullwidth padding-20">
+                    <div class="blogs_grid">
                         {% for blog in blogs %}
-                        <div class="horizontal gap-10 align-start bx-shadow padding-10 fullwidth">
+                        <div class="vertical gap-10 align-start bx-shadow padding-10">
                             <div class="vertical fullwidth">
-                                <img src="{{blog.get_image}}" alt="" class="blog_img" />
+                                <img src="{{blog.get_image}}" alt="" class="admin_blog_img" />
                             </div>
                             <div class="vertical gap-10 justify-start align-start fullwidth">
+                                <div class="horizontal justify-end gap-10 align-center fullwidth">
+                                    <a class="sm_btn" href="{% url 'editBlog' %}?blog_id={{blog.id}}">Edit</a>
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <input name="blog_id" value="{{blog.id}}" hidden>
+                                        <input name="action" value="delete_blog" hidden>
+                                        <button class="sm_btn" type='submit'>Delete</button>
+                                    </form>
+                                </div>
                                 <div class="horizontal justify-between align-center fullwidth gap-10">
                                     <div class="vertical gap-5 fullwidth padding-20">
                                         <p class="blog_title">{{blog.title}}</p>
@@ -43,25 +52,17 @@
                                                 <p class="blog_subtitle"> {{blog.subtitle}} </p>
                                             </div>
                                         </div>
+                                        <div class="padding-10">
+                                            <div class="card_title ">
+                                                {{pro.worker_profile.all.0.profession}}
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
-                                <div class="padding-10">
-                                    <div class="card_title ">
-                                        {{pro.worker_profile.all.0.profession}}
-                                    </div>
-                                </div>
+                                
                             </div>
-                            <div class="horizontal justify-end gap-20 align-center fullwidth">
-                                <a class="main_btn" href="{% url 'editBlog' %}?blog_id={{blog.id}}">Edit
-                                    Blog</a>
-                                <form method="POST">
-                                    {% csrf_token %}
-                                    <input name="blog_id" value="{{blog.id}}" hidden>
-                                    <input name="action" value="delete_blog" hidden>
-                                    <button class="main_btn" type='submit'>Delete Blog</button>
-                                </form>
-                            </div>
+                           
                         </div>
                         {% endfor %}
 

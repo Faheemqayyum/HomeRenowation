@@ -1,5 +1,5 @@
 :root {
-  --primarycl: #757fef;
+  --primarycl: #0096FF;
   --secondarycl: #919af2;
   --grey: #efefef;
   --grey-hover: #b3b3b3;
@@ -101,8 +101,9 @@ main {
 .offcanvas_navlinks li a {
   text-decoration: none;
   color: var(--primarycl);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
+
 }
 .hrline {
   height: 10px;
@@ -237,7 +238,7 @@ main {
   position: relative;
   background-image: url(../media/heroimg2.jpg);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100%;
   background-position: 100% 100%;
   height: 550px;
   display: flex;
@@ -247,8 +248,8 @@ main {
 .hero_text_sect {
   position: absolute;
   z-index: 100;
-  top: 100px;
-  right: 40px;
+  top: 150px;
+  right: 20px;
 }
 .logo_img {
   width: 70px;
@@ -259,6 +260,15 @@ main {
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
 }
 .bx-shadow {
   border-radius: 10px;
@@ -550,7 +560,7 @@ main {
 .blog_img {
   width: 100%;
   height: 100%;
-  max-height: 450px;
+  max-height: 200px;
   object-fit: contain;
 }
 .blog_date {
@@ -569,6 +579,14 @@ main {
   font-weight: 400;
   line-height: 18px;
   color: #888;
+}
+
+.project_desc{
+  padding:0 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }
 @media screen and (max-width: 768px) {
   /* Navbar */
