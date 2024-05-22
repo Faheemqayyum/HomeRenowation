@@ -31,13 +31,20 @@
         <div class="right_container">
             <div class="horizontal justify-between align-center fullwidth">
                 <p class="sub_head_2 imptext margin-bottom">Client Detail</p>
-                <div class="horizontal justify-between align-center gap-10">
+                <!-- <div class="horizontal justify-between align-center gap-10">
                     <button onclick="accept_reject('{{client.id}}','Accept')" class="small_btn">Accept</button>
                     <button onclick="accept_reject('{{client.id}}','Decline')" class="small_btn">Decline</button>
-                </div>
+                </div> -->
             </div>
             <div class="vertical justify-start align-start gap-10 fullwidth">
+                <div class="horizontal justify-start align-center gap-10">
+                    <img src="{{client.get_profile_pic}}" class="profile_img">
+                </div>
+
                 <div class="horizontal justify-between align-center fullwidth">
+
+
+                  
                     <div class="horizontal justify-start align-center gap-10">
                         <p class="Clienthead">Client Name:</p>
                         <p class="card_text">{{client.first_name}} {{client.last_name}}</p>
@@ -52,10 +59,12 @@
                     <p class="Clienthead">Client CNIC:</p>
                     <p class="card_text">{{client.cnic}}</p>
                 </div>
-                <div class="horizontal justify-start align-center gap-10">
+                <!-- <div class="horizontal justify-start align-center gap-10">
                     <p class="Clienthead">Client Profession</p>
                     <p class="card_text">{{client.profession}}</p>
-                </div>
+                </div> -->
+
+
                 <div class="horizontal justify-start align-center gap-10">
                     <p class="Clienthead">Client Phone Number</p>
                     <p class="card_text">{{client.phone}}</p>

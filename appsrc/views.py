@@ -313,7 +313,7 @@ def MemberDetail(request, id):
   else:
     return redirect("homepage")
   
-  return  render(request, 'Admin/RecentMemberDetail.html', {"user":user})
+  return  render(request, 'Admin/RecentMemberDetail.html', {"client":user})
 
 
 def NewProjects(request):
